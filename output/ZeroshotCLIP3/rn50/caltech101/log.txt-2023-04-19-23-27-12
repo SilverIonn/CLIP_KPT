@@ -1,0 +1,369 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: 0.5
+dataset: caltech101
+dataset_config_file: configs/datasets/caltech101.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/caltech101
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 20
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+CALIBRATION_CUT: 0.5
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: Caltech101
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/caltech101
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/caltech101
+  SIZE: 20
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: Caltech101
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/caltech-101/split_zhou_Caltech101.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ----------
+Dataset    Caltech101
+# classes  100
+# train_x  4,128
+# val      1,649
+# test     2,465
+---------  ----------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [2750, 1958, 2312, 3971, 2967, 493, 3166, 3360, 2548, 916, 2920, 1466, 1308, 729, 87, 1112, 4047, 1980, 2847, 1718, 3029, 789, 3150, 3093, 3214, 1766, 2009, 1329, 203, 3112, 1578, 639, 2543, 456, 1764, 1290, 1582, 18, 2675, 2551, 2843, 3096, 2875, 3726, 2334, 4058, 2659, 1167, 1780, 3416, 821, 3402, 2299, 3698, 3544, 476, 2491, 2044, 315, 230, 3589, 2301, 1672, 2130, 336, 3387, 49, 1938, 1301, 204, 3322, 2234, 3026, 3858, 3823, 3382, 3306, 4014, 1785, 1625, 319, 2204, 124, 1411, 4123, 851, 1115, 281, 3659, 231, 2257, 2666, 1521, 537, 133, 85, 210, 224, 2681, 3510, 2800, 2581, 27, 2942, 2062, 1656, 1003, 1272, 3397, 872, 1726, 2429, 35, 2808, 2107, 2705, 3438, 1912, 293, 50, 2526, 188, 1774, 2720, 371, 1650, 1147, 2026, 3628, 79, 3242, 1789, 496, 2722, 2227, 4011, 3917, 1541, 1529, 3317, 335, 1453, 4019, 2444, 3684, 3450, 3747, 777, 1850, 3668, 817, 1152, 3464, 2222, 1697, 1862, 3200, 1976, 2908, 746, 822, 1998, 1269, 973, 3485, 4067, 995, 3389, 346, 2753, 2373, 3841, 2054, 829, 2084, 593, 3789, 3942, 1613, 584, 53, 2040, 3037, 725, 2355, 2439, 1960, 3147, 1360, 3728, 1255, 3986, 4109, 3730, 2401, 2001, 504, 3980, 2921, 4083, 2163, 4081, 279, 2772, 3384, 2388, 3595, 2031, 3264, 3491, 3361, 111, 1087, 738, 1093, 1996, 3846, 1548, 3787, 1171, 1050, 2698, 3521, 931, 3695, 2853, 1953, 2906, 2287, 3321, 1957, 703, 257, 1562, 3075, 2651, 3553, 1872, 1253, 3050, 41, 3208, 1680, 1499, 3744, 3435, 274, 1581, 1812, 3686, 1099, 52, 1621, 828, 2372, 2365, 2594, 967, 3262, 1212, 2363, 2208, 3913, 2171, 1119, 3624, 1951, 1175, 145, 223, 435, 2416, 876, 1761, 540, 2688, 3999, 815, 181, 1914, 209, 1009, 1162, 4106, 2949, 4033, 1406, 1316, 112, 1695, 2779, 3590, 908, 3456, 549, 2601, 73, 1652, 2624, 2629, 2058, 2043, 945, 2894, 1285, 1720, 3254, 3829, 2892, 2857, 2027, 1623, 842, 3460, 2382, 4113, 3572, 1452, 505, 2788, 3978, 1062, 830, 1990, 3680, 1192, 3632, 832, 3078, 1244, 3138, 715, 1692, 1283, 3977, 3580, 1111, 1903, 1933, 1716, 4127, 2338, 3008, 761, 4044, 1200, 374, 3641, 899, 944, 2155, 2237, 1659, 2687, 1637, 2975, 3850, 2067, 2360, 3779, 2648, 1038, 1030, 1816, 2565, 3934, 1323, 26, 3261, 2174, 671, 2996, 519, 883, 3249, 847, 459, 2201, 3062, 3606, 692, 4104, 468, 3463, 608, 147, 887, 3569, 3190, 3186, 1402, 993, 3013, 3554, 3615, 2630, 1288, 3020, 344, 226, 2706, 3519, 553, 2816, 2715, 1345, 86, 1921, 992, 1770, 1455, 1667, 3417, 2459, 3342, 1894, 3011, 3033, 2068, 9, 2861, 534, 650, 3339, 1103, 1757, 1485, 494, 3379, 1895, 4078, 3017, 2283, 3538, 902, 1096, 3975, 3057, 1743, 3723, 16, 3326, 2740, 2213, 2327, 2849, 1343, 1612, 2650, 1691, 3155, 3175, 2682, 448, 3381, 1771, 2445, 168, 3843, 742, 3324, 3222, 1477, 3274, 3927, 2935, 562, 240, 2806, 3736, 582, 661, 2183, 1936, 1293, 440, 1534, 1508, 1696, 707, 1424, 78, 856, 617, 823, 2120, 1989, 2304, 845, 3591, 406, 3018, 2865, 1971, 2265, 2516, 4000, 3865, 2874, 148, 1229, 535, 2498, 1326, 1238, 1987, 3132, 3304, 634, 2801, 1707, 3652, 1060, 1864, 1282, 2992, 938, 3487, 1026, 3511, 2423, 2691, 487, 3142, 1628, 67, 3216, 1254, 4026, 3091, 20, 3847, 3762, 1054, 1620, 3689, 2529, 444, 2500, 3108, 482, 2486, 4023, 1787, 1824, 1276, 713, 1299, 1398, 1759, 1603, 1767, 4073, 2891, 2598, 645, 2094, 3586, 1898, 2035, 749, 1382, 2623, 189, 1734, 2371, 2856, 277, 2145, 3007, 3412, 539, 1538, 2240, 3098, 1223, 3269, 843, 2555, 3565, 2966, 1188, 726, 2790, 2541, 623, 763, 2754, 1867, 701, 969, 2236, 583, 4012, 1700, 2016, 1756, 1037, 1386, 1735, 958, 1509, 1172, 1114, 1055, 3127, 981, 1762, 922, 1397, 2576, 98, 151, 1861, 997, 3931, 207, 1489, 1839, 1312, 3421, 216, 470, 3718, 3972, 1805, 2556, 3588, 2525, 3550, 383, 239, 486, 1405, 3902, 1823, 509, 1214, 3472, 2794, 3227, 1793, 674, 1160, 234, 48, 2946, 3292, 1247, 2076, 2243, 1828, 1544, 1371, 3077, 2049, 4004, 2647, 4105, 1491, 1975, 21, 1399, 3504, 2221, 3452, 3364, 1728, 4114, 65, 138, 3536, 2730, 1705, 1437, 3308, 1967, 272, 2895, 2927, 2141, 3970, 2206, 2399, 4116, 2618, 1204, 3888, 1018, 1615, 683, 3039, 906, 2704, 1095, 2368, 3788, 353, 1068, 2805, 2724, 1658, 1222, 2125, 730, 75, 60, 206, 1217, 741, 2686, 3559, 533, 2597, 3483, 1044, 2082, 2919, 3177, 1498, 1556, 3156, 2513, 2115, 1564, 3318, 3694, 3958, 4015, 3032, 1228, 2131, 2188, 1504, 1642, 2461, 1488, 379, 1888, 910, 2974, 1139, 657, 1640, 3233, 2223, 3337, 2926, 3644, 3300, 3449, 471, 271, 1822, 375, 2579, 2574, 3610, 801, 1531, 10, 2709, 321, 2759, 1739, 3832, 2701, 507, 1955, 4055, 647, 2268, 3914, 1593, 643, 259, 600, 1486, 366, 200, 3896, 835, 925, 4008, 3423, 3174, 485, 2057, 2454, 303, 2531, 1927, 446, 679, 3063, 3167, 2504, 2625, 395, 2862, 1681, 3872, 1380, 2511, 2782, 3024, 1249, 1818, 885, 3960, 2558, 2097, 3148, 734, 2151, 237, 1624, 1409, 2986, 2244, 656, 4111, 652, 2286, 1956, 2937, 1006, 951, 348, 415, 164, 4030, 1744, 1412, 2178, 2804, 3121, 1462, 604, 3702, 3582, 3921, 4061, 1090, 1132, 2335, 170, 3705, 2229, 1589, 2181, 3945, 3976, 2778, 2592, 2938, 2718, 1865, 2896, 104, 965, 1539, 2488, 3995, 2727, 4072, 3513, 678, 2179, 2676, 2507, 1356, 677, 2517, 3001, 2634, 2550, 2285, 2756, 1369, 2318, 1586, 2059, 955, 2124, 3101, 2697, 1870, 364, 40, 915, 2509, 46, 296, 3278, 3721, 2609, 1999, 959, 794, 3637, 3079, 2984, 1028, 1788, 90, 690, 155, 569, 450, 3771, 853, 2580, 1928, 3239, 3852, 882, 4001, 2002, 1893, 602, 2343, 3828, 3437, 177, 1235, 1300, 1646, 2088, 3733, 412, 301, 934, 649, 3009, 1689, 1568, 2954, 158, 1017, 3107, 4088, 2795, 3926, 3207, 3309, 377, 2868, 165, 1634, 2669, 722, 4006, 3422, 3542, 3248, 3742, 1610, 3358, 3639, 3209, 3131, 1376, 1741, 3083, 2103, 3878, 1015, 912, 2061, 89, 897, 3352, 2357, 2395, 2539, 745, 577, 3701, 2457, 1626, 864, 911, 1604, 1537, 2527, 2584, 1784, 3790, 1350, 3608, 1688, 2563, 3234, 3577, 3446, 1049, 3836, 2460, 3426]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 1000
+num of org label words: 1488
+cali text features shape: torch.Size([1488, 1024])
+the calibration logits is tensor([[12.5391, 19.5469, 14.6641,  ..., 12.1953, 14.3516, 13.2656],
+        [17.1875, 15.7812, 16.9688,  ...,  7.4961, 10.0703, 15.3906],
+        [13.6328, 15.2578, 15.2344,  ..., 13.1016, 15.5234, 18.5781],
+        ...,
+        [13.8281, 16.8594, 15.1484,  ..., 15.1016, 14.9141, 14.9219],
+        [14.2188, 15.0391, 14.8203,  ..., 10.0391, 12.5000, 16.2344],
+        [15.0938, 19.9375, 15.7422,  ..., 17.9531, 18.5000, 16.6250]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([1000, 1488])
+Phase 1 [17, 10, 18, 6, 13, 17, 14, 17, 17, 14, 18, 17, 19, 11, 18, 13, 20, 16, 1, 18, 18, 15, 15, 1, 1, 11, 12, 9, 1, 20, 21, 18, 15, 15, 17, 13, 15, 10, 19, 16, 12, 1, 22, 15, 21, 18, 15, 17, 15, 14, 16, 22, 17, 17, 10, 19, 20, 18, 4, 18, 6, 12, 18, 20, 18, 17, 4, 15, 15, 14, 15, 19, 12, 19, 14, 11, 16, 10, 9, 19, 12, 18, 21, 19, 15, 14, 12, 21, 20, 17, 17, 19, 20, 19, 4, 15, 16, 19, 20, 20]
+
+register_calibrate_logits starting shape: torch.Size([1488])
+logits shape -1 :1488
+rm_calibrate_ids: {0, 17, 18, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 33, 34, 35, 38, 40, 44, 45, 46, 47, 49, 50, 52, 53, 55, 58, 59, 60, 62, 63, 64, 65, 69, 81, 83, 86, 88, 89, 90, 95, 96, 98, 99, 100, 102, 108, 109, 111, 113, 118, 121, 128, 129, 130, 132, 133, 134, 135, 136, 137, 140, 141, 142, 146, 157, 160, 161, 162, 163, 167, 168, 169, 170, 172, 173, 174, 175, 178, 181, 182, 183, 186, 190, 195, 205, 208, 209, 210, 214, 216, 221, 222, 226, 227, 232, 234, 237, 244, 247, 248, 250, 253, 254, 255, 256, 259, 262, 265, 269, 273, 276, 277, 278, 284, 285, 293, 307, 308, 312, 316, 318, 321, 322, 323, 324, 327, 329, 330, 334, 335, 337, 338, 340, 343, 344, 345, 346, 347, 349, 350, 352, 353, 354, 355, 356, 360, 361, 363, 366, 367, 368, 369, 370, 371, 374, 375, 376, 377, 381, 383, 390, 393, 396, 397, 399, 400, 401, 402, 403, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 421, 429, 431, 433, 435, 436, 437, 438, 439, 440, 441, 443, 444, 445, 446, 448, 449, 451, 452, 453, 455, 457, 458, 460, 462, 463, 465, 466, 467, 468, 469, 470, 472, 473, 474, 477, 478, 483, 484, 486, 487, 488, 490, 491, 492, 494, 496, 498, 499, 503, 504, 505, 508, 510, 511, 514, 518, 519, 520, 521, 523, 525, 526, 529, 531, 538, 540, 543, 547, 548, 549, 550, 551, 552, 553, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 577, 578, 579, 581, 583, 584, 586, 587, 588, 589, 591, 592, 594, 597, 598, 599, 606, 607, 608, 609, 610, 611, 613, 616, 617, 620, 627, 628, 629, 630, 631, 632, 636, 638, 639, 641, 642, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 655, 656, 657, 658, 660, 664, 665, 666, 675, 677, 678, 680, 681, 682, 688, 689, 690, 691, 692, 695, 696, 699, 700, 701, 702, 706, 709, 710, 711, 712, 713, 714, 715, 718, 719, 722, 723, 724, 725, 729, 730, 731, 733, 735, 737, 738, 741, 743, 744, 745, 750, 754, 756, 757, 759, 761, 763, 765, 766, 768, 769, 770, 771, 772, 775, 778, 779, 781, 782, 784, 786, 787, 788, 789, 790, 792, 794, 795, 798, 800, 801, 802, 803, 805, 809, 812, 813, 814, 815, 816, 821, 824, 825, 827, 828, 829, 830, 831, 833, 834, 835, 836, 837, 839, 842, 843, 844, 845, 846, 847, 849, 850, 851, 852, 854, 855, 856, 857, 858, 859, 860, 861, 863, 864, 865, 866, 867, 868, 869, 870, 871, 872, 873, 875, 880, 882, 884, 889, 891, 892, 894, 895, 898, 899, 900, 903, 904, 909, 919, 923, 924, 925, 926, 927, 929, 931, 933, 934, 935, 936, 939, 941, 942, 945, 951, 952, 953, 956, 957, 958, 959, 960, 961, 962, 964, 967, 970, 971, 974, 975, 977, 978, 979, 983, 984, 985, 986, 987, 988, 989, 990, 992, 993, 995, 996, 997, 1000, 1001, 1002, 1004, 1006, 1008, 1009, 1010, 1011, 1012, 1013, 1015, 1018, 1019, 1021, 1022, 1023, 1024, 1025, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1043, 1048, 1050, 1051, 1052, 1053, 1054, 1055, 1057, 1058, 1059, 1060, 1064, 1065, 1071, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1085, 1086, 1088, 1089, 1094, 1095, 1096, 1097, 1098, 1104, 1106, 1107, 1108, 1109, 1110, 1111, 1116, 1118, 1122, 1123, 1124, 1127, 1128, 1129, 1130, 1131, 1135, 1136, 1141, 1146, 1148, 1150, 1155, 1156, 1157, 1159, 1160, 1162, 1163, 1164, 1165, 1167, 1170, 1171, 1173, 1175, 1176, 1181, 1186, 1187, 1188, 1189, 1190, 1199, 1201, 1205, 1215, 1219, 1220, 1235, 1236, 1238, 1239, 1240, 1241, 1243, 1244, 1246, 1247, 1248, 1250, 1254, 1255, 1258, 1260, 1261, 1262, 1264, 1269, 1270, 1271, 1278, 1279, 1280, 1281, 1282, 1283, 1285, 1286, 1287, 1288, 1289, 1290, 1291, 1292, 1293, 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302, 1303, 1304, 1306, 1307, 1308, 1309, 1310, 1312, 1313, 1314, 1315, 1316, 1317, 1318, 1319, 1327, 1336, 1343, 1364, 1367, 1369, 1375, 1377, 1378, 1383, 1384, 1388, 1390, 1392, 1394, 1395, 1401, 1402, 1406, 1408, 1410, 1413, 1420, 1422, 1425, 1426, 1427, 1428, 1429, 1430, 1432, 1434, 1438, 1439, 1447, 1448, 1455, 1457, 1459, 1461, 1463, 1466, 1468, 1475, 1479, 1480, 1485, 1486}, shape 744
+Phase 2 [17, 2, 9, 2, 5, 15, 9, 9, 13, 4, 15, 7, 13, 10, 12, 9, 12, 12, 1, 13, 16, 9, 8, 1, 1, 3, 7, 3, 1, 15, 3, 12, 4, 6, 8, 5, 8, 6, 13, 8, 1, 1, 12, 10, 12, 7, 3, 13, 7, 8, 7, 10, 11, 8, 4, 8, 11, 5, 2, 3, 1, 8, 10, 17, 7, 10, 1, 9, 5, 6, 6, 2, 7, 10, 5, 6, 7, 8, 3, 14, 7, 9, 14, 16, 15, 4, 7, 12, 2, 3, 16, 18, 17, 12, 3, 10, 10, 13, 14, 15]
+
+num of label words after cc: 828
+cali_logits shape: torch.Size([828])
+Prompts: ['a photo of a face.', 'a photo of a front.', 'a photo of a confront.', 'a photo of a cheek.', 'a photo of a facial expression.', 'a photo of a visage.', 'a photo of a countenance.', 'a photo of a forehead.', 'a photo of a reface.', 'a photo of a present.', 'a photo of a brow.', 'a photo of a external body part.', 'a photo of a human.', 'a photo of a face up.', 'a photo of a side.', 'a photo of a facial.', 'a photo of a typeface.', 'a photo of a leopard.', 'a photo of a panthera.', 'a photo of a motorbike.', 'a photo of a vehicle.', 'a photo of a car.', 'a photo of a minibike.', 'a photo of a lorry.', 'a photo of a cycle.', 'a photo of a ride.', 'a photo of a yamaha.', 'a photo of a motor vehicle.', 'a photo of a accordion.', 'a photo of a musical instrument.', 'a photo of a airplane.', 'a photo of a fuselage.', 'a photo of a aeroplane.', 'a photo of a aviator.', 'a photo of a air.', 'a photo of a anchor.', 'a photo of a seabed.', 'a photo of a cable.', 'a photo of a watercraft.', 'a photo of a backbone.', 'a photo of a anchorperson.', 'a photo of a ground.', 'a photo of a linchpin.', 'a photo of a lynchpin.', 'a photo of a grapnel.', 'a photo of a fluke.', 'a photo of a ground tackle.', 'a photo of a cast anchor.', 'a photo of a drop anchor.', 'a photo of a chain.', 'a photo of a ant.', 'a photo of a hymenoptera.', 'a photo of a eusociality.', 'a photo of a termite.', 'a photo of a convergent evolution.', 'a photo of a pheromone.', 'a photo of a pest.', 'a photo of a flowering plant.', 'a photo of a antenna.', 'a photo of a barrel.', 'a photo of a hogshead.', 'a photo of a tun.', 'a photo of a drum.', 'a photo of a bbl.', 'a photo of a stave.', 'a photo of a cognac.', 'a photo of a gasoline.', 'a photo of a barrelful.', 'a photo of a bass.', 'a photo of a sea bass.', 'a photo of a basso.', 'a photo of a bass guitar.', 'a photo of a deep.', 'a photo of a vocalist.', 'a photo of a singer.', 'a photo of a bass part.', 'a photo of a bass voice.', 'a photo of a percoid fish.', 'a photo of a low.', 'a photo of a trumpeter.', 'a photo of a low-pitched.', 'a photo of a beaver.', 'a photo of a castor.', 'a photo of a stovepipe.', 'a photo of a topper.', 'a photo of a binocular.', 'a photo of a eyepiece.', 'a photo of a ocular.', 'a photo of a goggle.', 'a photo of a hypertelorism.', 'a photo of a monocular.', 'a photo of a telescopic.', 'a photo of a optic.', 'a photo of a binocular vision.', 'a photo of a zoom lens.', 'a photo of a monocle.', 'a photo of a ophthalmic.', 'a photo of a cornea.', 'a photo of a lense.', 'a photo of a eyeless.', 'a photo of a bonsai.', 'a photo of a deciduous.', 'a photo of a evergreen.', 'a photo of a penzai.', 'a photo of a bonkei.', 'a photo of a horticultural.', 'a photo of a woodcarving.', 'a photo of a brain.', 'a photo of a cerebrum.', 'a photo of a mind.', 'a photo of a synapse.', 'a photo of a cell.', 'a photo of a encephalon.', 'a photo of a forebrain.', 'a photo of a hindbrain.', 'a photo of a mentality.', 'a photo of a nous.', 'a photo of a nerve.', 'a photo of a midbrain.', 'a photo of a grey matter.', 'a photo of a brontosaurus.', 'a photo of a sauropod.', 'a photo of a morrison formation.', 'a photo of a apatosaur.', 'a photo of a brontosaur.', 'a photo of a thunder lizard.', 'a photo of a apatosaurus excelsus.', 'a photo of a diplodocidae.', 'a photo of a cladistics.', 'a photo of a synonym.', 'a photo of a buddha.', 'a photo of a gautama.', 'a photo of a mahayana.', 'a photo of a sangha.', 'a photo of a theravada.', 'a photo of a dharma.', 'a photo of a magadha.', 'a photo of a maudgalyayana.', 'a photo of a śramaṇa.', 'a photo of a deity.', 'a photo of a sariputta.', 'a photo of a jainism.', 'a photo of a butterfly.', 'a photo of a pupa.', 'a photo of a lepidoptera.', 'a photo of a imago.', 'a photo of a metamorphosis.', 'a photo of a nymphalid.', 'a photo of a lycaenidae.', 'a photo of a pollination.', 'a photo of a lepidopteran.', 'a photo of a camera.', 'a photo of a video.', 'a photo of a photograph.', 'a photo of a image.', 'a photo of a camera lens.', 'a photo of a viewfinder.', 'a photo of a camcorder.', 'a photo of a photographic film.', 'a photo of a digital camera.', 'a photo of a cinematography.', 'a photo of a image sensor.', 'a photo of a rangefinder.', 'a photo of a cannon.', 'a photo of a artillery.', 'a photo of a projectile.', 'a photo of a autocannon.', 'a photo of a ordnance.', 'a photo of a smoothbore.', 'a photo of a cannonball.', 'a photo of a missile.', 'a photo of a culverin.', 'a photo of a middle ages.', 'a photo of a muzzleloader.', 'a photo of a tank.', 'a photo of a car side.', 'a photo of a ceiling fan.', 'a photo of a rotation.', 'a photo of a convection.', 'a photo of a thermodynamics.', 'a photo of a turbine.', 'a photo of a punkah.', 'a photo of a electric power.', 'a photo of a climate control.', 'a photo of a efficient energy use.', 'a photo of a electric motor.', 'a photo of a southern united states.', 'a photo of a philip diehl.', 'a photo of a taiwan.', 'a photo of a cellphone.', 'a photo of a smartphone.', 'a photo of a telephone.', 'a photo of a iphone.', 'a photo of a telephony.', 'a photo of a gsm.', 'a photo of a apple inc..', 'a photo of a radiotelephone.', 'a photo of a cellular phone.', 'a photo of a handset.', 'a photo of a landline.', 'a photo of a wireless.', 'a photo of a modem.', 'a photo of a cellular.', 'a photo of a nokia.', 'a photo of a internet.', 'a photo of a chair.', 'a photo of a chairwoman.', 'a photo of a chairperson.', 'a photo of a chairman.', 'a photo of a professorship.', 'a photo of a furniture.', 'a photo of a lead.', 'a photo of a lawn chair.', 'a photo of a swivel chair.', 'a photo of a chandelier.', 'a photo of a pendant.', 'a photo of a earrings.', 'a photo of a gilded.', 'a photo of a ormolu.', 'a photo of a vase.', 'a photo of a porcelain.', 'a photo of a balustrade.', 'a photo of a cougar body.', 'a photo of a cougar face.', 'a photo of a crab.', 'a photo of a abdomen.', 'a photo of a decapoda.', 'a photo of a crayfish.', 'a photo of a langouste.', 'a photo of a ecrevisse.', 'a photo of a freshwater.', 'a photo of a catfish.', 'a photo of a astacidae.', 'a photo of a parastacidae.', 'a photo of a crocodile.', 'a photo of a crocodilian.', 'a photo of a predator.', 'a photo of a crocodile head.', 'a photo of a cup.', 'a photo of a trophy.', 'a photo of a container.', 'a photo of a chalice.', 'a photo of a cupful.', 'a photo of a goblet.', 'a photo of a transfuse.', 'a photo of a tea.', 'a photo of a containerful.', 'a photo of a bowl.', 'a photo of a plastic.', 'a photo of a cupule.', 'a photo of a scyphus.', 'a photo of a concave shape.', 'a photo of a loving cup.', 'a photo of a dalmatian.', 'a photo of a dalmatia.', 'a photo of a doglike.', 'a photo of a dollar bill.', 'a photo of a currency.', 'a photo of a gold.', 'a photo of a petroleum.', 'a photo of a design.', 'a photo of a one.', 'a photo of a bill.', 'a photo of a coin.', 'a photo of a colors.', 'a photo of a value.', 'a photo of a celebrity.', 'a photo of a americans.', 'a photo of a dolphin.', 'a photo of a cetacea.', 'a photo of a dorsal fin.', 'a photo of a hawaii.', 'a photo of a dragonfly.', 'a photo of a libellulidae.', 'a photo of a odonate.', 'a photo of a gomphidae.', 'a photo of a skeeter hawk.', 'a photo of a snake feeder.', 'a photo of a electric guitar.', 'a photo of a gibson guitar corporation.', 'a photo of a chord.', 'a photo of a vibrato.', 'a photo of a guitar solo.', 'a photo of a charlie christian.', 'a photo of a audio feedback.', 'a photo of a solid body.', 'a photo of a elephant.', 'a photo of a elephantidae.', 'a photo of a proboscis.', 'a photo of a savanna.', 'a photo of a pachyderm.', 'a photo of a emu.', 'a photo of a flightless bird.', 'a photo of a dromaius.', 'a photo of a dromaius novaehollandiae.', 'a photo of a electromagnetic unit.', 'a photo of a eurozone.', 'a photo of a indigenous australian.', 'a photo of a arthur phillip.', 'a photo of a euphonium.', 'a photo of a tuba.', 'a photo of a flugelhorn.', 'a photo of a baritone horn.', 'a photo of a wind instrument.', 'a photo of a bass horn.', 'a photo of a ewer.', 'a photo of a handle.', 'a photo of a jug.', 'a photo of a creamer.', 'a photo of a handleless.', 'a photo of a mishandle.', 'a photo of a knob.', 'a photo of a handler.', 'a photo of a rebekah.', 'a photo of a haft.', 'a photo of a pommel.', 'a photo of a abraham.', 'a photo of a porphyry.', 'a photo of a ferry.', 'a photo of a navigation.', 'a photo of a transport.', 'a photo of a piloting.', 'a photo of a pilotage.', 'a photo of a shipping.', 'a photo of a trelleborg.', 'a photo of a british columbia.', 'a photo of a flamingo.', 'a photo of a flamingo head.', 'a photo of a garfield.', 'a photo of a comic strip.', 'a photo of a odie.', 'a photo of a james garfield.', 'a photo of a nickelodeon.', 'a photo of a viacomcbs.', 'a photo of a muncie.', 'a photo of a  indiana.', 'a photo of a sherwood.', 'a photo of a print syndication.', 'a photo of a  inc..', 'a photo of a magazine.', 'a photo of a gerenuk.', 'a photo of a coat.', 'a photo of a litocranius walleri.', 'a photo of a gazella.', 'a photo of a eudorcas.', 'a photo of a scientific description.', 'a photo of a nanger.', 'a photo of a victor brooke.', 'a photo of a litocranius.', 'a photo of a genus litocranius.', 'a photo of a gramophone.', 'a photo of a lp.', 'a photo of a recordings.', 'a photo of a turntable.', 'a photo of a unrecorded.', 'a photo of a record.', 'a photo of a disc.', 'a photo of a recordable.', 'a photo of a ep.', 'a photo of a tape.', 'a photo of a registrar.', 'a photo of a mp3.', 'a photo of a grand piano.', 'a photo of a keyboard instrument.', 'a photo of a aliquot stringing.', 'a photo of a perfect fifth.', 'a photo of a frequency.', 'a photo of a string.', 'a photo of a sharp.', 'a photo of a hawksbill.', 'a photo of a flipper.', 'a photo of a critically endangered.', 'a photo of a headphone.', 'a photo of a earphone.', 'a photo of a headset.', 'a photo of a bluetooth.', 'a photo of a transducer.', 'a photo of a earpiece.', 'a photo of a audiophile.', 'a photo of a electrical impedance.', 'a photo of a audio.', 'a photo of a loudspeaker.', 'a photo of a radio.', 'a photo of a telephone receiver.', 'a photo of a device.', 'a photo of a hedgehog.', 'a photo of a spine.', 'a photo of a quill.', 'a photo of a gnawer.', 'a photo of a insectivore.', 'a photo of a erinaceus europaeus.', 'a photo of a erinaceus europeaeus.', 'a photo of a helicopter.', 'a photo of a chopper.', 'a photo of a lift.', 'a photo of a pilot.', 'a photo of a reconnaissance.', 'a photo of a hover.', 'a photo of a rotor.', 'a photo of a eggbeater.', 'a photo of a ibis.', 'a photo of a latin.', 'a photo of a threskiornithidae.', 'a photo of a apteribis.', 'a photo of a collared.', 'a photo of a extinct.', 'a photo of a rais.', 'a photo of a inline skate.', 'a photo of a roller skates.', 'a photo of a trademark.', 'a photo of a polyurethane.', 'a photo of a mettoy.', 'a photo of a skf.', 'a photo of a  minnesota.', 'a photo of a generic trademark.', 'a photo of a john joseph merlin.', 'a photo of a extrusion.', 'a photo of a joshua tree.', 'a photo of a california.', 'a photo of a arizona.', 'a photo of a monocotyledon.', 'a photo of a nevada.', 'a photo of a mormon.', 'a photo of a southwestern united states.', 'a photo of a joshua.', 'a photo of a autonym.', 'a photo of a variety.', 'a photo of a form.', 'a photo of a kangaroo.', 'a photo of a marsupial.', 'a photo of a macropodidae.', 'a photo of a qantas.', 'a photo of a new guinea.', 'a photo of a queensland.', 'a photo of a royal australian air force.', 'a photo of a pouch.', 'a photo of a ketch.', 'a photo of a rowboat.', 'a photo of a square rig.', 'a photo of a motorboat.', 'a photo of a lamp.', 'a photo of a flashlight.', 'a photo of a lighting.', 'a photo of a flash.', 'a photo of a heat.', 'a photo of a incandescent.', 'a photo of a flame.', 'a photo of a beam.', 'a photo of a laptop.', 'a photo of a touchpad.', 'a photo of a usb.', 'a photo of a ibook.', 'a photo of a imac.', 'a photo of a pc.', 'a photo of a touchscreen.', 'a photo of a battery.', 'a photo of a operating system.', 'a photo of a intel.', 'a photo of a windows 10.', 'a photo of a llama.', 'a photo of a south america.', 'a photo of a ruminant.', 'a photo of a critter.', 'a photo of a peru.', 'a photo of a lobster.', 'a photo of a swimmeret.', 'a photo of a lotus.', 'a photo of a genus lotus.', 'a photo of a angiosperm.', 'a photo of a mandolin.', 'a photo of a mayfly.', 'a photo of a midge.', 'a photo of a palaeoptera.', 'a photo of a dayfly.', 'a photo of a shadfly.', 'a photo of a alate.', 'a photo of a dipteran.', 'a photo of a moulting.', 'a photo of a menorah.', 'a photo of a candelabrum.', 'a photo of a judaism.', 'a photo of a hanukkah.', 'a photo of a flagpole.', 'a photo of a sacrificial.', 'a photo of a votive.', 'a photo of a phallic.', 'a photo of a domed.', 'a photo of a ornaments.', 'a photo of a metronome.', 'a photo of a rubato.', 'a photo of a clockwork.', 'a photo of a pulse.', 'a photo of a tempo.', 'a photo of a pulsing.', 'a photo of a synthesizer.', 'a photo of a ludwig van beethoven.', 'a photo of a polyrhythm.', 'a photo of a click track.', 'a photo of a percussion instrument.', 'a photo of a composers.', 'a photo of a composer.', 'a photo of a al-andalus.', 'a photo of a performer.', 'a photo of a musician.', 'a photo of a mainspring.', 'a photo of a minaret.', 'a photo of a edifice.', 'a photo of a saudi arabia.', 'a photo of a muslim.', 'a photo of a adhan.', 'a photo of a stele.', 'a photo of a omayyad.', 'a photo of a nautilus.', 'a photo of a radula.', 'a photo of a coleoidea.', 'a photo of a siphuncle.', 'a photo of a nautiloidea.', 'a photo of a eutrephoceras.', 'a photo of a argonauta.', 'a photo of a argonauta argo.', 'a photo of a living fossil.', 'a photo of a gill.', 'a photo of a octopus.', 'a photo of a okapi.', 'a photo of a giraffidae.', 'a photo of a palaeotragus.', 'a photo of a democratic republic of the congo.', 'a photo of a okapia johnstoni.', 'a photo of a ossicone.', 'a photo of a diurnal animal.', 'a photo of a gestational period.', 'a photo of a endangered.', 'a photo of a pagoda.', 'a photo of a east asia.', 'a photo of a taoist.', 'a photo of a place of worship.', 'a photo of a southeast asia.', 'a photo of a panda.', 'a photo of a sichuan.', 'a photo of a carnivora.', 'a photo of a cub.', 'a photo of a endangered species.', 'a photo of a shrub.', 'a photo of a pigeon.', 'a photo of a dodo.', 'a photo of a dna sequence.', 'a photo of a seed.', 'a photo of a crop.', 'a photo of a great britain.', 'a photo of a pizza.', 'a photo of a dish.', 'a photo of a platypus.', 'a photo of a duckbill.', 'a photo of a tasmania.', 'a photo of a centimetre.', 'a photo of a inch.', 'a photo of a new south wales.', 'a photo of a ornithorhynchus anatinus.', 'a photo of a pyramid.', 'a photo of a seven wonders of the ancient world.', 'a photo of a limestone.', 'a photo of a ancient.', 'a photo of a structure.', 'a photo of a deal.', 'a photo of a increase.', 'a photo of a monument.', 'a photo of a trade.', 'a photo of a sell.', 'a photo of a revolver.', 'a photo of a pistol.', 'a photo of a shotgun.', 'a photo of a semiautomatic.', 'a photo of a smith & wesson.', 'a photo of a rhino.', 'a photo of a keratin.', 'a photo of a miocene.', 'a photo of a pliocene.', 'a photo of a perissodactyl.', 'a photo of a odd-toed ungulate.', 'a photo of a rooster.', 'a photo of a cock.', 'a photo of a gamecock.', 'a photo of a cockfight.', 'a photo of a christianity.', 'a photo of a poultry.', 'a photo of a fowl.', 'a photo of a saxophone.', 'a photo of a sax.', 'a photo of a pitch.', 'a photo of a brass.', 'a photo of a mouthpiece.', 'a photo of a c.g. conn.', 'a photo of a octave.', 'a photo of a single-reed instrument.', 'a photo of a schooner.', 'a photo of a frigate.', 'a photo of a mainmast.', 'a photo of a scissors.', 'a photo of a cut.', 'a photo of a switchblade.', 'a photo of a blade.', 'a photo of a bladed.', 'a photo of a chisel.', 'a photo of a bladelike.', 'a photo of a knifelike.', 'a photo of a children.', 'a photo of a metal.', 'a photo of a paperboard.', 'a photo of a cloth.', 'a photo of a clipper.', 'a photo of a slash.', 'a photo of a scorpion.', 'a photo of a venom.', 'a photo of a scorpio.', 'a photo of a chelicerae.', 'a photo of a tail.', 'a photo of a pedipalp.', 'a photo of a serpent.', 'a photo of a sea horse.', 'a photo of a prehensile tail.', 'a photo of a hippocampus zosterae.', 'a photo of a hippocampus guttulatus.', 'a photo of a teleost.', 'a photo of a uruguay.', 'a photo of a phycodurus.', 'a photo of a phyllopteryx.', 'a photo of a syngnathidae.', 'a photo of a snoopy.', 'a photo of a nosy.', 'a photo of a prying.', 'a photo of a nosey.', 'a photo of a charlie brown.', 'a photo of a newspaper.', 'a photo of a character.', 'a photo of a newsprint.', 'a photo of a gazette.', 'a photo of a editorial.', 'a photo of a article.', 'a photo of a tabloid.', 'a photo of a publication.', 'a photo of a periodical.', 'a photo of a soccer ball.', 'a photo of a fifa.', 'a photo of a ball.', 'a photo of a international football association board.', 'a photo of a uefa.', 'a photo of a association.', 'a photo of a sport.', 'a photo of a canada.', 'a photo of a goalkeeper.', 'a photo of a minute.', 'a photo of a adidas.', 'a photo of a uefa champions league.', 'a photo of a injury.', 'a photo of a football.', 'a photo of a gymnastics.', 'a photo of a half-time.', 'a photo of a stapler.', 'a photo of a basic.', 'a photo of a essential.', 'a photo of a raw material.', 'a photo of a paper fastener.', 'a photo of a commodity.', 'a photo of a fad.', 'a photo of a fodder.', 'a photo of a tie.', 'a photo of a feedstock.', 'a photo of a stuff.', 'a photo of a material.', 'a photo of a nail.', 'a photo of a plural.', 'a photo of a good.', 'a photo of a starfish.', 'a photo of a class.', 'a photo of a regeneration.', 'a photo of a asteroidea.', 'a photo of a stegosaurus.', 'a photo of a camarasaurus.', 'a photo of a hesperosaurus.', 'a photo of a kentrosaurus.', 'a photo of a huayangosaurus.', 'a photo of a stegosauria.', 'a photo of a wuerhosaurus.', 'a photo of a stop sign.', 'a photo of a retroreflector.', 'a photo of a octagon.', 'a photo of a si.', 'a photo of a rounding.', 'a photo of a michigan.', 'a photo of a quebec.', 'a photo of a united nations economic and social council.', 'a photo of a coming into force.', 'a photo of a manitoba.', 'a photo of a united states customary units.', 'a photo of a acadia.', 'a photo of a strawberry.', 'a photo of a achene.', 'a photo of a sunflower.', 'a photo of a pseudanthium.', 'a photo of a annual plant.', 'a photo of a tick.', 'a photo of a ticktock.', 'a photo of a mark.', 'a photo of a click.', 'a photo of a beat.', 'a photo of a retick.', 'a photo of a ticktack.', 'a photo of a go.', 'a photo of a ixodid.', 'a photo of a vector.', 'a photo of a fleas.', 'a photo of a bite.', 'a photo of a tock.', 'a photo of a bug.', 'a photo of a nibble.', 'a photo of a hematophagy.', 'a photo of a trilobite.', 'a photo of a cambrian.', 'a photo of a devonian.', 'a photo of a ordovician.', 'a photo of a taxonomy.', 'a photo of a suborder.', 'a photo of a proetida.', 'a photo of a myr.', 'a photo of a ptychopariida.', 'a photo of a agnostida.', 'a photo of a harpetida.', 'a photo of a phacopida.', 'a photo of a redlichiida.', 'a photo of a lichida.', 'a photo of a corynexochida.', 'a photo of a ecological niche.', 'a photo of a permian.', 'a photo of a laurentia.', 'a photo of a umbrella.', 'a photo of a shade.', 'a photo of a union.', 'a photo of a defense.', 'a photo of a comprehensive.', 'a photo of a tent.', 'a photo of a defence.', 'a photo of a brolly.', 'a photo of a organization.', 'a photo of a alliance.', 'a photo of a grouping.', 'a photo of a offshoot.', 'a photo of a splinter.', 'a photo of a heads.', 'a photo of a advocacy.', 'a photo of a parasol.', 'a photo of a cloak.', 'a photo of a watch.', 'a photo of a see.', 'a photo of a ascertain.', 'a photo of a observe.', 'a photo of a view.', 'a photo of a movement.', 'a photo of a catch.', 'a photo of a follow.', 'a photo of a determine.', 'a photo of a find out.', 'a photo of a take in.', 'a photo of a chronograph.', 'a photo of a water lilly.', 'a photo of a cultivars.', 'a photo of a ornamental plant.', 'a photo of a wheelchair.', 'a photo of a disability.', 'a photo of a walking.', 'a photo of a armchair.', 'a photo of a crutch.', 'a photo of a sofa.', 'a photo of a footstool.', 'a photo of a wheel.', 'a photo of a skateboard.', 'a photo of a stroller.', 'a photo of a wild cat.', 'a photo of a felinae.', 'a photo of a machairodontinae.', 'a photo of a pantherinae.', 'a photo of a domestic cat.', 'a photo of a proailurus.', 'a photo of a pseudaelurus.', 'a photo of a nimravidae.', 'a photo of a hybrid.', 'a photo of a feliformia.', 'a photo of a windsor chair.', 'a photo of a spindle.', 'a photo of a wood.', 'a photo of a coping.', 'a photo of a spoke.', 'a photo of a wales.', 'a photo of a buckinghamshire.', 'a photo of a berkshire.', 'a photo of a stretcher.', 'a photo of a west country.', 'a photo of a framer.', 'a photo of a bodger.', 'a photo of a high wycombe.', 'a photo of a wrench.', 'a photo of a twist.', 'a photo of a spanner.', 'a photo of a pull.', 'a photo of a sprain.', 'a photo of a monkey wrench.', 'a photo of a wring.', 'a photo of a turn.', 'a photo of a distort.', 'a photo of a torque.', 'a photo of a lever.', 'a photo of a nut.', 'a photo of a writhe.', 'a photo of a wriggle.', 'a photo of a yin yang.', 'a photo of a taiji.', 'a photo of a taoism.', 'a photo of a i ching.', 'a photo of a wuji.', 'a photo of a chinese philosophy.', 'a photo of a taijitu.', 'a photo of a symbol.', 'a photo of a qi.', 'a photo of a belief.', 'a photo of a paradox.', 'a photo of a idea.', 'a photo of a dichotomy.', 'a photo of a confucianism.', 'a photo of a nature.']
+text feature size: torch.Size([828, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 828
+label_probs shape: torch.Size([65, 100])
+=> result
+* total: 2,465
+* correct: 265
+* accuracy: 10.8%
+* error: 89.2%
+* macro_f1: 8.7%

@@ -1,0 +1,454 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: False
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: None
+dataset: stanford_cars
+dataset_config_file: configs/datasets/stanford_cars.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/stanford_cars
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 10
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: False
+CALIBRATION_CUT: 0
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: StanfordCars
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/stanford_cars
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/stanford_cars
+  SIZE: 10
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: StanfordCars
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/stanford_cars/split_zhou_StanfordCars.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ------------
+Dataset    StanfordCars
+# classes  196
+# train_x  6,509
+# val      1,635
+# test     8,041
+---------  ------------
+Loading CLIP (backbone: RN50)
+Prompts: ['a photo of a 2000 am general hummer suv.', 'a photo of a 2012 acura rl sedan.', 'a photo of a 2012 acura tl sedan.', 'a photo of a 2008 acura tl type-s.', 'a photo of a 2012 acura tsx sedan.', 'a photo of a 2001 acura integra type r.', 'a photo of a 2012 acura zdx hatchback.', 'a photo of a 2012 aston martin v8 vantage convertible.', 'a photo of a 2012 aston martin v8 vantage coupe.', 'a photo of a 2012 aston martin virage convertible.', 'a photo of a 2012 aston martin virage coupe.', 'a photo of a 2008 audi rs 4 convertible.', 'a photo of a 2012 audi a5 coupe.', 'a photo of a 2012 audi tts coupe.', 'a photo of a 2012 audi r8 coupe.', 'a photo of a 1994 audi v8 sedan.', 'a photo of a 1994 audi 100 sedan.', 'a photo of a 1994 audi 100 wagon.', 'a photo of a 2011 audi tt hatchback.', 'a photo of a 2011 audi s6 sedan.', 'a photo of a 2012 audi s5 convertible.', 'a photo of a 2012 audi s5 coupe.', 'a photo of a 2012 audi s4 sedan.', 'a photo of a 2007 audi s4 sedan.', 'a photo of a 2012 audi tt rs coupe.', 'a photo of a 2012 bmw activehybrid 5 sedan.', 'a photo of a 2012 bmw 1 series convertible.', 'a photo of a 2012 bmw 1 series coupe.', 'a photo of a 2012 bmw 3 series sedan.', 'a photo of a 2012 bmw 3 series wagon.', 'a photo of a 2007 bmw 6 series convertible.', 'a photo of a 2007 bmw x5 suv.', 'a photo of a 2012 bmw x6 suv.', 'a photo of a 2012 bmw m3 coupe.', 'a photo of a 2010 bmw m5 sedan.', 'a photo of a 2010 bmw m6 convertible.', 'a photo of a 2012 bmw x3 suv.', 'a photo of a 2012 bmw z4 convertible.', 'a photo of a 2012 bentley continental supersports conv. convertible.', 'a photo of a 2009 bentley arnage sedan.', 'a photo of a 2011 bentley mulsanne sedan.', 'a photo of a 2012 bentley continental gt coupe.', 'a photo of a 2007 bentley continental gt coupe.', 'a photo of a 2007 bentley continental flying spur sedan.', 'a photo of a 2009 bugatti veyron 16.4 convertible.', 'a photo of a 2009 bugatti veyron 16.4 coupe.', 'a photo of a 2012 buick regal gs.', 'a photo of a 2007 buick rainier suv.', 'a photo of a 2012 buick verano sedan.', 'a photo of a 2012 buick enclave suv.', 'a photo of a 2012 cadillac cts-v sedan.', 'a photo of a 2012 cadillac srx suv.', 'a photo of a 2007 cadillac escalade ext crew cab.', 'a photo of a 2012 chevrolet silverado 1500 hybrid crew cab.', 'a photo of a 2012 chevrolet corvette convertible.', 'a photo of a 2012 chevrolet corvette zr1.', 'a photo of a 2007 chevrolet corvette ron fellows edition z06.', 'a photo of a 2012 chevrolet traverse suv.', 'a photo of a 2012 chevrolet camaro convertible.', 'a photo of a 2010 chevrolet hhr ss.', 'a photo of a 2007 chevrolet impala sedan.', 'a photo of a 2012 chevrolet tahoe hybrid suv.', 'a photo of a 2012 chevrolet sonic sedan.', 'a photo of a 2007 chevrolet express cargo van.', 'a photo of a 2012 chevrolet avalanche crew cab.', 'a photo of a 2010 chevrolet cobalt ss.', 'a photo of a 2010 chevrolet malibu hybrid sedan.', 'a photo of a 2009 chevrolet trailblazer ss.', 'a photo of a 2012 chevrolet silverado 2500hd regular cab.', 'a photo of a 2007 chevrolet silverado 1500 classic extended cab.', 'a photo of a 2007 chevrolet express van.', 'a photo of a 2007 chevrolet monte carlo coupe.', 'a photo of a 2007 chevrolet malibu sedan.', 'a photo of a 2012 chevrolet silverado 1500 extended cab.', 'a photo of a 2012 chevrolet silverado 1500 regular cab.', 'a photo of a 2009 chrysler aspen suv.', 'a photo of a 2010 chrysler sebring convertible.', 'a photo of a 2012 chrysler town and country minivan.', 'a photo of a 2010 chrysler 300 srt-8.', 'a photo of a 2008 chrysler crossfire convertible.', 'a photo of a 2008 chrysler pt cruiser convertible.', 'a photo of a 2002 daewoo nubira wagon.', 'a photo of a 2012 dodge caliber wagon.', 'a photo of a 2007 dodge caliber wagon.', 'a photo of a 1997 dodge caravan minivan.', 'a photo of a 2010 dodge ram pickup 3500 crew cab.', 'a photo of a 2009 dodge ram pickup 3500 quad cab.', 'a photo of a 2009 dodge sprinter cargo van.', 'a photo of a 2012 dodge journey suv.', 'a photo of a 2010 dodge dakota crew cab.', 'a photo of a 2007 dodge dakota club cab.', 'a photo of a 2008 dodge magnum wagon.', 'a photo of a 2011 dodge challenger srt8.', 'a photo of a 2012 dodge durango suv.', 'a photo of a 2007 dodge durango suv.', 'a photo of a 2012 dodge charger sedan.', 'a photo of a 2009 dodge charger srt-8.', 'a photo of a 1998 eagle talon hatchback.', 'a photo of a 2012 fiat 500 abarth.', 'a photo of a 2012 fiat 500 convertible.', 'a photo of a 2012 ferrari ff coupe.', 'a photo of a 2012 ferrari california convertible.', 'a photo of a 2012 ferrari 458 italia convertible.', 'a photo of a 2012 ferrari 458 italia coupe.', 'a photo of a 2012 fisker karma sedan.', 'a photo of a 2012 ford f-450 super duty crew cab.', 'a photo of a 2007 ford mustang convertible.', 'a photo of a 2007 ford freestar minivan.', 'a photo of a 2009 ford expedition el suv.', 'a photo of a 2012 ford edge suv.', 'a photo of a 2011 ford ranger supercab.', 'a photo of a 2006 ford gt coupe.', 'a photo of a 2012 ford f-150 regular cab.', 'a photo of a 2007 ford f-150 regular cab.', 'a photo of a 2007 ford focus sedan.', 'a photo of a 2012 ford e-series wagon van.', 'a photo of a 2012 ford fiesta sedan.', 'a photo of a 2012 gmc terrain suv.', 'a photo of a 2012 gmc savana van.', 'a photo of a 2012 gmc yukon hybrid suv.', 'a photo of a 2012 gmc acadia suv.', 'a photo of a 2012 gmc canyon extended cab.', 'a photo of a 1993 geo metro convertible.', 'a photo of a 2010 hummer h3t crew cab.', 'a photo of a 2009 hummer h2 sut crew cab.', 'a photo of a 2012 honda odyssey minivan.', 'a photo of a 2007 honda odyssey minivan.', 'a photo of a 2012 honda accord coupe.', 'a photo of a 2012 honda accord sedan.', 'a photo of a 2012 hyundai veloster hatchback.', 'a photo of a 2012 hyundai santa fe suv.', 'a photo of a 2012 hyundai tucson suv.', 'a photo of a 2012 hyundai veracruz suv.', 'a photo of a 2012 hyundai sonata hybrid sedan.', 'a photo of a 2007 hyundai elantra sedan.', 'a photo of a 2012 hyundai accent sedan.', 'a photo of a 2012 hyundai genesis sedan.', 'a photo of a 2012 hyundai sonata sedan.', 'a photo of a 2012 hyundai elantra touring hatchback.', 'a photo of a 2012 hyundai azera sedan.', 'a photo of a 2012 infiniti g coupe ipl.', 'a photo of a 2011 infiniti qx56 suv.', 'a photo of a 2008 isuzu ascender suv.', 'a photo of a 2012 jaguar xk xkr.', 'a photo of a 2012 jeep patriot suv.', 'a photo of a 2012 jeep wrangler suv.', 'a photo of a 2012 jeep liberty suv.', 'a photo of a 2012 jeep grand cherokee suv.', 'a photo of a 2012 jeep compass suv.', 'a photo of a 2008 lamborghini reventon coupe.', 'a photo of a 2012 lamborghini aventador coupe.', 'a photo of a 2012 lamborghini gallardo lp 570-4 superleggera.', 'a photo of a 2001 lamborghini diablo coupe.', 'a photo of a 2012 land rover range rover suv.', 'a photo of a 2012 land rover lr2 suv.', 'a photo of a 2011 lincoln town car sedan.', 'a photo of a 2012 mini cooper roadster convertible.', 'a photo of a 2012 maybach landaulet convertible.', 'a photo of a 2011 mazda tribute suv.', 'a photo of a 2012 mclaren mp4-12c coupe.', 'a photo of a 1993 mercedes-benz 300-class convertible.', 'a photo of a 2012 mercedes-benz c-class sedan.', 'a photo of a 2009 mercedes-benz sl-class coupe.', 'a photo of a 2012 mercedes-benz e-class sedan.', 'a photo of a 2012 mercedes-benz s-class sedan.', 'a photo of a 2012 mercedes-benz sprinter van.', 'a photo of a 2012 mitsubishi lancer sedan.', 'a photo of a 2012 nissan leaf hatchback.', 'a photo of a 2012 nissan nv passenger van.', 'a photo of a 2012 nissan juke hatchback.', 'a photo of a 1998 nissan 240sx coupe.', 'a photo of a 1999 plymouth neon coupe.', 'a photo of a 2012 porsche panamera sedan.', 'a photo of a 2012 ram c/v cargo van minivan.', 'a photo of a 2012 rolls-royce phantom drophead coupe convertible.', 'a photo of a 2012 rolls-royce ghost sedan.', 'a photo of a 2012 rolls-royce phantom sedan.', 'a photo of a 2012 scion xd hatchback.', 'a photo of a 2009 spyker c8 convertible.', 'a photo of a 2009 spyker c8 coupe.', 'a photo of a 2007 suzuki aerio sedan.', 'a photo of a 2012 suzuki kizashi sedan.', 'a photo of a 2012 suzuki sx4 hatchback.', 'a photo of a 2012 suzuki sx4 sedan.', 'a photo of a 2012 tesla model s sedan.', 'a photo of a 2012 toyota sequoia suv.', 'a photo of a 2012 toyota camry sedan.', 'a photo of a 2012 toyota corolla sedan.', 'a photo of a 2012 toyota 4runner suv.', 'a photo of a 2012 volkswagen golf hatchback.', 'a photo of a 1991 volkswagen golf hatchback.', 'a photo of a 2012 volkswagen beetle hatchback.', 'a photo of a 2012 volvo c30 hatchback.', 'a photo of a 1993 volvo 240 sedan.', 'a photo of a 2007 volvo xc90 suv.', 'a photo of a 2012 smart fortwo convertible.']
+text feature size: torch.Size([196, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([100, 196])
+process logits num of label words: 196
+label_probs shape: torch.Size([41, 196])
+=> result
+* total: 8,041
+* correct: 4,476
+* accuracy: 55.7%
+* error: 44.3%
+* macro_f1: 53.8%

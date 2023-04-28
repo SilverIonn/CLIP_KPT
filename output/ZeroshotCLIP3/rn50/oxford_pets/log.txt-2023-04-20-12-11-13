@@ -1,0 +1,393 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: None
+dataset: oxford_pets
+dataset_config_file: configs/datasets/oxford_pets.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/oxford_pets
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 5
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+CALIBRATION_CUT: 0
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: OxfordPets
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/oxford_pets
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/oxford_pets
+  SIZE: 5
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: OxfordPets
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/oxford_pets/split_zhou_OxfordPets.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ----------
+Dataset    OxfordPets
+# classes  37
+# train_x  2,944
+# val      736
+# test     3,669
+---------  ----------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [2427, 291, 80, 1687, 2163, 1115, 2620, 588, 181, 738, 1871, 707, 2278, 2484, 1369, 594, 1759, 2839, 1813, 2641, 1881, 2513, 321, 2188, 1724, 138, 191, 2886, 366, 662, 1810, 1727, 2349, 30, 1920, 2789, 1524, 1691, 699, 239, 883, 656, 641, 460, 1829, 293, 1787, 1835, 2131, 2818, 769, 189, 1225, 85, 2826, 238, 915, 2751, 90, 27, 671, 1187, 749, 1037, 763, 661, 406, 972, 234, 1610, 448, 1935, 2608, 628, 2167, 1504, 2581, 2529, 2328, 1056, 1696, 852, 539, 1462, 1368, 2681, 65, 726, 108, 887, 1548, 2888, 2488, 812, 1312, 1564, 2662, 446, 223, 2499, 1509, 1972, 911, 369, 1656, 1220, 672, 639, 2606, 2201, 2062, 66, 2907, 777, 2830, 1794, 2049, 1138, 1569, 1332, 534, 272, 2493, 1604, 2842, 79, 2550, 2860, 2076, 2040, 1474, 2002, 679, 1353, 2665, 1125, 1255, 259, 2322, 2602, 2136, 78, 1865, 879, 2735, 2242, 2124, 958, 2709, 1685, 1196, 319, 1962, 703, 837, 806, 2440, 1204, 2541, 483, 1728, 2082, 1171, 976, 1710, 2847, 1832, 148, 26, 2296, 665, 1700, 2812, 1026, 1477, 2773, 2318, 271, 2113, 2257, 968, 1584, 2283, 207, 1632, 20, 416, 814, 1644, 678, 1256, 2853, 2470, 1518, 931, 1780, 2103, 1739, 87, 378]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 200
+num of org label words: 141
+cali text features shape: torch.Size([141, 1024])
+the calibration logits is tensor([[13.5000, 10.5000, 16.6719,  ..., 24.5781, 29.2812, 26.7344],
+        [16.8594, 14.6953, 18.0312,  ..., 13.8672, 19.6094, 14.4609],
+        [ 6.9844,  3.9160, 13.8281,  ...,  9.9453, 16.2812, 12.1094],
+        ...,
+        [18.6562, 15.8984, 17.5938,  ..., 19.2500, 21.4062, 13.3594],
+        [ 9.5859,  6.8125, 14.3516,  ..., 11.6172, 19.0938, 11.5469],
+        [17.3594, 15.5000, 17.6250,  ..., 16.3125, 19.4844, 11.4766]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([200, 141])
+Phase 1 [5, 5, 1, 4, 4, 5, 5, 5, 6, 5, 4, 4, 4, 4, 1, 1, 1, 4, 2, 4, 1, 4, 6, 6, 2, 3, 2, 6, 1, 4, 5, 5, 4, 5, 4, 4, 5]
+
+register_calibrate_logits starting shape: torch.Size([141])
+logits shape -1 :141
+rm_calibrate_ids: set(), shape 0
+Phase 2 [5, 5, 1, 4, 4, 5, 5, 5, 6, 5, 4, 4, 4, 4, 1, 1, 1, 4, 2, 4, 1, 4, 6, 6, 2, 3, 2, 6, 1, 4, 5, 5, 4, 5, 4, 4, 5]
+
+num of label words after cc: 141
+cali_logits shape: torch.Size([141])
+Prompts: ['a photo of a abyssinian, a type of pet.', 'a photo of a abyssinian cat, a type of pet.', 'a photo of a house cat, a type of pet.', 'a photo of a tabby, a type of pet.', 'a photo of a moggy, a type of pet.', 'a photo of a american bulldog, a type of pet.', 'a photo of a old english bulldog, a type of pet.', 'a photo of a catch dog, a type of pet.', 'a photo of a feral, a type of pet.', 'a photo of a bull-baiting, a type of pet.', 'a photo of a american pit bull terrier, a type of pet.', 'a photo of a basset hound, a type of pet.', 'a photo of a bloodhound, a type of pet.', 'a photo of a gastric dilatation volvulus, a type of pet.', 'a photo of a hare, a type of pet.', 'a photo of a beagle, a type of pet.', 'a photo of a fox terrier, a type of pet.', 'a photo of a scottish terrier, a type of pet.', 'a photo of a greyhound, a type of pet.', 'a photo of a bengal, a type of pet.', 'a photo of a west bengal, a type of pet.', 'a photo of a bangladesh, a type of pet.', 'a photo of a bihar, a type of pet.', 'a photo of a assam, a type of pet.', 'a photo of a birman, a type of pet.', 'a photo of a point coloration, a type of pet.', 'a photo of a burma, a type of pet.', 'a photo of a interbreed, a type of pet.', 'a photo of a breeder, a type of pet.', 'a photo of a bombay, a type of pet.', 'a photo of a maharashtra, a type of pet.', 'a photo of a gujarat, a type of pet.', 'a photo of a navi mumbai, a type of pet.', 'a photo of a mumbai, a type of pet.', 'a photo of a boxer, a type of pet.', 'a photo of a middleweight, a type of pet.', 'a photo of a featherweight, a type of pet.', 'a photo of a heavyweight, a type of pet.', 'a photo of a flyweight, a type of pet.', 'a photo of a rocky marciano, a type of pet.', 'a photo of a british shorthair, a type of pet.', 'a photo of a cheshire cat, a type of pet.', 'a photo of a alice in wonderland, a type of pet.', 'a photo of a harrison weir, a type of pet.', 'a photo of a the crystal palace, a type of pet.', 'a photo of a chihuahua, a type of pet.', 'a photo of a whippet, a type of pet.', 'a photo of a akita, a type of pet.', 'a photo of a doggie, a type of pet.', 'a photo of a egyptian mau, a type of pet.', 'a photo of a spraying, a type of pet.', 'a photo of a korat, a type of pet.', 'a photo of a burmese cat, a type of pet.', 'a photo of a english cocker spaniel, a type of pet.', 'a photo of a english springer spaniel, a type of pet.', 'a photo of a american cocker spaniel, a type of pet.', 'a photo of a breed standard, a type of pet.', 'a photo of a english setter, a type of pet.', 'a photo of a coat, a type of pet.', 'a photo of a quail, a type of pet.', 'a photo of a pheasant, a type of pet.', 'a photo of a german shorthaired, a type of pet.', 'a photo of a great pyrenees, a type of pet.', 'a photo of a havanese, a type of pet.', 'a photo of a japanese chin, a type of pet.', 'a photo of a strabismus, a type of pet.', 'a photo of a withers, a type of pet.', 'a photo of a lap dog, a type of pet.', 'a photo of a keeshond, a type of pet.', 'a photo of a fédération cynologique internationale, a type of pet.', 'a photo of a leonberger, a type of pet.', 'a photo of a leonberg, a type of pet.', 'a photo of a baden-württemberg, a type of pet.', 'a photo of a bloat, a type of pet.', 'a photo of a maine coon, a type of pet.', 'a photo of a miniature pinscher, a type of pet.', 'a photo of a german pinscher, a type of pet.', 'a photo of a doberman pinscher, a type of pet.', 'a photo of a pinscher, a type of pet.', 'a photo of a newfoundland, a type of pet.', 'a photo of a labrador, a type of pet.', 'a photo of a island, a type of pet.', 'a photo of a nova scotia, a type of pet.', 'a photo of a canada, a type of pet.', 'a photo of a prince edward island, a type of pet.', 'a photo of a persian, a type of pet.', 'a photo of a iranian, a type of pet.', 'a photo of a farsi, a type of pet.', 'a photo of a persia, a type of pet.', 'a photo of a burmese, a type of pet.', 'a photo of a irani, a type of pet.', 'a photo of a pomeranian, a type of pet.', 'a photo of a spaniel, a type of pet.', 'a photo of a pug, a type of pet.', 'a photo of a puppy, a type of pet.', 'a photo of a rottweiler, a type of pet.', 'a photo of a ragdoll, a type of pet.', 'a photo of a point, a type of pet.', 'a photo of a russian blue, a type of pet.', 'a photo of a arkhangelsk, a type of pet.', 'a photo of a russia, a type of pet.', 'a photo of a landrace, a type of pet.', 'a photo of a russian language, a type of pet.', 'a photo of a scandinavia, a type of pet.', 'a photo of a saint bernard, a type of pet.', 'a photo of a samoyed, a type of pet.', 'a photo of a basenji, a type of pet.', 'a photo of a nenets people, a type of pet.', 'a photo of a samoyede, a type of pet.', 'a photo of a scottish terrier, a type of pet.', 'a photo of a west highland white terrier, a type of pet.', 'a photo of a fala, a type of pet.', 'a photo of a monopoly, a type of pet.', 'a photo of a brindle, a type of pet.', 'a photo of a shiba inu, a type of pet.', 'a photo of a hunting dog, a type of pet.', 'a photo of a japan, a type of pet.', 'a photo of a hokkaido, a type of pet.', 'a photo of a dogū, a type of pet.', 'a photo of a siamese, a type of pet.', 'a photo of a tai, a type of pet.', 'a photo of a thai, a type of pet.', 'a photo of a central thai, a type of pet.', 'a photo of a sphynx, a type of pet.', 'a photo of a kitten, a type of pet.', 'a photo of a peterbald, a type of pet.', 'a photo of a the international cat association, a type of pet.', "a photo of a cat fanciers' association, a type of pet.", 'a photo of a staffordshire bull terrier, a type of pet.', 'a photo of a black country, a type of pet.', 'a photo of a bull and terrier, a type of pet.', 'a photo of a crossbreed, a type of pet.', 'a photo of a wheaten terrier, a type of pet.', 'a photo of a irish language, a type of pet.', 'a photo of a docking, a type of pet.', 'a photo of a herding dog, a type of pet.', 'a photo of a yorkshire terrier, a type of pet.', 'a photo of a yorkshire, a type of pet.', 'a photo of a australian silky terrier, a type of pet.', 'a photo of a paisley terrier, a type of pet.', 'a photo of a skye terrier, a type of pet.']
+text feature size: torch.Size([141, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 141
+label_probs shape: torch.Size([69, 37])
+=> result
+* total: 3,669
+* correct: 1,458
+* accuracy: 39.7%
+* error: 60.3%
+* macro_f1: 29.8%

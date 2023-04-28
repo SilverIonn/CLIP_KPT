@@ -1,0 +1,386 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: 0.5
+dataset: fgvc_aircraft
+dataset_config_file: configs/datasets/fgvc_aircraft.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/fgvc_aircraft
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 40
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+CALIBRATION_CUT: 0.5
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: FGVCAircraft
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/fgvc_aircraft
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/fgvc_aircraft
+  SIZE: 40
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: FGVCAircraft
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ------------
+Dataset    FGVCAircraft
+# classes  100
+# train_x  3,334
+# val      3,333
+# test     3,333
+---------  ------------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [1695, 1568, 1284, 1879, 976, 2460, 1611, 1881, 1716, 1368, 1628, 984, 2314, 1824, 3163, 847, 2964, 1016, 1246, 230, 493, 2590, 348, 2073, 1531, 2313, 832, 1616, 677, 3131, 3253, 181, 821, 3075, 1537, 2923, 2758, 1670, 374, 3066, 1658, 2534, 1524, 2336, 2241, 2325, 1087, 2726, 1212, 968, 1093, 1912, 1772, 3003, 2320, 674, 20, 2465, 234, 1437, 2990, 2606, 2950, 1095, 494, 2789, 189, 3311, 1895, 1626, 1030, 1188, 73, 777, 3092, 1757, 2827, 50, 448, 2596, 487, 2820, 1942, 3037, 1371, 625, 595, 3045, 2644, 2546, 1288, 3233, 997, 2542, 148, 535, 822, 257, 35, 138, 2324, 353, 168, 3286, 1777, 147, 1621, 628, 3042, 1492, 1629, 67, 3213, 1999, 1595, 2916, 2354, 1488, 852, 2920, 2591, 1988, 3072, 1348, 3227, 2745, 321, 1709, 315, 239, 87, 2304, 1996, 1562, 2483, 26, 3201, 594, 2219, 2877, 1636, 1099, 10, 1317, 1900, 902, 3199, 240, 1382, 725, 2763, 1202, 3295, 2211, 534, 2448, 738, 3074, 371, 412, 1252, 690, 2270, 1937, 459, 649, 584, 2676, 2486, 226, 3160, 770, 1949, 271, 2712, 2885, 2172, 2809, 1640, 539, 2866, 1466, 2292, 1851, 379, 1289, 639, 983, 2692, 3215, 3226, 2516, 377, 1581, 671, 2256, 2131, 922, 207, 665]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 200
+num of org label words: 854
+cali text features shape: torch.Size([854, 1024])
+the calibration logits is tensor([[20.4219, 16.1406, 21.7031,  ..., 20.7031, 21.4062, 22.0156],
+        [16.7969, 13.6484, 21.1094,  ..., 24.5000, 23.9531, 24.3125],
+        [21.6250, 16.4844, 19.2031,  ..., 18.7344, 20.1719, 20.3750],
+        ...,
+        [19.0625, 15.2266, 18.3750,  ..., 15.1094, 16.7969, 18.4531],
+        [23.8750, 17.1719, 20.1875,  ..., 19.2500, 20.5625, 20.3438],
+        [20.6406, 17.6406, 16.5156,  ..., 18.5469, 17.9062, 20.5625]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([200, 854])
+Phase 1 [25, 16, 11, 8, 1, 1, 1, 1, 5, 1, 1, 1, 6, 9, 3, 3, 1, 1, 1, 4, 4, 1, 12, 1, 20, 6, 10, 4, 5, 2, 3, 1, 1, 13, 1, 1, 14, 1, 1, 1, 22, 14, 23, 34, 1, 1, 1, 14, 28, 20, 22, 28, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 20, 12, 7, 9, 1, 1, 1, 3, 28, 1, 1, 4, 5, 16, 5, 20, 1, 3, 16, 1, 32, 18, 1, 1, 1, 1, 21, 1, 25, 1, 21, 25, 38, 28, 27, 15, 22]
+
+register_calibrate_logits starting shape: torch.Size([854])
+logits shape -1 :854
+rm_calibrate_ids: {1, 2, 3, 4, 6, 7, 11, 13, 15, 18, 19, 20, 21, 22, 23, 27, 31, 32, 34, 35, 36, 37, 38, 40, 42, 43, 45, 46, 47, 49, 53, 54, 55, 59, 67, 68, 70, 71, 72, 73, 74, 76, 78, 79, 82, 84, 85, 88, 91, 98, 103, 109, 111, 112, 113, 116, 119, 122, 123, 124, 125, 134, 142, 143, 145, 151, 152, 155, 156, 157, 159, 160, 166, 167, 170, 171, 173, 175, 180, 181, 182, 185, 186, 187, 188, 190, 192, 202, 203, 209, 210, 212, 213, 214, 215, 216, 218, 220, 227, 232, 233, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 250, 251, 252, 253, 254, 255, 256, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 272, 273, 274, 275, 277, 278, 279, 280, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 298, 300, 302, 305, 308, 310, 312, 313, 314, 315, 317, 324, 325, 326, 328, 329, 330, 331, 332, 333, 339, 340, 341, 346, 350, 351, 354, 357, 360, 362, 363, 364, 367, 368, 369, 374, 377, 378, 379, 380, 381, 383, 384, 386, 388, 391, 398, 401, 403, 404, 406, 407, 411, 412, 415, 417, 422, 424, 426, 430, 431, 433, 446, 451, 456, 464, 466, 467, 472, 475, 477, 478, 479, 481, 486, 490, 491, 493, 502, 503, 504, 506, 507, 510, 513, 515, 516, 520, 521, 523, 525, 529, 532, 533, 537, 539, 541, 544, 547, 549, 551, 555, 556, 558, 559, 560, 561, 562, 563, 565, 568, 569, 572, 573, 574, 575, 576, 578, 582, 583, 584, 585, 586, 587, 589, 590, 591, 594, 595, 596, 598, 599, 602, 603, 605, 606, 608, 610, 612, 614, 616, 617, 618, 620, 625, 634, 639, 641, 642, 643, 644, 645, 646, 647, 649, 650, 652, 653, 654, 655, 656, 658, 659, 660, 661, 662, 663, 665, 667, 669, 670, 673, 674, 675, 676, 677, 679, 680, 681, 682, 683, 684, 685, 688, 689, 693, 695, 696, 700, 710, 711, 713, 714, 717, 720, 721, 724, 725, 726, 727, 728, 729, 732, 733, 734, 735, 736, 737, 738, 740, 742, 743, 744, 745, 746, 747, 748, 749, 750, 751, 752, 753, 754, 755, 758, 760, 761, 762, 763, 764, 765, 766, 768, 770, 771, 772, 773, 774, 776, 777, 778, 779, 780, 781, 782, 784, 785, 787, 791, 793, 796, 797, 798, 800, 803, 806, 807, 808, 809, 811, 814, 820, 825, 827, 829, 833, 835, 837, 838, 840, 842, 843, 848, 849, 851}, shape 427
+Phase 2 [10, 7, 5, 4, 1, 1, 1, 1, 3, 1, 1, 1, 3, 5, 2, 2, 1, 1, 1, 3, 3, 1, 7, 1, 14, 4, 7, 1, 3, 2, 1, 1, 1, 7, 1, 1, 9, 1, 1, 1, 12, 9, 5, 5, 1, 1, 1, 9, 14, 14, 10, 17, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 14, 10, 6, 6, 1, 1, 1, 3, 19, 1, 1, 2, 3, 9, 3, 13, 1, 2, 6, 1, 13, 10, 1, 1, 1, 1, 10, 1, 7, 1, 9, 17, 8, 8, 14, 11, 12]
+
+num of label words after cc: 458
+cali_logits shape: torch.Size([458])
+Prompts: ['a photo of a 707-320, a type of aircraft.', 'a photo of a boeing 367-80, a type of aircraft.', 'a photo of a jt3d, a type of aircraft.', 'a photo of a dutch roll, a type of aircraft.', 'a photo of a jetliner, a type of aircraft.', 'a photo of a four-engined jet aircraft, a type of aircraft.', 'a photo of a jet age, a type of aircraft.', 'a photo of a transcontinental flight, a type of aircraft.', 'a photo of a boeing 7x7 series, a type of aircraft.', 'a photo of a nato, a type of aircraft.', 'a photo of a 727-200, a type of aircraft.', 'a photo of a northeast airlines, a type of aircraft.', 'a photo of a international flight, a type of aircraft.', 'a photo of a stapleton international airport, a type of aircraft.', 'a photo of a retrofit, a type of aircraft.', 'a photo of a british european airways, a type of aircraft.', 'a photo of a high-lift device, a type of aircraft.', 'a photo of a 737-200, a type of aircraft.', 'a photo of a chicago, a type of aircraft.', 'a photo of a average, a type of aircraft.', 'a photo of a cfm international leap-x, a type of aircraft.', 'a photo of a dc-9, a type of aircraft.', 'a photo of a 737-300, a type of aircraft.', 'a photo of a sky express, a type of aircraft.', 'a photo of a utair aviation, a type of aircraft.', 'a photo of a yamal airlines, a type of aircraft.', 'a photo of a 737-400, a type of aircraft.', 'a photo of a 737-500, a type of aircraft.', 'a photo of a 737-600, a type of aircraft.', 'a photo of a 737-700, a type of aircraft.', 'a photo of a 737-800, a type of aircraft.', 'a photo of a sky news, a type of aircraft.', 'a photo of a boeing 737-400, a type of aircraft.', 'a photo of a 737-900, a type of aircraft.', 'a photo of a 747-100, a type of aircraft.', 'a photo of a 747-200, a type of aircraft.', 'a photo of a 747-300, a type of aircraft.', 'a photo of a seat cost, a type of aircraft.', 'a photo of a democratization of technology, a type of aircraft.', 'a photo of a 747-400, a type of aircraft.', 'a photo of a china airlines, a type of aircraft.', 'a photo of a daewoo, a type of aircraft.', 'a photo of a in-flight entertainment, a type of aircraft.', 'a photo of a a330, a type of aircraft.', 'a photo of a 757-200, a type of aircraft.', 'a photo of a aerodynamic drag, a type of aircraft.', 'a photo of a 757-300, a type of aircraft.', 'a photo of a charter airline, a type of aircraft.', 'a photo of a 767-200, a type of aircraft.', 'a photo of a 767-300, a type of aircraft.', 'a photo of a 767-400, a type of aircraft.', 'a photo of a 777-200, a type of aircraft.', 'a photo of a folding wing, a type of aircraft.', 'a photo of a operating cost, a type of aircraft.', 'a photo of a 777-300, a type of aircraft.', 'a photo of a 767-300er, a type of aircraft.', 'a photo of a ibm, a type of aircraft.', 'a photo of a a300b4, a type of aircraft.', 'a photo of a a310, a type of aircraft.', 'a photo of a consortium, a type of aircraft.', 'a photo of a inflation, a type of aircraft.', 'a photo of a overwing exit, a type of aircraft.', 'a photo of a iberia, a type of aircraft.', 'a photo of a united kingdom, a type of aircraft.', 'a photo of a martinair, a type of aircraft.', 'a photo of a a318, a type of aircraft.', 'a photo of a a319, a type of aircraft.', 'a photo of a china, a type of aircraft.', 'a photo of a ilfc, a type of aircraft.', 'a photo of a mjet, a type of aircraft.', 'a photo of a the new york times, a type of aircraft.', 'a photo of a boeing 737-300, a type of aircraft.', 'a photo of a armenia, a type of aircraft.', 'a photo of a azerbaijan, a type of aircraft.', 'a photo of a computer programming, a type of aircraft.', 'a photo of a bulgaria, a type of aircraft.', 'a photo of a great circle, a type of aircraft.', 'a photo of a malaysia, a type of aircraft.', 'a photo of a slovakia, a type of aircraft.', 'a photo of a thailand, a type of aircraft.', 'a photo of a a320, a type of aircraft.', 'a photo of a airbus corporate jets, a type of aircraft.', 'a photo of a pw6000, a type of aircraft.', 'a photo of a airbus a321, a type of aircraft.', 'a photo of a a321, a type of aircraft.', 'a photo of a a321xlr, a type of aircraft.', 'a photo of a bond market, a type of aircraft.', 'a photo of a european investment bank, a type of aircraft.', 'a photo of a trailing edge, a type of aircraft.', 'a photo of a arkia, a type of aircraft.', 'a photo of a cfm international leap, a type of aircraft.', 'a photo of a a330-200, a type of aircraft.', 'a photo of a a330-300, a type of aircraft.', 'a photo of a ge cf6, a type of aircraft.', 'a photo of a airbus industrie flight 129, a type of aircraft.', 'a photo of a a340-200, a type of aircraft.', 'a photo of a iae superfan, a type of aircraft.', 'a photo of a a340-300, a type of aircraft.', 'a photo of a a340-500, a type of aircraft.', 'a photo of a a340-600, a type of aircraft.', 'a photo of a a380, a type of aircraft.', 'a photo of a european aviation safety agency, a type of aircraft.', 'a photo of a engine alliance gp7200, a type of aircraft.', 'a photo of a wing twist, a type of aircraft.', 'a photo of a uk, a type of aircraft.', 'a photo of a safran, a type of aircraft.', 'a photo of a tonne, a type of aircraft.', 'a photo of a atr-42, a type of aircraft.', 'a photo of a atr-72, a type of aircraft.', 'a photo of a an-12, a type of aircraft.', "a photo of a xi'an aircraft industrial corporation, a type of aircraft.", 'a photo of a shaanxi aircraft company, a type of aircraft.', 'a photo of a pratt & whitney canada, a type of aircraft.', 'a photo of a commonwealth of independent states, a type of aircraft.', 'a photo of a indian subcontinent, a type of aircraft.', 'a photo of a united arab emirates, a type of aircraft.', 'a photo of a runway incursion, a type of aircraft.', 'a photo of a sharjah international airport, a type of aircraft.', 'a photo of a bae 146-200, a type of aircraft.', 'a photo of a bae 146-300, a type of aircraft.', 'a photo of a bae-125, a type of aircraft.', 'a photo of a beechcraft 1900, a type of aircraft.', 'a photo of a british aerospace jetstream, a type of aircraft.', 'a photo of a airport, a type of aircraft.', 'a photo of a ameriflight, a type of aircraft.', 'a photo of a fixed-wing aircraft, a type of aircraft.', 'a photo of a freight aircraft, a type of aircraft.', 'a photo of a kilowatt, a type of aircraft.', 'a photo of a fairchild swearingen metroliner, a type of aircraft.', 'a photo of a sea level, a type of aircraft.', 'a photo of a fuel tank, a type of aircraft.', 'a photo of a wet wing, a type of aircraft.', 'a photo of a embraer emb 120 brasilia, a type of aircraft.', 'a photo of a boeing 717, a type of aircraft.', 'a photo of a airtran airways, a type of aircraft.', 'a photo of a mcdonnell douglas, a type of aircraft.', 'a photo of a mcdonnell douglas md-90, a type of aircraft.', 'a photo of a scandinavian airlines system, a type of aircraft.', 'a photo of a valujet airlines, a type of aircraft.', 'a photo of a dc-9-50, a type of aircraft.', 'a photo of a dc-9-10, a type of aircraft.', 'a photo of a embraer e-jets, a type of aircraft.', 'a photo of a c-130, a type of aircraft.', 'a photo of a tanker, a type of aircraft.', 'a photo of a maritime patrol, a type of aircraft.', 'a photo of a lockheed l-100, a type of aircraft.', 'a photo of a humanitarian aid, a type of aircraft.', 'a photo of a c-47, a type of aircraft.', 'a photo of a long beach, a type of aircraft.', 'a photo of a new guinea, a type of aircraft.', 'a photo of a the hump, a type of aircraft.', 'a photo of a puff the magic dragon, a type of aircraft.', 'a photo of a crj-200, a type of aircraft.', 'a photo of a crj-700, a type of aircraft.', 'a photo of a crj-900, a type of aircraft.', 'a photo of a cessna 172, a type of aircraft.', 'a photo of a continental o-300, a type of aircraft.', 'a photo of a wing tip, a type of aircraft.', 'a photo of a company, a type of aircraft.', 'a photo of a corporation, a type of aircraft.', 'a photo of a organisation, a type of aircraft.', 'a photo of a organization, a type of aircraft.', 'a photo of a conservancy, a type of aircraft.', 'a photo of a interpol, a type of aircraft.', 'a photo of a cessna 208, a type of aircraft.', 'a photo of a air cargo, a type of aircraft.', 'a photo of a humanitarian, a type of aircraft.', 'a photo of a utility aircraft, a type of aircraft.', 'a photo of a high wing, a type of aircraft.', 'a photo of a commuter airline, a type of aircraft.', 'a photo of a vip transport, a type of aircraft.', 'a photo of a shijiazhuang, a type of aircraft.', 'a photo of a independence, a type of aircraft.', 'a photo of a china aviation industry general aircraft, a type of aircraft.', 'a photo of a magnix, a type of aircraft.', 'a photo of a tractor configuration, a type of aircraft.', 'a photo of a far part 23, a type of aircraft.', 'a photo of a electric aircraft, a type of aircraft.', 'a photo of a cessna 525, a type of aircraft.', 'a photo of a citation i, a type of aircraft.', 'a photo of a laminar flow, a type of aircraft.', 'a photo of a citation family, a type of aircraft.', 'a photo of a nasa, a type of aircraft.', 'a photo of a citation v, a type of aircraft.', 'a photo of a semi-monocoque, a type of aircraft.', 'a photo of a cantilever wing, a type of aircraft.', 'a photo of a aluminum alloy, a type of aircraft.', 'a photo of a adhesive bonding, a type of aircraft.', 'a photo of a low wing, a type of aircraft.', 'a photo of a lift-to-drag ratio, a type of aircraft.', 'a photo of a icing conditions, a type of aircraft.', 'a photo of a bleed air, a type of aircraft.', 'a photo of a cessna 560, a type of aircraft.', 'a photo of a pratt & whitney canada pw500, a type of aircraft.', 'a photo of a flying, a type of aircraft.', 'a photo of a pratt & whitney canada jt15d, a type of aircraft.', 'a photo of a critical mach number, a type of aircraft.', 'a photo of a hot-and-high, a type of aircraft.', 'a photo of a multifunction display, a type of aircraft.', 'a photo of a an/apg-66, a type of aircraft.', 'a photo of a aircraft maintenance, a type of aircraft.', 'a photo of a time between overhauls, a type of aircraft.', 'a photo of a challenger 600, a type of aircraft.', 'a photo of a canadair, a type of aircraft.', 'a photo of a conventional tail, a type of aircraft.', 'a photo of a type certification, a type of aircraft.', 'a photo of a bombardier crj100/200, a type of aircraft.', 'a photo of a bombardier aerospace, a type of aircraft.', 'a photo of a canadian federal government, a type of aircraft.', 'a photo of a department of transport, a type of aircraft.', 'a photo of a prototypes, a type of aircraft.', 'a photo of a europe, a type of aircraft.', 'a photo of a structural, a type of aircraft.', 'a photo of a geared turbofan, a type of aircraft.', 'a photo of a jig, a type of aircraft.', 'a photo of a mockup, a type of aircraft.', 'a photo of a flight international, a type of aircraft.', 'a photo of a letter of comfort, a type of aircraft.', 'a photo of a executive jet, a type of aircraft.', 'a photo of a dc-10, a type of aircraft.', 'a photo of a dc-3, a type of aircraft.', 'a photo of a dc-6, a type of aircraft.', 'a photo of a dc-8, a type of aircraft.', 'a photo of a dc-9-30, a type of aircraft.', 'a photo of a dh-82, a type of aircraft.', 'a photo of a dhc-1, a type of aircraft.', 'a photo of a dhc-6, a type of aircraft.', 'a photo of a dhc-8-100, a type of aircraft.', 'a photo of a dhc-8-300, a type of aircraft.', 'a photo of a dr-400, a type of aircraft.', 'a photo of a dornier 328, a type of aircraft.', 'a photo of a dornier 328jet, a type of aircraft.', 'a photo of a san antonio, a type of aircraft.', 'a photo of a united states, a type of aircraft.', 'a photo of a fairchild dornier 328jet, a type of aircraft.', 'a photo of a daimlerchrysler aerospace, a type of aircraft.', 'a photo of a ankara, a type of aircraft.', 'a photo of a digital electronics, a type of aircraft.', 'a photo of a leipzig, a type of aircraft.', 'a photo of a ge aviation systems, a type of aircraft.', 'a photo of a saxony, a type of aircraft.', 'a photo of a daewoo heavy industries, a type of aircraft.', 'a photo of a south korea, a type of aircraft.', 'a photo of a dornier 428jet, a type of aircraft.', 'a photo of a e-170, a type of aircraft.', 'a photo of a republic airline, a type of aircraft.', 'a photo of a dependability, a type of aircraft.', 'a photo of a johannesburg, a type of aircraft.', 'a photo of a windhoek, a type of aircraft.', 'a photo of a airlink, a type of aircraft.', 'a photo of a european regions airline association, a type of aircraft.', 'a photo of a civil aviation authority, a type of aircraft.', 'a photo of a kenya airways, a type of aircraft.', 'a photo of a alaska air, a type of aircraft.', 'a photo of a e-190, a type of aircraft.', 'a photo of a conglomerate, a type of aircraft.', 'a photo of a aluminum, a type of aircraft.', 'a photo of a national aviation authority, a type of aircraft.', 'a photo of a carbon-fiber-reinforced polymer, a type of aircraft.', 'a photo of a pratt & whitney pw1000g, a type of aircraft.', 'a photo of a e-195, a type of aircraft.', 'a photo of a embraer erj family, a type of aircraft.', 'a photo of a jet propulsion, a type of aircraft.', 'a photo of a republic airways, a type of aircraft.', 'a photo of a embraer lineage 1000, a type of aircraft.', 'a photo of a easa, a type of aircraft.', 'a photo of a emb-120, a type of aircraft.', 'a photo of a erj 135, a type of aircraft.', 'a photo of a erj 145, a type of aircraft.', 'a photo of a embraer legacy 600, a type of aircraft.', 'a photo of a heritage, a type of aircraft.', 'a photo of a legacy, a type of aircraft.', 'a photo of a eurofighter typhoon, a type of aircraft.', 'a photo of a monsoon, a type of aircraft.', 'a photo of a stormy, a type of aircraft.', 'a photo of a aweather, a type of aircraft.', 'a photo of a meteorological event, a type of aircraft.', 'a photo of a weathertight, a type of aircraft.', 'a photo of a blizzicane, a type of aircraft.', 'a photo of a windswept, a type of aircraft.', 'a photo of a windward, a type of aircraft.', 'a photo of a wind scale, a type of aircraft.', 'a photo of a blowy, a type of aircraft.', 'a photo of a stormworthy, a type of aircraft.', 'a photo of a windiness, a type of aircraft.', 'a photo of a etesian, a type of aircraft.', 'a photo of a interwind, a type of aircraft.', 'a photo of a windtight, a type of aircraft.', 'a photo of a windbound, a type of aircraft.', 'a photo of a windproof, a type of aircraft.', 'a photo of a outwind, a type of aircraft.', 'a photo of a f-16a/b, a type of aircraft.', 'a photo of a f/a-18, a type of aircraft.', 'a photo of a falcon 2000, a type of aircraft.', 'a photo of a fractional ownership, a type of aircraft.', 'a photo of a falcon 900, a type of aircraft.', 'a photo of a qatar, a type of aircraft.', 'a photo of a escadron de transport, a type of aircraft.', 'a photo of a fokker 100, a type of aircraft.', 'a photo of a arinc, a type of aircraft.', 'a photo of a fuselage stretch, a type of aircraft.', 'a photo of a atr, a type of aircraft.', 'a photo of a leading edge, a type of aircraft.', 'a photo of a douglas dc-9, a type of aircraft.', 'a photo of a vip, a type of aircraft.', 'a photo of a tam transportes aéreos regionais, a type of aircraft.', 'a photo of a bombardier inc., a type of aircraft.', 'a photo of a fokker 50, a type of aircraft.', 'a photo of a royal netherlands air force, a type of aircraft.', 'a photo of a liquidation, a type of aircraft.', 'a photo of a fokker 70, a type of aircraft.', 'a photo of a granada, a type of aircraft.', 'a photo of a mesa airlines, a type of aircraft.', 'a photo of a fokker f28 fellowship, a type of aircraft.', 'a photo of a fuel efficient, a type of aircraft.', 'a photo of a product certification, a type of aircraft.', 'a photo of a sempati air, a type of aircraft.', 'a photo of a pelita air, a type of aircraft.', 'a photo of a atr 42, a type of aircraft.', 'a photo of a bae 146, a type of aircraft.', 'a photo of a desert sun airlines, a type of aircraft.', 'a photo of a america west express, a type of aircraft.', 'a photo of a rekkof aircraft, a type of aircraft.', 'a photo of a global express, a type of aircraft.', 'a photo of a gulfstream iv, a type of aircraft.', 'a photo of a iv, a type of aircraft.', 'a photo of a gulfstream v, a type of aircraft.', 'a photo of a algeria, a type of aircraft.', 'a photo of a mark cuban, a type of aircraft.', 'a photo of a steve jobs, a type of aircraft.', 'a photo of a ramstein air base, a type of aircraft.', 'a photo of a high-performance, a type of aircraft.', 'a photo of a hawk t1, a type of aircraft.', 'a photo of a il-76, a type of aircraft.', 'a photo of a ilyushin, a type of aircraft.', 'a photo of a tashkent, a type of aircraft.', 'a photo of a uzbekistan, a type of aircraft.', 'a photo of a strategic airlift, a type of aircraft.', 'a photo of a tashkent aviation production association, a type of aircraft.', "a photo of a people's republic of china, a type of aircraft.", 'a photo of a aviastar, a type of aircraft.', 'a photo of a tehran, a type of aircraft.', 'a photo of a chile, a type of aircraft.', 'a photo of a npo almaz, a type of aircraft.', 'a photo of a syrianair, a type of aircraft.', 'a photo of a attrition rate, a type of aircraft.', 'a photo of a l-1011, a type of aircraft.', 'a photo of a wide-body airliner, a type of aircraft.', 'a photo of a visibility, a type of aircraft.', 'a photo of a latin america, a type of aircraft.', 'a photo of a dallas-fort worth international airport, a type of aircraft.', 'a photo of a aeroperú, a type of aircraft.', 'a photo of a power-to-weight ratio, a type of aircraft.', 'a photo of a trans world airlines, a type of aircraft.', 'a photo of a administrative receivership, a type of aircraft.', 'a photo of a orenda engines, a type of aircraft.', 'a photo of a md-11, a type of aircraft.', 'a photo of a md-80, a type of aircraft.', 'a photo of a md-87, a type of aircraft.', 'a photo of a md-90, a type of aircraft.', 'a photo of a metroliner, a type of aircraft.', 'a photo of a passengers, a type of aircraft.', 'a photo of a flights, a type of aircraft.', 'a photo of a commuter, a type of aircraft.', 'a photo of a jet, a type of aircraft.', 'a photo of a trains, a type of aircraft.', 'a photo of a aires, a type of aircraft.', 'a photo of a ferry, a type of aircraft.', 'a photo of a varig, a type of aircraft.', 'a photo of a freighter, a type of aircraft.', 'a photo of a model b200, a type of aircraft.', 'a photo of a pa-28, a type of aircraft.', 'a photo of a turbocharging, a type of aircraft.', 'a photo of a enaer, a type of aircraft.', 'a photo of a continental io-360, a type of aircraft.', 'a photo of a stabilator, a type of aircraft.', 'a photo of a chilean air force, a type of aircraft.', 'a photo of a aircraft diesel engine, a type of aircraft.', 'a photo of a sr-20, a type of aircraft.', 'a photo of a saab 2000, a type of aircraft.', 'a photo of a pakistan, a type of aircraft.', 'a photo of a rotational speed, a type of aircraft.', 'a photo of a regional jets, a type of aircraft.', 'a photo of a bombardier crj family, a type of aircraft.', 'a photo of a pro air, a type of aircraft.', 'a photo of a eastern airways, a type of aircraft.', 'a photo of a government of pakistan, a type of aircraft.', 'a photo of a code sharing, a type of aircraft.', 'a photo of a saab 340, a type of aircraft.', 'a photo of a regional express airlines, a type of aircraft.', 'a photo of a active noise control, a type of aircraft.', 'a photo of a decibel, a type of aircraft.', 'a photo of a australia, a type of aircraft.', 'a photo of a 1973 oil crisis, a type of aircraft.', 'a photo of a japan, a type of aircraft.', 'a photo of a subsidies, a type of aircraft.', 'a photo of a federal government of the united states, a type of aircraft.', 'a photo of a airline deregulation act, a type of aircraft.', 'a photo of a diffusion bonding, a type of aircraft.', 'a photo of a japan air commuter, a type of aircraft.', 'a photo of a active vibration control, a type of aircraft.', 'a photo of a oil, a type of aircraft.', 'a photo of a merger, a type of aircraft.', 'a photo of a civil aviation, a type of aircraft.', 'a photo of a british aerospace 146, a type of aircraft.', 'a photo of a spitfire, a type of aircraft.', 'a photo of a emotional person, a type of aircraft.', 'a photo of a horsepower, a type of aircraft.', 'a photo of a southampton airport, a type of aircraft.', 'a photo of a southampton, a type of aircraft.', 'a photo of a chaser, a type of aircraft.', 'a photo of a mk, a type of aircraft.', 'a photo of a virtua, a type of aircraft.', 'a photo of a tornado, a type of aircraft.', 'a photo of a rainstorm, a type of aircraft.', 'a photo of a air, a type of aircraft.', 'a photo of a landfall, a type of aircraft.', 'a photo of a skyscraper, a type of aircraft.', 'a photo of a photogrammetry, a type of aircraft.', 'a photo of a weather, a type of aircraft.', 'a photo of a temblor, a type of aircraft.', 'a photo of a tu-134, a type of aircraft.', 'a photo of a comecon, a type of aircraft.', 'a photo of a pitch-up, a type of aircraft.', 'a photo of a noise control, a type of aircraft.', 'a photo of a bac one-eleven, a type of aircraft.', 'a photo of a baku, a type of aircraft.', 'a photo of a interflug, a type of aircraft.', 'a photo of a yerevan, a type of aircraft.', 'a photo of a kyiv, a type of aircraft.', 'a photo of a omsk, a type of aircraft.', 'a photo of a sochi international airport, a type of aircraft.', 'a photo of a sochi, a type of aircraft.', 'a photo of a german democratic republic, a type of aircraft.', 'a photo of a malév hungarian airlines, a type of aircraft.', 'a photo of a tu-154, a type of aircraft.', 'a photo of a tupolev, a type of aircraft.', 'a photo of a airfields, a type of aircraft.', 'a photo of a yekaterinburg, a type of aircraft.', 'a photo of a moscow, a type of aircraft.', 'a photo of a air force, a type of aircraft.', 'a photo of a flag carrier, a type of aircraft.', 'a photo of a dihedral, a type of aircraft.', 'a photo of a bogies, a type of aircraft.', 'a photo of a low-bypass turbofan, a type of aircraft.', 'a photo of a captain, a type of aircraft.', 'a photo of a yak-42, a type of aircraft.', 'a photo of a helsinki, a type of aircraft.', 'a photo of a antonov an-24, a type of aircraft.', 'a photo of a prague, a type of aircraft.', 'a photo of a donetsk, a type of aircraft.', 'a photo of a aircraft registration, a type of aircraft.', 'a photo of a aviogenex, a type of aircraft.', 'a photo of a spoiler, a type of aircraft.', 'a photo of a alliedsignal, a type of aircraft.', 'a photo of a izhavia, a type of aircraft.', 'a photo of a krasavia, a type of aircraft.', 'a photo of a gazpromavia, a type of aircraft.']
+text feature size: torch.Size([458, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 458
+label_probs shape: torch.Size([33, 100])
+=> result
+* total: 3,333
+* correct: 396
+* accuracy: 11.9%
+* error: 88.1%
+* macro_f1: 7.7%

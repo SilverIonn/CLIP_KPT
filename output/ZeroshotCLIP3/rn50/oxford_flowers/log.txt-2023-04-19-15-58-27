@@ -1,0 +1,369 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: 0.5
+dataset: oxford_flowers
+dataset_config_file: configs/datasets/oxford_flowers.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/oxford_flowers
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 30
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+CALIBRATION_CUT: 0.5
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: OxfordFlowers
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/oxford_flowers
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/oxford_flowers
+  SIZE: 30
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: OxfordFlowers
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/oxford_flowers/split_zhou_OxfordFlowers.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  -------------
+Dataset    OxfordFlowers
+# classes  102
+# train_x  4,093
+# val      1,633
+# test     2,463
+---------  -------------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [2440, 2987, 1578, 1672, 899, 2404, 674, 1387, 2193, 293, 2378, 2113, 3190, 703, 1972, 3453, 845, 843, 1530, 2180, 3043, 2782, 623, 2227, 1577, 3165, 3733, 1881, 18, 2785, 3802, 496, 2976, 2500, 1963, 3673, 967, 1765, 1538, 49, 925, 3948, 562, 3535, 692, 2494, 1912, 2961, 1822, 1112, 4000, 315, 3162, 915, 133, 584, 583, 2937, 534, 3425, 1604, 371, 2633, 906, 2514, 944, 1062, 188, 2216, 3124, 3934, 829, 2304, 3157, 3721, 1152, 87, 1473, 1824, 3028, 1627, 1842, 1968, 79, 822, 257, 742, 3048, 910, 3186, 224, 448, 2766, 1999, 3313, 3650, 3007, 27, 50, 3642, 2625, 3328, 3388, 945, 3475, 35, 281, 2507, 1537, 1504, 3713, 2996, 1462, 931, 1308, 2532, 777, 1044, 2765, 1367, 124, 2617, 1050, 3946, 2670, 3853, 85, 2671, 435, 1214, 1018, 2200, 2778, 1705, 2363, 959, 1272, 1539, 992, 1038, 1212, 3777, 2672, 3272, 3626, 1628, 2975, 203, 2510, 53, 1015, 2727, 1119, 3605, 1731, 204, 3554, 593, 4004, 3231, 749, 828, 3947, 3898, 4014, 730, 2849, 3132, 2806, 1509, 3092, 1556, 1412, 2271, 111, 2460, 701, 2097, 2313, 2477, 535, 4080, 3831, 3783, 1312, 2926, 231, 3305, 210, 3971, 2592, 1658, 1818, 2099, 856, 2639, 2522, 2127, 1455, 832]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 200
+num of org label words: 1276
+cali text features shape: torch.Size([1276, 1024])
+the calibration logits is tensor([[18.2656, 23.0781, 24.7812,  ..., 25.4219, 23.2812, 23.0938],
+        [21.0312, 25.3750, 25.2656,  ..., 24.4062, 24.8906, 24.0156],
+        [16.5156, 21.0938, 24.4844,  ..., 25.8281, 24.0469, 21.6719],
+        ...,
+        [22.9531, 25.3281, 26.0781,  ..., 28.0625, 24.5156, 23.7344],
+        [20.8281, 18.5625, 23.9688,  ..., 24.0312, 24.5156, 22.1875],
+        [20.7031, 17.5312, 18.5156,  ..., 18.2344, 22.0625, 19.4062]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([200, 1276])
+Phase 1 [19, 3, 8, 7, 15, 2, 16, 31, 12, 25, 3, 1, 29, 18, 13, 13, 14, 22, 13, 14, 1, 6, 23, 15, 13, 20, 1, 1, 17, 23, 12, 5, 1, 13, 14, 1, 1, 1, 9, 11, 1, 12, 17, 11, 5, 8, 2, 9, 14, 17, 14, 25, 13, 10, 15, 31, 4, 2, 1, 1, 9, 12, 29, 29, 14, 8, 6, 17, 7, 14, 4, 3, 20, 31, 26, 28, 17, 11, 2, 8, 17, 18, 13, 6, 1, 17, 8, 16, 16, 6, 14, 20, 19, 23, 12, 12, 21, 8, 11, 10, 26, 9]
+
+register_calibrate_logits starting shape: torch.Size([1276])
+logits shape -1 :1276
+rm_calibrate_ids: {0, 1, 6, 8, 9, 14, 19, 22, 30, 31, 32, 34, 37, 39, 46, 48, 49, 52, 54, 70, 72, 73, 76, 77, 78, 80, 81, 82, 83, 84, 85, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 105, 106, 107, 108, 109, 112, 113, 114, 127, 132, 138, 139, 140, 141, 142, 143, 145, 158, 165, 171, 172, 173, 174, 175, 176, 178, 179, 180, 181, 182, 183, 185, 186, 187, 188, 189, 191, 192, 193, 198, 201, 203, 204, 205, 206, 207, 208, 209, 212, 213, 215, 229, 231, 232, 233, 240, 246, 251, 253, 254, 255, 257, 258, 259, 264, 275, 276, 278, 279, 280, 281, 283, 284, 285, 286, 287, 289, 290, 291, 292, 295, 296, 297, 302, 303, 304, 306, 307, 308, 309, 311, 312, 314, 315, 316, 317, 319, 320, 322, 323, 326, 327, 329, 331, 333, 335, 336, 338, 339, 340, 341, 343, 344, 345, 347, 349, 351, 352, 354, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 375, 387, 390, 392, 395, 396, 398, 400, 401, 403, 407, 410, 412, 414, 415, 416, 418, 420, 421, 423, 424, 425, 427, 429, 430, 443, 445, 446, 452, 455, 456, 459, 463, 464, 465, 466, 467, 468, 469, 471, 472, 474, 476, 479, 481, 482, 485, 489, 490, 492, 494, 495, 496, 497, 502, 504, 505, 506, 508, 512, 513, 515, 520, 521, 522, 523, 524, 525, 529, 530, 531, 532, 533, 535, 537, 538, 539, 540, 541, 542, 543, 545, 546, 547, 549, 550, 551, 553, 554, 555, 556, 558, 562, 564, 565, 566, 568, 569, 570, 571, 572, 573, 574, 575, 576, 578, 581, 582, 583, 585, 591, 592, 598, 601, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 626, 627, 628, 629, 630, 635, 636, 637, 641, 650, 670, 671, 673, 674, 675, 676, 677, 678, 682, 687, 690, 693, 695, 699, 702, 704, 705, 706, 707, 725, 728, 729, 731, 732, 733, 736, 743, 754, 757, 766, 771, 772, 775, 777, 778, 779, 782, 783, 785, 787, 788, 791, 792, 796, 798, 799, 800, 801, 802, 803, 804, 805, 809, 811, 816, 817, 819, 820, 822, 823, 824, 826, 827, 828, 829, 830, 833, 834, 836, 840, 841, 844, 845, 847, 850, 881, 882, 883, 884, 885, 886, 887, 888, 889, 890, 891, 892, 893, 895, 896, 901, 902, 903, 904, 905, 906, 907, 908, 913, 914, 918, 920, 924, 925, 926, 935, 936, 940, 941, 942, 945, 946, 947, 951, 952, 954, 955, 956, 957, 958, 959, 960, 961, 963, 965, 968, 969, 970, 971, 973, 974, 975, 977, 978, 982, 983, 987, 990, 991, 993, 994, 995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1008, 1009, 1010, 1014, 1015, 1017, 1018, 1020, 1021, 1022, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1044, 1045, 1046, 1047, 1048, 1049, 1050, 1053, 1054, 1056, 1057, 1058, 1059, 1060, 1061, 1062, 1063, 1064, 1068, 1069, 1070, 1071, 1072, 1074, 1075, 1076, 1077, 1078, 1080, 1081, 1082, 1083, 1084, 1085, 1086, 1089, 1091, 1092, 1093, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1115, 1117, 1121, 1125, 1127, 1128, 1129, 1132, 1133, 1134, 1135, 1136, 1138, 1144, 1145, 1146, 1147, 1150, 1152, 1153, 1154, 1156, 1159, 1167, 1168, 1169, 1171, 1173, 1174, 1176, 1177, 1178, 1179, 1181, 1183, 1184, 1187, 1188, 1189, 1190, 1191, 1192, 1193, 1194, 1195, 1196, 1197, 1198, 1200, 1203, 1204, 1206, 1207, 1208, 1209, 1210, 1211, 1212, 1216, 1217, 1219, 1220, 1222, 1225, 1231, 1232, 1233, 1234, 1241, 1242, 1243, 1244, 1246, 1247, 1249, 1250, 1254, 1255, 1256, 1258, 1261, 1267, 1272, 1275}, shape 638
+Phase 2 [14, 3, 8, 4, 11, 2, 16, 6, 5, 22, 1, 1, 25, 3, 8, 4, 14, 17, 7, 12, 1, 2, 9, 5, 7, 8, 1, 1, 2, 18, 8, 3, 1, 6, 13, 1, 1, 1, 8, 6, 1, 6, 9, 6, 4, 6, 1, 4, 4, 7, 3, 17, 2, 1, 7, 29, 2, 1, 1, 1, 8, 9, 23, 22, 13, 4, 4, 8, 4, 8, 2, 1, 12, 31, 6, 20, 9, 3, 2, 4, 10, 6, 6, 3, 1, 2, 3, 5, 3, 4, 12, 11, 10, 14, 4, 5, 5, 5, 9, 7, 14, 7]
+
+num of label words after cc: 736
+cali_logits shape: torch.Size([736])
+Prompts: ['a photo of a pink primrose, a type of flower.', 'a photo of a kansas, a type of flower.', 'a photo of a missouri, a type of flower.', 'a photo of a nebraska, a type of flower.', 'a photo of a oklahoma, a type of flower.', 'a photo of a coahuila, a type of flower.', 'a photo of a united states of america, a type of flower.', 'a photo of a stolon, a type of flower.', 'a photo of a stigma, a type of flower.', 'a photo of a insect, a type of flower.', 'a photo of a ruderal species, a type of flower.', 'a photo of a usda, a type of flower.', 'a photo of a salad, a type of flower.', 'a photo of a drought resistance, a type of flower.', 'a photo of a hard-leaved pocket orchid, a type of flower.', 'a photo of a guangxi, a type of flower.', 'a photo of a guizhou, a type of flower.', 'a photo of a canterbury bells, a type of flower.', 'a photo of a biennial plant, a type of flower.', 'a photo of a floriography, a type of flower.', 'a photo of a elliptical, a type of flower.', 'a photo of a sessile, a type of flower.', 'a photo of a hermaphroditic, a type of flower.', 'a photo of a autogamy, a type of flower.', 'a photo of a entomogamy, a type of flower.', 'a photo of a sweet pea, a type of flower.', 'a photo of a pudding, a type of flower.', 'a photo of a dessert, a type of flower.', 'a photo of a fragrant, a type of flower.', 'a photo of a english marigold, a type of flower.', 'a photo of a naturalisation, a type of flower.', 'a photo of a head, a type of flower.', 'a photo of a inflorescences, a type of flower.', 'a photo of a gothic, a type of flower.', 'a photo of a pruning, a type of flower.', 'a photo of a variegated, a type of flower.', 'a photo of a salads, a type of flower.', 'a photo of a plant sexuality, a type of flower.', 'a photo of a dye, a type of flower.', 'a photo of a setaceous hebrew character, a type of flower.', 'a photo of a tiger lily, a type of flower.', 'a photo of a kentan, a type of flower.', 'a photo of a moon orchid, a type of flower.', 'a photo of a indonesia, a type of flower.', 'a photo of a lithophyte, a type of flower.', 'a photo of a column, a type of flower.', 'a photo of a native species, a type of flower.', 'a photo of a latin, a type of flower.', 'a photo of a palawan, a type of flower.', 'a photo of a borneo, a type of flower.', 'a photo of a sumatra, a type of flower.', 'a photo of a java, a type of flower.', 'a photo of a sulawesi, a type of flower.', 'a photo of a georg eberhard rumphius, a type of flower.', 'a photo of a ambon island, a type of flower.', 'a photo of a buru, a type of flower.', 'a photo of a species plantarum, a type of flower.', 'a photo of a carl ludwig blume, a type of flower.', 'a photo of a bird of paradise, a type of flower.', 'a photo of a oscine, a type of flower.', 'a photo of a birdbath, a type of flower.', 'a photo of a bird, a type of flower.', 'a photo of a birdlike, a type of flower.', 'a photo of a ornithologist, a type of flower.', 'a photo of a monkshood, a type of flower.', 'a photo of a helmetflower, a type of flower.', 'a photo of a helmet flower, a type of flower.', "a photo of a monk's hood, a type of flower.", 'a photo of a stipules, a type of flower.', 'a photo of a globe thistle, a type of flower.', 'a photo of a hosts, a type of flower.', 'a photo of a partick, a type of flower.', 'a photo of a host, a type of flower.', 'a photo of a hibernian, a type of flower.', 'a photo of a charlton, a type of flower.', 'a photo of a dundee, a type of flower.', 'a photo of a southampton, a type of flower.', 'a photo of a kilmarnock, a type of flower.', 'a photo of a caledonian, a type of flower.', 'a photo of a mirren, a type of flower.', 'a photo of a aberdeen, a type of flower.', 'a photo of a magellanic, a type of flower.', 'a photo of a guernsey, a type of flower.', 'a photo of a sheffield, a type of flower.', 'a photo of a travels, a type of flower.', 'a photo of a bay, a type of flower.', 'a photo of a worcester, a type of flower.', 'a photo of a norwich, a type of flower.', 'a photo of a dunfermline, a type of flower.', 'a photo of a falkirk, a type of flower.', 'a photo of a inverness, a type of flower.', 'a photo of a snapdragon, a type of flower.', "a photo of a colt's foot, a type of flower.", 'a photo of a king protea, a type of flower.', 'a photo of a honeypot, a type of flower.', 'a photo of a queen, a type of flower.', 'a photo of a prince, a type of flower.', 'a photo of a emperor, a type of flower.', 'a photo of a majesty, a type of flower.', 'a photo of a princess, a type of flower.', 'a photo of a coronation, a type of flower.', 'a photo of a empress, a type of flower.', 'a photo of a royal, a type of flower.', 'a photo of a pharaoh, a type of flower.', 'a photo of a kingdom, a type of flower.', 'a photo of a crown, a type of flower.', 'a photo of a ruler, a type of flower.', 'a photo of a cleopatra, a type of flower.', 'a photo of a king, a type of flower.', 'a photo of a gustavus, a type of flower.', 'a photo of a alaric, a type of flower.', 'a photo of a gilgamesh, a type of flower.', 'a photo of a ferdinand, a type of flower.', 'a photo of a mithridates, a type of flower.', 'a photo of a macbeth, a type of flower.', 'a photo of a kingly, a type of flower.', 'a photo of a ahab, a type of flower.', 'a photo of a croesus, a type of flower.', 'a photo of a spear thistle, a type of flower.', 'a photo of a herbal, a type of flower.', 'a photo of a yenisei, a type of flower.', 'a photo of a yellow iris, a type of flower.', 'a photo of a uk, a type of flower.', 'a photo of a crest, a type of flower.', 'a photo of a colour, a type of flower.', 'a photo of a reddish, a type of flower.', 'a photo of a gray, a type of flower.', 'a photo of a skin, a type of flower.', 'a photo of a bright, a type of flower.', 'a photo of a globe-flower, a type of flower.', 'a photo of a buryatia, a type of flower.', 'a photo of a ranunculales, a type of flower.', 'a photo of a altai republic, a type of flower.', 'a photo of a purple coneflower, a type of flower.', 'a photo of a ozarks, a type of flower.', 'a photo of a habitat, a type of flower.', 'a photo of a canadian province, a type of flower.', 'a photo of a pollination, a type of flower.', 'a photo of a mississippi valley, a type of flower.', 'a photo of a ohio valley, a type of flower.', 'a photo of a greek language, a type of flower.', 'a photo of a thomas nuttall, a type of flower.', 'a photo of a sterility, a type of flower.', 'a photo of a ligulate, a type of flower.', 'a photo of a flowering heads, a type of flower.', 'a photo of a flower head, a type of flower.', 'a photo of a division, a type of flower.', 'a photo of a peruvian lily, a type of flower.', 'a photo of a alstroemeriaceae, a type of flower.', 'a photo of a rican, a type of flower.', 'a photo of a mexican, a type of flower.', 'a photo of a cruz, a type of flower.', 'a photo of a chilean, a type of flower.', 'a photo of a argentine, a type of flower.', 'a photo of a colombian, a type of flower.', 'a photo of a bolivian, a type of flower.', 'a photo of a guatemalan, a type of flower.', 'a photo of a flores, a type of flower.', 'a photo of a costa, a type of flower.', 'a photo of a paraguayan, a type of flower.', 'a photo of a venezuelan, a type of flower.', 'a photo of a dominican, a type of flower.', 'a photo of a brazilian, a type of flower.', 'a photo of a carlos, a type of flower.', 'a photo of a balloon flower, a type of flower.', 'a photo of a jeonggwa, a type of flower.', 'a photo of a shaped, a type of flower.', 'a photo of a floating, a type of flower.', 'a photo of a ancient greek, a type of flower.', 'a photo of a float, a type of flower.', 'a photo of a belly, a type of flower.', 'a photo of a giant white arum lily, a type of flower.', 'a photo of a lesotho, a type of flower.', 'a photo of a eswatini, a type of flower.', 'a photo of a spadix, a type of flower.', 'a photo of a mozambique, a type of flower.', 'a photo of a kenya, a type of flower.', 'a photo of a dry season, a type of flower.', 'a photo of a azores, a type of flower.', 'a photo of a malawi, a type of flower.', 'a photo of a tanzania, a type of flower.', 'a photo of a zambia, a type of flower.', 'a photo of a national pest plant accord, a type of flower.', 'a photo of a fire lily, a type of flower.', 'a photo of a pincushion flower, a type of flower.', 'a photo of a mournful widow, a type of flower.', 'a photo of a fritillary, a type of flower.', 'a photo of a mission bells, a type of flower.', 'a photo of a liliaceae, a type of flower.', 'a photo of a nymphalid, a type of flower.', 'a photo of a spangled, a type of flower.', 'a photo of a north africa, a type of flower.', 'a photo of a cay, a type of flower.', 'a photo of a bordered, a type of flower.', 'a photo of a slaty, a type of flower.', 'a photo of a red ginger, a type of flower.', 'a photo of a trinidad, a type of flower.', 'a photo of a grenada, a type of flower.', 'a photo of a cream, a type of flower.', 'a photo of a brown, a type of flower.', 'a photo of a grape hyacinth, a type of flower.', 'a photo of a leopoldia, a type of flower.', 'a photo of a pseudomuscari, a type of flower.', 'a photo of a pinot, a type of flower.', 'a photo of a fermented, a type of flower.', 'a photo of a varietals, a type of flower.', 'a photo of a gris, a type of flower.', 'a photo of a corn poppy, a type of flower.', 'a photo of a grain, a type of flower.', 'a photo of a gluten, a type of flower.', 'a photo of a corny, a type of flower.', 'a photo of a agriculture, a type of flower.', 'a photo of a emmer, a type of flower.', 'a photo of a silo, a type of flower.', 'a photo of a paddy, a type of flower.', 'a photo of a prince of wales feathers, a type of flower.', 'a photo of a stemless gentian, a type of flower.', 'a photo of a artichoke, a type of flower.', 'a photo of a phono-semantic matching, a type of flower.', 'a photo of a sweet william, a type of flower.', 'a photo of a unsweet, a type of flower.', 'a photo of a antisweet, a type of flower.', 'a photo of a sweetmeal, a type of flower.', 'a photo of a semisweet, a type of flower.', 'a photo of a ket, a type of flower.', 'a photo of a oversweet, a type of flower.', 'a photo of a sugariness, a type of flower.', 'a photo of a cappucino, a type of flower.', 'a photo of a sweetstuff, a type of flower.', 'a photo of a dulce, a type of flower.', 'a photo of a sweeten, a type of flower.', 'a photo of a candified, a type of flower.', 'a photo of a tagatose, a type of flower.', 'a photo of a nonpareil, a type of flower.', 'a photo of a confectionery, a type of flower.', 'a photo of a sweetkin, a type of flower.', 'a photo of a sweetroot, a type of flower.', 'a photo of a carnation, a type of flower.', 'a photo of a gillyflower, a type of flower.', 'a photo of a blossoms, a type of flower.', 'a photo of a theophrastus, a type of flower.', 'a photo of a incarnation, a type of flower.', 'a photo of a diana, a type of flower.', 'a photo of a albania, a type of flower.', 'a photo of a greece, a type of flower.', 'a photo of a garden phlox, a type of flower.', 'a photo of a polemoniaceae, a type of flower.', 'a photo of a leaf shape, a type of flower.', 'a photo of a love in the mist, a type of flower.', 'a photo of a mexican aster, a type of flower.', 'a photo of a hardiness, a type of flower.', 'a photo of a rostrum, a type of flower.', 'a photo of a temperate zone, a type of flower.', 'a photo of a the west indies, a type of flower.', 'a photo of a introduced species, a type of flower.', 'a photo of a alpine sea holly, a type of flower.', 'a photo of a floral axis, a type of flower.', 'a photo of a glossary of botanical terms, a type of flower.', 'a photo of a actinomorphic, a type of flower.', 'a photo of a pentamerous, a type of flower.', 'a photo of a austria, a type of flower.', 'a photo of a liechtenstein, a type of flower.', 'a photo of a france, a type of flower.', 'a photo of a switzerland, a type of flower.', 'a photo of a slovenia, a type of flower.', 'a photo of a subalpine, a type of flower.', 'a photo of a grazing, a type of flower.', 'a photo of a local extinction, a type of flower.', 'a photo of a ruby-lipped cattleya, a type of flower.', 'a photo of a cape flower, a type of flower.', 'a photo of a great masterwort, a type of flower.', 'a photo of a siam tulip, a type of flower.', 'a photo of a royal thai general system of transcription, a type of flower.', 'a photo of a thai language, a type of flower.', 'a photo of a laos, a type of flower.', 'a photo of a thailand, a type of flower.', 'a photo of a cambodia, a type of flower.', 'a photo of a pa hin ngam national park, a type of flower.', 'a photo of a chaiyaphum province, a type of flower.', 'a photo of a lenten rose, a type of flower.', 'a photo of a sepals, a type of flower.', 'a photo of a double-flowered, a type of flower.', 'a photo of a eurasian, a type of flower.', 'a photo of a syria, a type of flower.', 'a photo of a ranunculin, a type of flower.', 'a photo of a barbeton daisy, a type of flower.', 'a photo of a daffodil, a type of flower.', 'a photo of a n. tazetta, a type of flower.', 'a photo of a galantamine, a type of flower.', 'a photo of a netherlands, a type of flower.', 'a photo of a corona, a type of flower.', 'a photo of a lycorine, a type of flower.', 'a photo of a sword lily, a type of flower.', 'a photo of a iridaceous plant, a type of flower.', 'a photo of a glad, a type of flower.', 'a photo of a gladius, a type of flower.', 'a photo of a gladdon, a type of flower.', 'a photo of a dragon, a type of flower.', 'a photo of a monkey, a type of flower.', 'a photo of a cataphyll, a type of flower.', 'a photo of a kiss, a type of flower.', 'a photo of a poinsettia, a type of flower.', 'a photo of a christmas, a type of flower.', 'a photo of a mexican flameleaf, a type of flower.', 'a photo of a christmas star, a type of flower.', 'a photo of a christmas flower, a type of flower.', 'a photo of a lobster plant, a type of flower.', 'a photo of a bolero deep blue, a type of flower.', 'a photo of a binomial name, a type of flower.', 'a photo of a great plains, a type of flower.', 'a photo of a gentianales, a type of flower.', 'a photo of a wallflower, a type of flower.', 'a photo of a cheiranthus cheiri, a type of flower.', 'a photo of a late bloomer, a type of flower.', 'a photo of a shrinking violet, a type of flower.', 'a photo of a nonentity, a type of flower.', 'a photo of a sourpuss, a type of flower.', 'a photo of a marigold, a type of flower.', 'a photo of a buttercup, a type of flower.', 'a photo of a butterflower, a type of flower.', 'a photo of a kingcup, a type of flower.', 'a photo of a goldcup, a type of flower.', 'a photo of a oxeye daisy, a type of flower.', 'a photo of a new zealand, a type of flower.', 'a photo of a composite, a type of flower.', 'a photo of a minnie, a type of flower.', 'a photo of a common dandelion, a type of flower.', 'a photo of a latex, a type of flower.', 'a photo of a blowball, a type of flower.', 'a photo of a apomixis, a type of flower.', 'a photo of a commonly, a type of flower.', 'a photo of a herbs, a type of flower.', 'a photo of a forms, a type of flower.', 'a photo of a petunia, a type of flower.', 'a photo of a solanaceae, a type of flower.', 'a photo of a floribunda, a type of flower.', 'a photo of a wild pansy, a type of flower.', 'a photo of a quercetin, a type of flower.', 'a photo of a johnny-jump-up, a type of flower.', 'a photo of a love-in-idleness, a type of flower.', 'a photo of a peduncle, a type of flower.', 'a photo of a stipule, a type of flower.', 'a photo of a epilepsy, a type of flower.', 'a photo of a eczema, a type of flower.', 'a photo of a internode, a type of flower.', 'a photo of a bronchitis, a type of flower.', 'a photo of a asthma, a type of flower.', 'a photo of a diuretic, a type of flower.', 'a photo of a rheumatism, a type of flower.', 'a photo of a alluviums, a type of flower.', 'a photo of a herbalism, a type of flower.', 'a photo of a peptides, a type of flower.', 'a photo of a cytotoxic, a type of flower.', 'a photo of a primula, a type of flower.', 'a photo of a paigle, a type of flower.', 'a photo of a sunflower, a type of flower.', 'a photo of a pelargonium, a type of flower.', 'a photo of a hypanthium, a type of flower.', 'a photo of a geophytes, a type of flower.', 'a photo of a zygomorphic, a type of flower.', "a photo of a charles louis l'héritier de brutelle, a type of flower.", 'a photo of a growth forms, a type of flower.', 'a photo of a dillenius, a type of flower.', 'a photo of a bishop of llandaff, a type of flower.', 'a photo of a cardiff, a type of flower.', 'a photo of a ordinary, a type of flower.', 'a photo of a cathedra, a type of flower.', 'a photo of a llandaff, a type of flower.', 'a photo of a teilo, a type of flower.', 'a photo of a mission, a type of flower.', 'a photo of a pope, a type of flower.', 'a photo of a diocese of llandaff, a type of flower.', 'a photo of a llandaff cathedral, a type of flower.', 'a photo of a chorepiscopi, a type of flower.', 'a photo of a saint dyfan, a type of flower.', 'a photo of a kings of britain, a type of flower.', 'a photo of a glamorgan, a type of flower.', 'a photo of a lucius of britain, a type of flower.', 'a photo of a roman britain, a type of flower.', 'a photo of a archenfield, a type of flower.', 'a photo of a pope eleutherius, a type of flower.', 'a photo of a urban, a type of flower.', 'a photo of a weston-under-penyard, a type of flower.', 'a photo of a martyr of the faith, a type of flower.', 'a photo of a sabine baring-gould, a type of flower.', 'a photo of a llandeilo, a type of flower.', 'a photo of a ergyng, a type of flower.', 'a photo of a celtic christianity, a type of flower.', 'a photo of a full communion, a type of flower.', 'a photo of a anglicanism, a type of flower.', 'a photo of a catholic church, a type of flower.', 'a photo of a english reformation, a type of flower.', 'a photo of a gaura, a type of flower.', 'a photo of a onagraceae, a type of flower.', 'a photo of a geranium, a type of flower.', 'a photo of a orange dahlia, a type of flower.', 'a photo of a pink-yellow dahlia, a type of flower.', 'a photo of a cautleya spicata, a type of flower.', 'a photo of a himalayas, a type of flower.', 'a photo of a staminode, a type of flower.', 'a photo of a aril, a type of flower.', 'a photo of a james edward smith, a type of flower.', 'a photo of a john gilbert baker, a type of flower.', 'a photo of a proby cautley, a type of flower.', 'a photo of a british raj, a type of flower.', 'a photo of a japanese anemone, a type of flower.', 'a photo of a taiwan, a type of flower.', 'a photo of a eriocapitella hupehensis, a type of flower.', 'a photo of a specific epithet, a type of flower.', 'a photo of a eriocapitella × hybrida, a type of flower.', 'a photo of a eriocapitella vitifolia, a type of flower.', 'a photo of a basionym, a type of flower.', 'a photo of a naturalization, a type of flower.', 'a photo of a takenoshin nakai, a type of flower.', 'a photo of a black-eyed susan, a type of flower.', 'a photo of a flower-of-an-hour, a type of flower.', 'a photo of a flowers-of-an-hour, a type of flower.', 'a photo of a bladder ketmia, a type of flower.', 'a photo of a sarah, a type of flower.', 'a photo of a amy, a type of flower.', 'a photo of a nancy, a type of flower.', 'a photo of a emily, a type of flower.', 'a photo of a rachel, a type of flower.', 'a photo of a ellen, a type of flower.', 'a photo of a helen, a type of flower.', 'a photo of a alice, a type of flower.', 'a photo of a jane, a type of flower.', 'a photo of a kate, a type of flower.', 'a photo of a dorothy, a type of flower.', 'a photo of a susanna, a type of flower.', 'a photo of a tobit, a type of flower.', 'a photo of a booker, a type of flower.', 'a photo of a bibliomaniac, a type of flower.', 'a photo of a tome, a type of flower.', 'a photo of a sourcebook, a type of flower.', 'a photo of a 32mo, a type of flower.', 'a photo of a baruch, a type of flower.', 'a photo of a silverbush, a type of flower.', 'a photo of a anthyllis barba-jovis, a type of flower.', 'a photo of a oleaster, a type of flower.', 'a photo of a anthyllis, a type of flower.', 'a photo of a genus anthyllis, a type of flower.', 'a photo of a tribeca, a type of flower.', 'a photo of a delillo, a type of flower.', 'a photo of a lamon, a type of flower.', 'a photo of a fals, a type of flower.', 'a photo of a burgomaster, a type of flower.', 'a photo of a syracusan, a type of flower.', 'a photo of a sholem, a type of flower.', 'a photo of a latona, a type of flower.', 'a photo of a glazen, a type of flower.', 'a photo of a feine, a type of flower.', 'a photo of a dewitt, a type of flower.', 'a photo of a mccaffrey, a type of flower.', 'a photo of a jule, a type of flower.', 'a photo of a leland, a type of flower.', 'a photo of a fleurette, a type of flower.', 'a photo of a etes, a type of flower.', 'a photo of a macdowell, a type of flower.', 'a photo of a californian poppy, a type of flower.', 'a photo of a garnish, a type of flower.', 'a photo of a capsule, a type of flower.', 'a photo of a nyctinasty, a type of flower.', 'a photo of a alternate leaf, a type of flower.', 'a photo of a rurik, a type of flower.', 'a photo of a botanists, a type of flower.', 'a photo of a explosive dehiscence, a type of flower.', 'a photo of a baja california, a type of flower.', 'a photo of a los angeles county, a type of flower.', 'a photo of a bear valley, a type of flower.', 'a photo of a  colusa county, a type of flower.', 'a photo of a  california, a type of flower.', 'a photo of a osteospermum, a type of flower.', 'a photo of a dimorphotheca, a type of flower.', 'a photo of a phylogenetics, a type of flower.', 'a photo of a bedding, a type of flower.', 'a photo of a spring crocus, a type of flower.', 'a photo of a alps, a type of flower.', 'a photo of a pyrenees, a type of flower.', 'a photo of a great britain, a type of flower.', 'a photo of a bearded iris, a type of flower.', 'a photo of a juno, a type of flower.', 'a photo of a visage, a type of flower.', 'a photo of a forehead, a type of flower.', 'a photo of a monotypic, a type of flower.', 'a photo of a hermodactyloides, a type of flower.', 'a photo of a orris, a type of flower.', 'a photo of a ophthalmic, a type of flower.', 'a photo of a windflower, a type of flower.', 'a photo of a bloomer, a type of flower.', 'a photo of a bouquet, a type of flower.', 'a photo of a cyme, a type of flower.', 'a photo of a tree poppy, a type of flower.', 'a photo of a dendromecon, a type of flower.', 'a photo of a planting, a type of flower.', 'a photo of a cultivation, a type of flower.', 'a photo of a planted, a type of flower.', 'a photo of a crops, a type of flower.', 'a photo of a seedlings, a type of flower.', 'a photo of a plantations, a type of flower.', 'a photo of a gazania, a type of flower.', 'a photo of a groundcover, a type of flower.', 'a photo of a azalea, a type of flower.', 'a photo of a water lily, a type of flower.', 'a photo of a water-shield, a type of flower.', 'a photo of a nymphaeaceae, a type of flower.', 'a photo of a yanquapin, a type of flower.', 'a photo of a water-target, a type of flower.', 'a photo of a hydrophyte, a type of flower.', 'a photo of a pond, a type of flower.', 'a photo of a dry, a type of flower.', 'a photo of a feed, a type of flower.', 'a photo of a wash, a type of flower.', 'a photo of a lake, a type of flower.', 'a photo of a mouth, a type of flower.', 'a photo of a rose, a type of flower.', 'a photo of a increase, a type of flower.', 'a photo of a go up, a type of flower.', 'a photo of a climb, a type of flower.', 'a photo of a lift, a type of flower.', 'a photo of a soar, a type of flower.', 'a photo of a surge, a type of flower.', 'a photo of a grow, a type of flower.', 'a photo of a raise, a type of flower.', 'a photo of a uprise, a type of flower.', 'a photo of a ascend, a type of flower.', 'a photo of a mount, a type of flower.', 'a photo of a zoom, a type of flower.', 'a photo of a come up, a type of flower.', 'a photo of a arise, a type of flower.', 'a photo of a climb up, a type of flower.', 'a photo of a jump, a type of flower.', 'a photo of a ascension, a type of flower.', 'a photo of a ascent, a type of flower.', 'a photo of a boost, a type of flower.', 'a photo of a uplift, a type of flower.', 'a photo of a increment, a type of flower.', 'a photo of a heave, a type of flower.', 'a photo of a advance, a type of flower.', 'a photo of a develop, a type of flower.', 'a photo of a heighten, a type of flower.', 'a photo of a get up, a type of flower.', 'a photo of a move up, a type of flower.', 'a photo of a rise up, a type of flower.', 'a photo of a swell, a type of flower.', 'a photo of a growth, a type of flower.', 'a photo of a thorn apple, a type of flower.', 'a photo of a jamestown weed, a type of flower.', 'a photo of a malic, a type of flower.', 'a photo of a crunchy, a type of flower.', 'a photo of a mcintosh, a type of flower.', 'a photo of a jonathan, a type of flower.', 'a photo of a morning glory, a type of flower.', 'a photo of a convolvulaceae, a type of flower.', 'a photo of a man-of-the-earth, a type of flower.', 'a photo of a day, a type of flower.', 'a photo of a time period, a type of flower.', 'a photo of a afternoon, a type of flower.', 'a photo of a sunday, a type of flower.', 'a photo of a weekend, a type of flower.', 'a photo of a saturday, a type of flower.', 'a photo of a tonight, a type of flower.', 'a photo of a night, a type of flower.', 'a photo of a time, a type of flower.', 'a photo of a zellweger, a type of flower.', 'a photo of a arquette, a type of flower.', 'a photo of a invictus, a type of flower.', 'a photo of a welles, a type of flower.', 'a photo of a frasier, a type of flower.', 'a photo of a carrey, a type of flower.', 'a photo of a penelope, a type of flower.', 'a photo of a sarandon, a type of flower.', 'a photo of a passion flower, a type of flower.', 'a photo of a passifloraceae, a type of flower.', 'a photo of a andes, a type of flower.', 'a photo of a coevolution, a type of flower.', 'a photo of a oceania, a type of flower.', 'a photo of a beta-carboline, a type of flower.', 'a photo of a merosity, a type of flower.', 'a photo of a hermit, a type of flower.', 'a photo of a neotropic, a type of flower.', 'a photo of a lotus, a type of flower.', 'a photo of a genus lotus, a type of flower.', 'a photo of a sutra, a type of flower.', 'a photo of a toad lily, a type of flower.', 'a photo of a montia chamissoi, a type of flower.', 'a photo of a anthurium, a type of flower.', 'a photo of a tailflower, a type of flower.', 'a photo of a heinrich wilhelm schott, a type of flower.', 'a photo of a tail-flower, a type of flower.', 'a photo of a frangipani, a type of flower.', 'a photo of a apocynaceae, a type of flower.', 'a photo of a frangipanni, a type of flower.', 'a photo of a caribbean, a type of flower.', 'a photo of a sphingidae, a type of flower.', 'a photo of a marquis, a type of flower.', 'a photo of a perfume, a type of flower.', 'a photo of a mesoamerica, a type of flower.', 'a photo of a aztec, a type of flower.', 'a photo of a tollemache, a type of flower.', 'a photo of a clematis, a type of flower.', 'a photo of a leather flower, a type of flower.', 'a photo of a gardening, a type of flower.', 'a photo of a climber, a type of flower.', 'a photo of a liana, a type of flower.', 'a photo of a vase-fine, a type of flower.', 'a photo of a hibiscus, a type of flower.', 'a photo of a mahagua, a type of flower.', 'a photo of a mahoe, a type of flower.', 'a photo of a majagua, a type of flower.', 'a photo of a tropics, a type of flower.', 'a photo of a kenaf, a type of flower.', 'a photo of a columbine, a type of flower.', 'a photo of a aquilege, a type of flower.', 'a photo of a shootings, a type of flower.', 'a photo of a desert-rose, a type of flower.', 'a photo of a tree mallow, a type of flower.', 'a photo of a treeless, a type of flower.', 'a photo of a magnolia, a type of flower.', 'a photo of a pierre magnol, a type of flower.', 'a photo of a genera, a type of flower.', 'a photo of a cyclamen, a type of flower.', 'a photo of a tuber, a type of flower.', 'a photo of a iran, a type of flower.', 'a photo of a gynoecium, a type of flower.', 'a photo of a somalia, a type of flower.', 'a photo of a watercress, a type of flower.', 'a photo of a cresson, a type of flower.', 'a photo of a aquatic plant, a type of flower.', 'a photo of a canna lily, a type of flower.', 'a photo of a rhizomatous, a type of flower.', 'a photo of a zingiberales, a type of flower.', 'a photo of a pollinator, a type of flower.', 'a photo of a hippeastrum, a type of flower.', 'a photo of a hippeastreae, a type of flower.', 'a photo of a temperate, a type of flower.', 'a photo of a dormancy, a type of flower.', 'a photo of a allogamy, a type of flower.', 'a photo of a bulbils, a type of flower.', 'a photo of a scape, a type of flower.', 'a photo of a william herbert, a type of flower.', 'a photo of a locule, a type of flower.', 'a photo of a hortus kewensis, a type of flower.', 'a photo of a subfamily, a type of flower.', 'a photo of a subtribe, a type of flower.', 'a photo of a bee balm, a type of flower.', 'a photo of a lamiaceae, a type of flower.', 'a photo of a endemism, a type of flower.', 'a photo of a melissa, a type of flower.', 'a photo of a garden balm, a type of flower.', 'a photo of a oswego tea, a type of flower.', 'a photo of a sweet balm, a type of flower.', 'a photo of a hen, a type of flower.', 'a photo of a glabrousness, a type of flower.', 'a photo of a gees, a type of flower.', 'a photo of a fen, a type of flower.', 'a photo of a ball moss, a type of flower.', 'a photo of a seed dispersal, a type of flower.', 'a photo of a nitrogen, a type of flower.', 'a photo of a habit, a type of flower.', 'a photo of a louisiana, a type of flower.', 'a photo of a arizona, a type of flower.', 'a photo of a fodder, a type of flower.', 'a photo of a southern united states, a type of flower.', 'a photo of a west indies, a type of flower.', 'a photo of a pima people, a type of flower.', 'a photo of a foxglove, a type of flower.', 'a photo of a digoxin, a type of flower.', 'a photo of a cardiac glycoside, a type of flower.', 'a photo of a thumb, a type of flower.', 'a photo of a mitt, a type of flower.', 'a photo of a dactyl, a type of flower.', 'a photo of a knuckle, a type of flower.', 'a photo of a thumbnail, a type of flower.', 'a photo of a mitten, a type of flower.', 'a photo of a pinkie, a type of flower.', 'a photo of a handedness, a type of flower.', 'a photo of a forefinger, a type of flower.', 'a photo of a fingerroot, a type of flower.', 'a photo of a finger-flower, a type of flower.', 'a photo of a bougainvillea, a type of flower.', 'a photo of a colombia, a type of flower.', 'a photo of a panama, a type of flower.', 'a photo of a greenery, a type of flower.', 'a photo of a camellia, a type of flower.', 'a photo of a japonica, a type of flower.', 'a photo of a tea, a type of flower.', 'a photo of a jesuit, a type of flower.', 'a photo of a sinensis, a type of flower.', 'a photo of a mallow, a type of flower.', 'a photo of a althea, a type of flower.', 'a photo of a abelmosk, a type of flower.', 'a photo of a cheeseflower, a type of flower.', 'a photo of a jellyleaf, a type of flower.', 'a photo of a mexican petunia, a type of flower.', 'a photo of a acanthaceae, a type of flower.', 'a photo of a jean ruel, a type of flower.', 'a photo of a institute of food and agricultural sciences, a type of flower.', 'a photo of a stachytarpheta jamaicensis, a type of flower.', 'a photo of a bromelia, a type of flower.', 'a photo of a botany, a type of flower.', 'a photo of a apomict, a type of flower.', 'a photo of a plantal, a type of flower.', 'a photo of a cryptogam, a type of flower.', 'a photo of a tristis, a type of flower.', 'a photo of a phyto, a type of flower.', 'a photo of a sesame, a type of flower.', 'a photo of a acrogen, a type of flower.', 'a photo of a blanket flower, a type of flower.', 'a photo of a corymb, a type of flower.', 'a photo of a abloom, a type of flower.', 'a photo of a fleuron, a type of flower.', 'a photo of a silk, a type of flower.', 'a photo of a cover, a type of flower.', 'a photo of a fire-wheel, a type of flower.', 'a photo of a trumpet creeper, a type of flower.', 'a photo of a quebec, a type of flower.', 'a photo of a xylophone, a type of flower.', 'a photo of a fanfares, a type of flower.', 'a photo of a tambourine, a type of flower.', 'a photo of a flute, a type of flower.', 'a photo of a bugle, a type of flower.', 'a photo of a growl, a type of flower.', 'a photo of a riff, a type of flower.', 'a photo of a percussion, a type of flower.', 'a photo of a brassy, a type of flower.', 'a photo of a conga, a type of flower.', 'a photo of a screech, a type of flower.', 'a photo of a arpeggios, a type of flower.', 'a photo of a blackberry lily, a type of flower.', 'a photo of a carolus linnaeus, a type of flower.', 'a photo of a george claridge druce, a type of flower.', 'a photo of a conrad moench, a type of flower.', 'a photo of a otto kuntze, a type of flower.', 'a photo of a john bellenden ker gawler, a type of flower.', 'a photo of a usda plant hardiness zone, a type of flower.']
+text feature size: torch.Size([736, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([100, 102])
+process logits num of label words: 736
+label_probs shape: torch.Size([63, 102])
+=> result
+* total: 2,463
+* correct: 291
+* accuracy: 11.8%
+* error: 88.2%
+* macro_f1: 5.5%

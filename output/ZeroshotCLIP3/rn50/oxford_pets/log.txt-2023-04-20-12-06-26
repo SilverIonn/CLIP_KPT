@@ -1,0 +1,393 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: 0.15
+dataset: oxford_pets
+dataset_config_file: configs/datasets/oxford_pets.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/oxford_pets
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 40
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+CALIBRATION_CUT: 0.15
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: OxfordPets
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/oxford_pets
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/oxford_pets
+  SIZE: 40
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: OxfordPets
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/oxford_pets/split_zhou_OxfordPets.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ----------
+Dataset    OxfordPets
+# classes  37
+# train_x  2,944
+# val      736
+# test     3,669
+---------  ----------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [2427, 291, 80, 1687, 2163, 1115, 2620, 588, 181, 738, 1871, 707, 2278, 2484, 1369, 594, 1759, 2839, 1813, 2641, 1881, 2513, 321, 2188, 1724, 138, 191, 2886, 366, 662, 1810, 1727, 2349, 30, 1920, 2789, 1524, 1691, 699, 239, 883, 656, 641, 460, 1829, 293, 1787, 1835, 2131, 2818, 769, 189, 1225, 85, 2826, 238, 915, 2751, 90, 27, 671, 1187, 749, 1037, 763, 661, 406, 972, 234, 1610, 448, 1935, 2608, 628, 2167, 1504, 2581, 2529, 2328, 1056, 1696, 852, 539, 1462, 1368, 2681, 65, 726, 108, 887, 1548, 2888, 2488, 812, 1312, 1564, 2662, 446, 223, 2499, 1509, 1972, 911, 369, 1656, 1220, 672, 639, 2606, 2201, 2062, 66, 2907, 777, 2830, 1794, 2049, 1138, 1569, 1332, 534, 272, 2493, 1604, 2842, 79, 2550, 2860, 2076, 2040, 1474, 2002, 679, 1353, 2665, 1125, 1255, 259, 2322, 2602, 2136, 78, 1865, 879, 2735, 2242, 2124, 958, 2709, 1685, 1196, 319, 1962, 703, 837, 806, 2440, 1204, 2541, 483, 1728, 2082, 1171, 976, 1710, 2847, 1832, 148, 26, 2296, 665, 1700, 2812, 1026, 1477, 2773, 2318, 271, 2113, 2257, 968, 1584, 2283, 207, 1632, 20, 416, 814, 1644, 678, 1256, 2853, 2470, 1518, 931, 1780, 2103, 1739, 87, 378]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 200
+num of org label words: 671
+cali text features shape: torch.Size([671, 1024])
+the calibration logits is tensor([[13.5000, 10.5000, 21.5156,  ..., 18.2031, 23.2188, 15.4141],
+        [16.8594, 14.6953, 20.6094,  ..., 17.8125, 21.2031, 17.8594],
+        [ 6.9805,  3.9141, 18.7812,  ..., 15.6328, 19.2188, 14.8984],
+        ...,
+        [18.6562, 15.8984, 21.7344,  ..., 17.9688, 20.7500, 17.6875],
+        [ 9.5859,  6.8086, 19.0781,  ..., 16.0312, 19.9844, 15.0156],
+        [17.3594, 15.5000, 21.3906,  ..., 18.8594, 20.2500, 19.2344]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([200, 671])
+Phase 1 [18, 29, 1, 30, 8, 37, 32, 38, 41, 14, 4, 7, 23, 24, 1, 1, 5, 13, 2, 30, 1, 12, 41, 23, 2, 11, 33, 15, 1, 4, 33, 20, 16, 27, 29, 14, 31]
+
+register_calibrate_logits starting shape: torch.Size([671])
+logits shape -1 :671
+rm_calibrate_ids: {0, 1, 515, 516, 521, 12, 529, 532, 41, 43, 48, 52, 570, 571, 573, 72, 585, 587, 590, 591, 80, 593, 594, 78, 596, 85, 608, 100, 626, 630, 631, 121, 633, 123, 635, 640, 642, 185, 234, 235, 238, 241, 244, 246, 249, 252, 254, 255, 256, 257, 259, 262, 263, 264, 270, 273, 282, 283, 284, 289, 290, 292, 293, 307, 308, 309, 310, 311, 312, 313, 326, 327, 328, 347, 348, 349, 354, 357, 358, 359, 360, 361, 362, 363, 364, 405, 435, 436, 443, 481, 488, 490, 494, 496, 497, 499, 500, 501, 502, 506}, shape 100
+Phase 2 [16, 27, 1, 28, 6, 35, 32, 37, 41, 9, 3, 3, 18, 18, 1, 1, 1, 13, 1, 25, 1, 7, 40, 23, 1, 10, 33, 12, 1, 2, 26, 20, 16, 18, 28, 10, 30]
+
+num of label words after cc: 594
+cali_logits shape: torch.Size([594])
+Prompts: ['a photo of a abyssinian, a type of pet.', 'a photo of a evangelism, a type of pet.', 'a photo of a ebenezer, a type of pet.', 'a photo of a agawam, a type of pet.', 'a photo of a oakhurst, a type of pet.', 'a photo of a maranatha, a type of pet.', 'a photo of a baptist, a type of pet.', 'a photo of a pentecostal, a type of pet.', 'a photo of a congregational, a type of pet.', 'a photo of a catbutt, a type of pet.', 'a photo of a catlore, a type of pet.', 'a photo of a catly, a type of pet.', 'a photo of a cattery, a type of pet.', 'a photo of a catsitter, a type of pet.', 'a photo of a robocat, a type of pet.', 'a photo of a cattish, a type of pet.', 'a photo of a american bulldog, a type of pet.', 'a photo of a catch dog, a type of pet.', 'a photo of a feral, a type of pet.', 'a photo of a bull-baiting, a type of pet.', 'a photo of a utility dog, a type of pet.', 'a photo of a razorback, a type of pet.', 'a photo of a dog sports, a type of pet.', 'a photo of a cultural icon, a type of pet.', 'a photo of a foundation stock service, a type of pet.', 'a photo of a schutzhund, a type of pet.', 'a photo of a blood sport, a type of pet.', 'a photo of a bulldog type, a type of pet.', 'a photo of a dog obedience, a type of pet.', 'a photo of a lacrosse, a type of pet.', 'a photo of a weight pulling, a type of pet.', 'a photo of a conformation shows, a type of pet.', 'a photo of a united kennel club, a type of pet.', 'a photo of a heterochromia iridum, a type of pet.', 'a photo of a rugby football, a type of pet.', 'a photo of a ichthyosis, a type of pet.', 'a photo of a ectropion, a type of pet.', 'a photo of a ultimate frisbee, a type of pet.', 'a photo of a american football, a type of pet.', 'a photo of a guard dog, a type of pet.', 'a photo of a neuronal ceroid lipofuscinosis, a type of pet.', 'a photo of a cherry eye, a type of pet.', 'a photo of a bone cancer, a type of pet.', 'a photo of a american pit bull terrier, a type of pet.', 'a photo of a basset hound, a type of pet.', 'a photo of a gastric dilatation volvulus, a type of pet.', 'a photo of a tail, a type of pet.', 'a photo of a skin, a type of pet.', 'a photo of a tracking, a type of pet.', 'a photo of a rabbiting, a type of pet.', 'a photo of a olfactory, a type of pet.', 'a photo of a receptor, a type of pet.', 'a photo of a cell, a type of pet.', 'a photo of a flews, a type of pet.', 'a photo of a bulldogs, a type of pet.', 'a photo of a paralysis, a type of pet.', 'a photo of a dermatitis, a type of pet.', 'a photo of a osteochondrodysplasia, a type of pet.', 'a photo of a achondroplasia, a type of pet.', 'a photo of a colitis, a type of pet.', 'a photo of a scent hound, a type of pet.', 'a photo of a epilepsy, a type of pet.', 'a photo of a achondroplastic, a type of pet.', 'a photo of a laconia, a type of pet.', 'a photo of a sparta, a type of pet.', 'a photo of a normans, a type of pet.', 'a photo of a otitis media, a type of pet.', 'a photo of a horseriding, a type of pet.', 'a photo of a time, a type of pet.', 'a photo of a linebreeding, a type of pet.', 'a photo of a droopy, a type of pet.', 'a photo of a disney, a type of pet.', 'a photo of a beagle, a type of pet.', 'a photo of a hound dog, a type of pet.', 'a photo of a snoopy, a type of pet.', 'a photo of a peanuts, a type of pet.', 'a photo of a talbot, a type of pet.', 'a photo of a elizabeth i of england, a type of pet.', 'a photo of a bengal, a type of pet.', 'a photo of a west bengal, a type of pet.', 'a photo of a bangladesh, a type of pet.', 'a photo of a bihar, a type of pet.', 'a photo of a assam, a type of pet.', 'a photo of a manipur, a type of pet.', 'a photo of a odisha, a type of pet.', 'a photo of a tripura, a type of pet.', 'a photo of a orissa, a type of pet.', 'a photo of a maratha, a type of pet.', 'a photo of a bengali language, a type of pet.', 'a photo of a bengal renaissance, a type of pet.', 'a photo of a mangrove, a type of pet.', 'a photo of a himalaya, a type of pet.', 'a photo of a kolkata, a type of pet.', 'a photo of a south asia, a type of pet.', 'a photo of a ganges delta, a type of pet.', 'a photo of a bengali language movement, a type of pet.', 'a photo of a bangladesh liberation war, a type of pet.', 'a photo of a partition of bengal, a type of pet.', 'a photo of a bay of bengal, a type of pet.', 'a photo of a bengali literature, a type of pet.', 'a photo of a jharkhand, a type of pet.', 'a photo of a calcutta, a type of pet.', 'a photo of a karnataka, a type of pet.', 'a photo of a goa, a type of pet.', 'a photo of a andhra, a type of pet.', 'a photo of a magadha, a type of pet.', 'a photo of a nadu, a type of pet.', 'a photo of a kerala, a type of pet.', 'a photo of a east bengal, a type of pet.', 'a photo of a east pakistan, a type of pet.', 'a photo of a gangaridai, a type of pet.', 'a photo of a bengali people, a type of pet.', 'a photo of a sikkim, a type of pet.', 'a photo of a birman, a type of pet.', 'a photo of a point coloration, a type of pet.', 'a photo of a burma, a type of pet.', 'a photo of a interbreed, a type of pet.', 'a photo of a breeder, a type of pet.', 'a photo of a pedigree, a type of pet.', 'a photo of a thoroughbred, a type of pet.', 'a photo of a bloodstock, a type of pet.', 'a photo of a subspecies, a type of pet.', 'a photo of a generation, a type of pet.', 'a photo of a bareback, a type of pet.', 'a photo of a racial, a type of pet.', 'a photo of a generative, a type of pet.', 'a photo of a miscegenation, a type of pet.', 'a photo of a purebred, a type of pet.', 'a photo of a reproduction, a type of pet.', 'a photo of a ancestry, a type of pet.', 'a photo of a race, a type of pet.', 'a photo of a vanderbilt, a type of pet.', 'a photo of a reproduce, a type of pet.', 'a photo of a procreation, a type of pet.', 'a photo of a rex, a type of pet.', 'a photo of a lineage, a type of pet.', 'a photo of a syndyasmian, a type of pet.', 'a photo of a generate, a type of pet.', 'a photo of a cultivar, a type of pet.', 'a photo of a insemination, a type of pet.', 'a photo of a sericulture, a type of pet.', 'a photo of a manifold, a type of pet.', 'a photo of a triplicate, a type of pet.', 'a photo of a gen, a type of pet.', 'a photo of a harehound, a type of pet.', 'a photo of a bombay, a type of pet.', 'a photo of a maharashtra, a type of pet.', 'a photo of a navi mumbai, a type of pet.', 'a photo of a mumbai, a type of pet.', 'a photo of a seven islands of bombay, a type of pet.', 'a photo of a indian independence movement, a type of pet.', 'a photo of a hyderabad, a type of pet.', 'a photo of a pune, a type of pet.', 'a photo of a bollywood, a type of pet.', 'a photo of a reserve bank of india, a type of pet.', 'a photo of a bombay stock exchange, a type of pet.', 'a photo of a national stock exchange of india, a type of pet.', 'a photo of a karachi, a type of pet.', 'a photo of a delhi, a type of pet.', 'a photo of a mumbai suburban district, a type of pet.', 'a photo of a municipal corporation of greater mumbai, a type of pet.', 'a photo of a marathi language, a type of pet.', 'a photo of a gujarati language, a type of pet.', 'a photo of a worli, a type of pet.', 'a photo of a mumbai city district, a type of pet.', 'a photo of a hindi, a type of pet.', 'a photo of a mahim, a type of pet.', 'a photo of a konkan, a type of pet.', 'a photo of a bandra, a type of pet.', 'a photo of a vasai, a type of pet.', 'a photo of a dharavi, a type of pet.', 'a photo of a mazagaon, a type of pet.', 'a photo of a capital city, a type of pet.', 'a photo of a sion, a type of pet.', 'a photo of a  mumbai, a type of pet.', 'a photo of a salsette island, a type of pet.', 'a photo of a mumbai port trust, a type of pet.', 'a photo of a marathi cinema, a type of pet.', 'a photo of a english empire, a type of pet.', 'a photo of a bombay presidency, a type of pet.', 'a photo of a mumbai suburban railway, a type of pet.', 'a photo of a south mumbai, a type of pet.', 'a photo of a boxer, a type of pet.', 'a photo of a middleweight, a type of pet.', 'a photo of a featherweight, a type of pet.', 'a photo of a heavyweight, a type of pet.', 'a photo of a flyweight, a type of pet.', 'a photo of a rocky marciano, a type of pet.', 'a photo of a welterweight, a type of pet.', 'a photo of a pugilist, a type of pet.', 'a photo of a packer, a type of pet.', 'a photo of a lightweight, a type of pet.', 'a photo of a prizefighter, a type of pet.', 'a photo of a puncher, a type of pet.', 'a photo of a bantamweight, a type of pet.', 'a photo of a wilfredo gómez, a type of pet.', 'a photo of a muhammad ali, a type of pet.', 'a photo of a slugger, a type of pet.', 'a photo of a gladiator, a type of pet.', 'a photo of a punch, a type of pet.', 'a photo of a bagger, a type of pet.', 'a photo of a knockout, a type of pet.', 'a photo of a pugilism, a type of pet.', 'a photo of a fighter, a type of pet.', 'a photo of a scrapper, a type of pet.', 'a photo of a battler, a type of pet.', 'a photo of a sport, a type of pet.', 'a photo of a palooka, a type of pet.', 'a photo of a jack johnson, a type of pet.', 'a photo of a olympic games, a type of pet.', 'a photo of a commonwealth games, a type of pet.', 'a photo of a light welterweight, a type of pet.', 'a photo of a light heavyweight, a type of pet.', 'a photo of a junior welterweight, a type of pet.', 'a photo of a junior middleweight, a type of pet.', 'a photo of a light flyweight, a type of pet.', 'a photo of a light middleweight, a type of pet.', 'a photo of a junior featherweight, a type of pet.', 'a photo of a sparring partner, a type of pet.', 'a photo of a wrestler, a type of pet.', 'a photo of a boxing, a type of pet.', 'a photo of a wbc, a type of pet.', 'a photo of a kickboxer, a type of pet.', 'a photo of a british shorthair, a type of pet.', 'a photo of a alice in wonderland, a type of pet.', 'a photo of a harrison weir, a type of pet.', 'a photo of a domestic long-haired cat, a type of pet.', 'a photo of a de facto, a type of pet.', 'a photo of a colorpoint shorthair, a type of pet.', 'a photo of a bicolor cat, a type of pet.', 'a photo of a hypertrophic cardiomyopathy, a type of pet.', 'a photo of a genetic carrier, a type of pet.', 'a photo of a chihuahua, a type of pet.', 'a photo of a doggie, a type of pet.', 'a photo of a pit bull terrier, a type of pet.', 'a photo of a egyptian mau, a type of pet.', 'a photo of a spraying, a type of pet.', 'a photo of a jean mill, a type of pet.', 'a photo of a english cocker spaniel, a type of pet.', 'a photo of a american cocker spaniel, a type of pet.', 'a photo of a woodcock, a type of pet.', 'a photo of a roan, a type of pet.', 'a photo of a stud book, a type of pet.', 'a photo of a h.s. lloyd, a type of pet.', 'a photo of a canigou cambrai, a type of pet.', 'a photo of a arthritis, a type of pet.', 'a photo of a norfolk spaniel, a type of pet.', 'a photo of a arrhythmias, a type of pet.', 'a photo of a eeg, a type of pet.', 'a photo of a pet, a type of pet.', 'a photo of a rebecca, a type of pet.', 'a photo of a lupo, a type of pet.', 'a photo of a heart murmurs, a type of pet.', 'a photo of a congestive heart failure, a type of pet.', 'a photo of a rage syndrome, a type of pet.', 'a photo of a autonomous university of barcelona, a type of pet.', 'a photo of a english setter, a type of pet.', 'a photo of a setter, a type of pet.', 'a photo of a game, a type of pet.', 'a photo of a snout, a type of pet.', 'a photo of a hock, a type of pet.', 'a photo of a tattoo, a type of pet.', 'a photo of a deaf animal, a type of pet.', 'a photo of a louisiana state university, a type of pet.', 'a photo of a autoimmune thyroiditis, a type of pet.', 'a photo of a nomenclature, a type of pet.', 'a photo of a united kingdom accreditation service, a type of pet.', 'a photo of a microchip implant, a type of pet.', 'a photo of a bur, a type of pet.', 'a photo of a dna profiling, a type of pet.', 'a photo of a landed gentry, a type of pet.', 'a photo of a outcrossing, a type of pet.', 'a photo of a bird dog, a type of pet.', 'a photo of a pointing breed, a type of pet.', 'a photo of a german shorthaired, a type of pet.', 'a photo of a great pyrenees, a type of pet.', 'a photo of a havanese, a type of pet.', 'a photo of a japanese chin, a type of pet.', 'a photo of a strabismus, a type of pet.', 'a photo of a lap dog, a type of pet.', 'a photo of a empress of japan, a type of pet.', 'a photo of a matthew calbraith perry, a type of pet.', 'a photo of a hypoglycemia, a type of pet.', 'a photo of a antibacterial, a type of pet.', 'a photo of a fungus, a type of pet.', 'a photo of a heart murmur, a type of pet.', 'a photo of a corneal ulcers in animals, a type of pet.', 'a photo of a anal glands, a type of pet.', 'a photo of a skin fold, a type of pet.', 'a photo of a frances c. fairman, a type of pet.', 'a photo of a keeshond, a type of pet.', 'a photo of a leonberger, a type of pet.', 'a photo of a leonberg, a type of pet.', 'a photo of a baden-württemberg, a type of pet.', 'a photo of a bloat, a type of pet.', 'a photo of a lion, a type of pet.', 'a photo of a crest, a type of pet.', 'a photo of a giant dog breed, a type of pet.', 'a photo of a working group, a type of pet.', 'a photo of a stuttgart, a type of pet.', 'a photo of a world dog show, a type of pet.', 'a photo of a mountain dog, a type of pet.', 'a photo of a barry, a type of pet.', 'a photo of a polyneuropathy, a type of pet.', 'a photo of a melanistic mask, a type of pet.', 'a photo of a monastery, a type of pet.', 'a photo of a search and rescue dog, a type of pet.', 'a photo of a sexual dimorphism, a type of pet.', 'a photo of a lifesaving, a type of pet.', 'a photo of a buck, a type of pet.', 'a photo of a napoleon ii, a type of pet.', 'a photo of a empress elizabeth of austria-hungary, a type of pet.', 'a photo of a prince of wales, a type of pet.', 'a photo of a otto von bismarck, a type of pet.', 'a photo of a umberto i of italy, a type of pet.', 'a photo of a prince metternich, a type of pet.', 'a photo of a maine coon, a type of pet.', 'a photo of a miniature pinscher, a type of pet.', 'a photo of a toy group, a type of pet.', 'a photo of a cropping, a type of pet.', 'a photo of a companion group, a type of pet.', 'a photo of a karl friedrich louis dobermann, a type of pet.', 'a photo of a hackney horse, a type of pet.', 'a photo of a dog agility, a type of pet.', 'a photo of a newfoundland, a type of pet.', 'a photo of a labrador, a type of pet.', 'a photo of a island, a type of pet.', 'a photo of a nova scotia, a type of pet.', 'a photo of a canada, a type of pet.', 'a photo of a prince edward island, a type of pet.', 'a photo of a quebec, a type of pet.', 'a photo of a nunavut, a type of pet.', 'a photo of a cod, a type of pet.', 'a photo of a beothuk, a type of pet.', "a photo of a st. john's, a type of pet.", 'a photo of a  newfoundland and labrador, a type of pet.', 'a photo of a maine, a type of pet.', 'a photo of a french language, a type of pet.', 'a photo of a inuktitut, a type of pet.', 'a photo of a tundra, a type of pet.', 'a photo of a avalon peninsula, a type of pet.', 'a photo of a newfoundland english, a type of pet.', 'a photo of a newfoundland and labrador, a type of pet.', 'a photo of a innu, a type of pet.', 'a photo of a joão fernandes lavrador, a type of pet.', 'a photo of a strait of belle isle, a type of pet.', 'a photo of a cornwall, a type of pet.', 'a photo of a saskatchewan, a type of pet.', 'a photo of a north america, a type of pet.', 'a photo of a world heritage site, a type of pet.', 'a photo of a polar region, a type of pet.', 'a photo of a subarctic climate, a type of pet.', 'a photo of a humid continental climate, a type of pet.', 'a photo of a cayuga, a type of pet.', 'a photo of a corner brook, a type of pet.', 'a photo of a dorset, a type of pet.', 'a photo of a port au choix, a type of pet.', 'a photo of a john cabot, a type of pet.', 'a photo of a humphrey gilbert, a type of pet.', 'a photo of a treaty of utrecht, a type of pet.', 'a photo of a responsible government, a type of pet.', 'a photo of a giller prize, a type of pet.', 'a photo of a atlantic, a type of pet.', 'a photo of a humidity, a type of pet.', 'a photo of a persian, a type of pet.', 'a photo of a iranian, a type of pet.', 'a photo of a farsi, a type of pet.', 'a photo of a persia, a type of pet.', 'a photo of a irani, a type of pet.', 'a photo of a artaxerxes, a type of pet.', 'a photo of a iran, a type of pet.', 'a photo of a arabian, a type of pet.', 'a photo of a arab, a type of pet.', 'a photo of a arabic, a type of pet.', 'a photo of a gulf, a type of pet.', 'a photo of a war, a type of pet.', 'a photo of a egypt, a type of pet.', 'a photo of a arabia, a type of pet.', 'a photo of a egyptian, a type of pet.', 'a photo of a malay, a type of pet.', 'a photo of a nowruz, a type of pet.', 'a photo of a noruz, a type of pet.', 'a photo of a nowrooz, a type of pet.', 'a photo of a ottoman, a type of pet.', 'a photo of a mesopotamia, a type of pet.', 'a photo of a sassanid, a type of pet.', 'a photo of a arabs, a type of pet.', 'a photo of a pomeranian, a type of pet.', 'a photo of a pug, a type of pet.', 'a photo of a queen victoria, a type of pet.', 'a photo of a spain, a type of pet.', 'a photo of a tibet, a type of pet.', 'a photo of a pug-dog, a type of pet.', 'a photo of a netherlands, a type of pet.', 'a photo of a muscle, a type of pet.', 'a photo of a william iii of england, a type of pet.', 'a photo of a italy, a type of pet.', 'a photo of a mary ii of england, a type of pet.', 'a photo of a ragdoll, a type of pet.', 'a photo of a point, a type of pet.', 'a photo of a eye, a type of pet.', 'a photo of a fur, a type of pet.', 'a photo of a relax, a type of pet.', 'a photo of a relaxation, a type of pet.', 'a photo of a body, a type of pet.', 'a photo of a haunch, a type of pet.', 'a photo of a dog-like cats, a type of pet.', 'a photo of a torso, a type of pet.', 'a photo of a bodiless, a type of pet.', 'a photo of a musculature, a type of pet.', 'a photo of a bodywork, a type of pet.', 'a photo of a sphincter, a type of pet.', 'a photo of a bodily, a type of pet.', 'a photo of a corpus, a type of pet.', 'a photo of a drowsiness, a type of pet.', 'a photo of a corporeal, a type of pet.', 'a photo of a bodyshell, a type of pet.', 'a photo of a rest, a type of pet.', 'a photo of a cadaver, a type of pet.', 'a photo of a pubic, a type of pet.', 'a photo of a embody, a type of pet.', 'a photo of a relaxant, a type of pet.', 'a photo of a liberalization, a type of pet.', 'a photo of a laziness, a type of pet.', 'a photo of a thigh, a type of pet.', 'a photo of a carcass, a type of pet.', 'a photo of a corpse, a type of pet.', 'a photo of a carrion, a type of pet.', 'a photo of a unbend, a type of pet.', 'a photo of a hip, a type of pet.', 'a photo of a kidney, a type of pet.', 'a photo of a russian blue, a type of pet.', 'a photo of a arkhangelsk, a type of pet.', 'a photo of a russian language, a type of pet.', 'a photo of a scandinavia, a type of pet.', 'a photo of a romanization of russian, a type of pet.', 'a photo of a hybrid, a type of pet.', 'a photo of a russian, a type of pet.', 'a photo of a havana brown, a type of pet.', 'a photo of a gestation, a type of pet.', 'a photo of a down hair, a type of pet.', 'a photo of a guard hair, a type of pet.', 'a photo of a fel d 1, a type of pet.', 'a photo of a saint bernard, a type of pet.', 'a photo of a samoyed, a type of pet.', 'a photo of a nenets people, a type of pet.', 'a photo of a scottish terrier, a type of pet.', 'a photo of a fala, a type of pet.', 'a photo of a monopoly, a type of pet.', 'a photo of a brindle, a type of pet.', 'a photo of a earl of dumbarton, a type of pet.', 'a photo of a george w. bush, a type of pet.', 'a photo of a scotty cramp, a type of pet.', 'a photo of a westminster kennel club dog show, a type of pet.', 'a photo of a craniomandibular osteopathy, a type of pet.', 'a photo of a scotland, a type of pet.', 'a photo of a mammals, a type of pet.', 'a photo of a squirrel, a type of pet.', 'a photo of a domesticated, a type of pet.', 'a photo of a parasitism, a type of pet.', 'a photo of a mange, a type of pet.', 'a photo of a scottish gaelic language, a type of pet.', 'a photo of a blood, a type of pet.', 'a photo of a president of the united states, a type of pet.', 'a photo of a urine, a type of pet.', 'a photo of a franklin delano roosevelt, a type of pet.', 'a photo of a serotonin, a type of pet.', 'a photo of a diazepam, a type of pet.', 'a photo of a prozac, a type of pet.', 'a photo of a hemangiosarcoma, a type of pet.', 'a photo of a the royal scots, a type of pet.', 'a photo of a perthshire, a type of pet.', 'a photo of a shiba inu, a type of pet.', 'a photo of a hunting dog, a type of pet.', 'a photo of a japan, a type of pet.', 'a photo of a hokkaido, a type of pet.', 'a photo of a dogū, a type of pet.', 'a photo of a akita inu, a type of pet.', 'a photo of a jōmon period, a type of pet.', 'a photo of a chūbu region, a type of pet.', 'a photo of a meiji restoration, a type of pet.', 'a photo of a canine distemper, a type of pet.', 'a photo of a nagano prefecture, a type of pet.', 'a photo of a allergy, a type of pet.', 'a photo of a mino province, a type of pet.', 'a photo of a gifu prefecture, a type of pet.', 'a photo of a tottori prefecture, a type of pet.', 'a photo of a shimane prefecture, a type of pet.', 'a photo of a nihon ken hozonkai, a type of pet.', 'a photo of a pusuke, a type of pet.', 'a photo of a non-sporting group, a type of pet.', 'a photo of a knee examination, a type of pet.', 'a photo of a siamese, a type of pet.', 'a photo of a tai, a type of pet.', 'a photo of a thai, a type of pet.', 'a photo of a central thai, a type of pet.', 'a photo of a javanese, a type of pet.', 'a photo of a inlet, a type of pet.', 'a photo of a thailand, a type of pet.', 'a photo of a siam, a type of pet.', 'a photo of a intake, a type of pet.', 'a photo of a siamese connection, a type of pet.', 'a photo of a twin, a type of pet.', 'a photo of a kshatriya, a type of pet.', 'a photo of a samurai, a type of pet.', 'a photo of a illyrian, a type of pet.', 'a photo of a shamans, a type of pet.', 'a photo of a manchu, a type of pet.', 'a photo of a sphynx, a type of pet.', 'a photo of a the international cat association, a type of pet.', 'a photo of a allele, a type of pet.', 'a photo of a mating, a type of pet.', 'a photo of a genetics, a type of pet.', 'a photo of a female, a type of pet.', 'a photo of a convulsion, a type of pet.', 'a photo of a backcrossing, a type of pet.', 'a photo of a selective breeding, a type of pet.', 'a photo of a chamois leather, a type of pet.', 'a photo of a donskoy cat, a type of pet.', 'a photo of a university of toronto, a type of pet.', 'a photo of a gene pool, a type of pet.', 'a photo of a pup, a type of pet.', 'a photo of a merle, a type of pet.', 'a photo of a felines, a type of pet.', 'a photo of a cocker, a type of pet.', 'a photo of a basset, a type of pet.', 'a photo of a staffordshire bull terrier, a type of pet.', 'a photo of a black country, a type of pet.', 'a photo of a bull and terrier, a type of pet.', 'a photo of a staffordshire, a type of pet.', 'a photo of a warwickshire, a type of pet.', 'a photo of a english midlands, a type of pet.', 'a photo of a genome, a type of pet.', 'a photo of a old english terrier, a type of pet.', 'a photo of a fighting dog, a type of pet.', 'a photo of a bear baiting, a type of pet.', 'a photo of a bull baiting, a type of pet.', 'a photo of a cruelty to animals act 1835, a type of pet.', 'a photo of a protection of animals act 1911, a type of pet.', 'a photo of a dog show, a type of pet.', 'a photo of a cradley heath, a type of pet.', 'a photo of a peta, a type of pet.', 'a photo of a chav, a type of pet.', 'a photo of a tom walls, a type of pet.', 'a photo of a american staffordshire terrier, a type of pet.', 'a photo of a neurological disorders, a type of pet.', 'a photo of a cerebellar abiotrophy, a type of pet.', 'a photo of a chiari-like malformation, a type of pet.', 'a photo of a myotonia congenita, a type of pet.', 'a photo of a l-2-hydroxyglutaric aciduria, a type of pet.', 'a photo of a battersea dogs & cats home, a type of pet.', 'a photo of a pit bull, a type of pet.', 'a photo of a american pit bull terrier, a type of pet.', 'a photo of a federal government, a type of pet.', 'a photo of a wheaten terrier, a type of pet.', 'a photo of a irish language, a type of pet.', 'a photo of a herding dog, a type of pet.', 'a photo of a livestock guardian dog, a type of pet.', 'a photo of a irish kennel club, a type of pet.', 'a photo of a feces, a type of pet.', 'a photo of a renal dysplasia, a type of pet.', "a photo of a addison's disease, a type of pet.", 'a photo of a atopic dermatitis, a type of pet.', 'a photo of a prey drive, a type of pet.', 'a photo of a yorkshire terrier, a type of pet.', 'a photo of a yorkshire, a type of pet.', 'a photo of a paisley terrier, a type of pet.', 'a photo of a recessive, a type of pet.', 'a photo of a maltese, a type of pet.', 'a photo of a smoky, a type of pet.', 'a photo of a dog breeds, a type of pet.', 'a photo of a dander, a type of pet.', 'a photo of a dog type, a type of pet.', 'a photo of a portosystemic shunt, a type of pet.', 'a photo of a hypoallergenic, a type of pet.', 'a photo of a crossbreeding, a type of pet.', 'a photo of a separation anxiety in dogs, a type of pet.', 'a photo of a sic, a type of pet.', 'a photo of a bark, a type of pet.', 'a photo of a huddersfield ben, a type of pet.', 'a photo of a bronchitis, a type of pet.', 'a photo of a george earl, a type of pet.', 'a photo of a stud dog, a type of pet.', 'a photo of a victorian era, a type of pet.', 'a photo of a war dog, a type of pet.', 'a photo of a anaesthesia, a type of pet.', 'a photo of a diarrhoea, a type of pet.', 'a photo of a vomiting, a type of pet.', 'a photo of a dog coat genetics, a type of pet.', 'a photo of a lymphangiectasia, a type of pet.', 'a photo of a genetic defect, a type of pet.', 'a photo of a incisor, a type of pet.', 'a photo of a hypoallergenic dog breed, a type of pet.', 'a photo of a premolar, a type of pet.']
+text feature size: torch.Size([594, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([100, 37])
+process logits num of label words: 594
+label_probs shape: torch.Size([69, 37])
+=> result
+* total: 3,669
+* correct: 1,442
+* accuracy: 39.3%
+* error: 60.7%
+* macro_f1: 30.5%

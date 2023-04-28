@@ -1,0 +1,300 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: 0.0
+dataset: oxford_pets
+dataset_config_file: configs/datasets/oxford_pets.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/oxford_pets
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 1
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: OxfordPets
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/oxford_pets
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/oxford_pets
+  SIZE: 1
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: OxfordPets
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/oxford_pets/split_zhou_OxfordPets.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ----------
+Dataset    OxfordPets
+# classes  37
+# train_x  2,944
+# val      736
+# test     3,669
+---------  ----------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [2427, 291, 80, 1687, 2163, 1115, 2620, 588, 181, 738, 1871, 707, 2278, 2484, 1369, 594, 1759, 2839, 1813, 2641, 1881, 2513, 321, 2188, 1724, 138, 191, 2886, 366, 662, 1810, 1727, 2349, 30, 1920, 2789, 1524, 1691, 699, 239, 883, 656, 641, 460, 1829, 293, 1787, 1835, 2131, 2818, 769, 189, 1225, 85, 2826, 238, 915, 2751, 90, 27, 671, 1187, 749, 1037, 763, 661, 406, 972, 234, 1610, 448, 1935, 2608, 628, 2167, 1504, 2581, 2529, 2328, 1056, 1696, 852, 539, 1462, 1368, 2681, 65, 726, 108, 887, 1548, 2888, 2488, 812, 1312, 1564, 2662, 446, 223, 2499, 1509, 1972, 911, 369, 1656, 1220, 672, 639, 2606, 2201, 2062, 66, 2907, 777, 2830, 1794, 2049, 1138, 1569, 1332, 534, 272, 2493, 1604, 2842, 79, 2550, 2860, 2076, 2040, 1474, 2002, 679, 1353, 2665, 1125, 1255, 259, 2322, 2602, 2136, 78, 1865, 879, 2735, 2242, 2124, 958, 2709, 1685, 1196, 319, 1962, 703, 837, 806, 2440, 1204, 2541, 483, 1728, 2082, 1171, 976, 1710, 2847, 1832, 148, 26, 2296, 665, 1700, 2812, 1026, 1477, 2773, 2318, 271, 2113, 2257, 968, 1584, 2283, 207, 1632, 20, 416, 814, 1644, 678, 1256, 2853, 2470, 1518, 931, 1780, 2103, 1739, 87, 378, 374, 2516, 1582, 1317, 1215, 2664, 1192, 2879, 2912, 835, 2685, 990, 1552, 1262, 1894, 2268, 46, 754, 353, 1692, 1641, 2633, 1905, 973, 584, 2304, 1328, 1234, 1455, 1559, 2586, 2878, 604, 657, 1735, 2314, 1634, 50, 2854, 2585, 1637, 507, 562, 1418, 1900, 1885, 231, 230, 1916, 674, 1621, 2722, 1864, 1001, 2673, 908, 713, 953, 2067, 725, 1090, 165, 2670, 2120, 2037, 556, 1612, 348, 1217, 1825, 73, 2559, 2486, 2632, 2048, 2648, 1276, 1575, 2686, 1119, 722, 1729, 1844, 1161, 1803, 851, 2549, 412, 2829, 2112, 608, 2272, 2531, 172, 2675, 690, 813, 2768, 2079, 494, 2215, 336, 2452, 1937, 2324, 1476, 2181, 2503, 2711, 2373, 1142, 1821, 1746, 2381, 1650, 1741, 1950, 468, 1508, 1200, 1112, 514, 1278, 1397, 2428, 1868, 2125, 2707, 2525, 204, 2006, 1153, 1133, 796, 379, 1627, 1731, 944, 301, 2903, 2106, 1132, 1636, 575, 2319, 1989, 186, 791, 1017, 435, 1768, 2939, 237, 916, 134, 981, 2539, 2483, 70, 1147, 2883, 1283, 1695, 922, 1300, 1316, 1046, 1828, 1179, 493, 1990, 147, 168, 1853, 9, 2688, 1391, 1615, 209, 2089, 1530, 1449, 240, 371, 2794, 2061, 2375, 340, 1290, 2359, 710, 77, 1890, 200, 471, 2016, 2264, 2284, 1244, 1684, 1879, 39, 486, 1805, 2836, 899, 868, 2713, 1762, 1343, 2561, 1212, 2317, 1643, 1652, 2107, 279, 1975, 1394, 845, 4, 2810, 257, 1157, 2817, 2174, 2908, 1715, 2587, 1629, 1122, 2791, 917, 1322, 2348, 2706, 2456, 1357, 2613, 2345, 2438, 2627, 1321, 2218, 1162, 2485, 623, 1247, 444, 1981, 1152, 2127, 2013, 1492, 2298, 600, 526, 1752, 2614, 1015, 1927, 178, 1254, 2828, 2108, 2229, 1888, 1704, 2590, 332, 56, 192, 158, 2468, 2545, 1544, 1976, 2921, 903, 344, 2820, 856, 682, 1211, 2660, 1086, 1597, 659, 2122, 302, 823, 573, 1253, 2942, 1749, 1681, 2055, 18, 1657, 2695, 1082, 519, 40, 1245, 1014, 821, 459, 337, 1389, 498, 995, 438, 1668, 1467, 2553, 1, 1070, 2923, 1967, 2457, 2506, 1166, 649, 2195, 1511, 1850, 2408, 235, 368, 1570, 365, 2500, 2501, 2596, 1543, 1021, 1388, 24, 326, 2035, 2445, 1111, 2315, 2219, 2579, 2001, 992, 701, 583, 1623, 1772, 1270, 305, 715, 634, 141, 730, 1679, 2292, 441, 1940, 122, 505, 2151, 2811, 2661, 1352, 872, 830, 2285, 750, 2941, 897, 1128, 2793, 2813, 528, 2227, 1944, 2522, 1329, 956, 2313, 2687, 2652, 1016, 2736, 1982, 2943, 1488, 2255, 2065, 595, 2650, 1003, 2785, 2841, 2758, 1136, 602, 357, 2472, 1506, 2580, 1755, 2250, 2341, 2588, 51, 2393, 2481, 1287, 1765, 1529, 1226, 121, 905, 581, 2459, 504, 1702, 847, 2623, 1537, 1417, 436, 2026, 2389, 1268, 2128, 621, 511, 1376, 133, 1344, 1319, 2694, 1964, 1444, 533, 997, 1087, 2480, 2639, 160, 1269, 1448, 535, 586, 2058, 1709, 1006, 455, 1795, 1531, 1168, 1387, 358, 1933, 719, 1285, 1626, 1096, 779, 2822, 434, 120, 67, 2173, 1004, 2546, 1568, 456, 137, 1172, 1401, 756, 408, 2671, 1658, 2901, 95, 2027, 2305, 124, 2726, 1249, 10, 2267, 1201, 1922, 146, 1302, 1275, 2431, 1798, 800, 647, 2081, 797, 386, 2139, 748, 1521, 1616, 2378, 2417, 2487, 144, 617, 2937, 2044, 2371, 377, 789, 116, 1497, 2068, 477, 874, 925, 2361, 1956, 2924, 2574, 253, 2790, 2397, 1175, 579, 415, 16, 2651, 2778, 1586, 827, 2086, 2439, 993, 1366, 2399, 2281, 2733, 145, 390, 1466, 2626, 1971, 1771, 1447, 1363, 2745, 2931, 1907, 2368, 1928, 1743, 2863, 2734, 2291, 2774, 2236, 423, 924, 1788, 2625, 2, 1425, 2045, 1307, 1968, 2537, 2898, 299, 58, 2825, 1165, 1345, 392, 2631, 1966, 1427, 1578, 1910, 755, 2072, 1049, 84, 2337, 102, 2509, 1129, 1323, 1857, 1055, 965, 768, 2659, 1230, 2344, 1932, 2358, 969, 2342, 1959, 1346, 654, 2808, 2321, 1272, 21, 2701, 1050, 1836, 1558, 113, 1036, 1824, 2073, 1099, 1336, 420, 2922, 1856, 313, 1851, 577, 1757, 1761, 2475, 1238, 536, 912, 1106, 2589, 1594, 1009, 2435, 403, 1173, 2432, 307, 1541, 2191, 2448, 1793, 1690, 226, 1424, 585, 1402, 1160, 1925, 906, 1398, 2137, 1877, 1409, 101, 355, 1845, 276, 885, 1472, 111, 882, 729, 2018, 216, 1842, 1222, 853, 2301, 1198, 2449, 1542, 2534, 1719, 822, 1716, 1725, 2517, 2149, 786, 1339, 1229, 1867, 1930, 1872, 361, 734, 439, 612, 1978, 306, 984, 1438, 453, 14, 255, 1293, 1823, 1193, 1581, 2708, 268, 286, 2637, 2920, 644, 496, 1228, 2466, 1308, 2424, 2380, 157, 2171, 1022, 405, 1921, 603, 1649, 841, 2309, 401, 367, 1556, 2335, 49, 1358, 865, 1399, 2728, 1012, 2088, 23, 2783, 2727, 315, 1257, 285, 839, 1233, 109, 2326, 1044, 2429, 1608, 464, 1806, 1224, 568, 1018, 880, 295, 1246, 2809, 832, 508, 2246, 2880, 1141, 677, 2806, 2629, 19, 187, 2489, 2166, 2881, 1207, 1284, 989, 521, 103, 1214, 196, 320, 2532, 913, 1188, 537, 2571, 850, 919, 2350, 2034, 2017, 61, 1646, 1199, 2916, 334, 213, 783, 300, 2919, 2421, 2014]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 1000
+num of org label words: 57
+cali text features shape: torch.Size([57, 1024])
+the calibration logits is tensor([[13.5078, 10.5078, 13.9219,  ..., 22.8438, 24.7344, 28.1406],
+        [16.8750, 14.7031, 21.9062,  ..., 19.1719, 13.5312, 21.1250],
+        [ 6.9688,  3.9238, 25.4062,  ..., 17.8594, 13.6641, 18.7500],
+        ...,
+        [16.3281, 14.2734, 16.2188,  ..., 19.9375, 17.4375, 19.2812],
+        [11.1641,  7.7773, 13.3828,  ..., 19.8906, 20.6875, 26.1562],
+        [11.7578,  9.6016, 21.0938,  ..., 18.9688, 19.0312, 21.4375]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([1000, 57])
+Phase 1 [2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 2, 2, 2, 1, 2, 2, 2]
+

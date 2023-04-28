@@ -1,0 +1,369 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: None
+dataset: caltech101
+dataset_config_file: configs/datasets/caltech101.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/caltech101
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 2
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+CALIBRATION_CUT: 0
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: Caltech101
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/caltech101
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/caltech101
+  SIZE: 2
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: Caltech101
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/caltech-101/split_zhou_Caltech101.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ----------
+Dataset    Caltech101
+# classes  100
+# train_x  4,128
+# val      1,649
+# test     2,465
+---------  ----------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [2750, 1958, 2312, 3971, 2967, 493, 3166, 3360, 2548, 916, 2920, 1466, 1308, 729, 87, 1112, 4047, 1980, 2847, 1718, 3029, 789, 3150, 3093, 3214, 1766, 2009, 1329, 203, 3112, 1578, 639, 2543, 456, 1764, 1290, 1582, 18, 2675, 2551, 2843, 3096, 2875, 3726, 2334, 4058, 2659, 1167, 1780, 3416, 821, 3402, 2299, 3698, 3544, 476, 2491, 2044, 315, 230, 3589, 2301, 1672, 2130, 336, 3387, 49, 1938, 1301, 204, 3322, 2234, 3026, 3858, 3823, 3382, 3306, 4014, 1785, 1625, 319, 2204, 124, 1411, 4123, 851, 1115, 281, 3659, 231, 2257, 2666, 1521, 537, 133, 85, 210, 224, 2681, 3510, 2800, 2581, 27, 2942, 2062, 1656, 1003, 1272, 3397, 872, 1726, 2429, 35, 2808, 2107, 2705, 3438, 1912, 293, 50, 2526, 188, 1774, 2720, 371, 1650, 1147, 2026, 3628, 79, 3242, 1789, 496, 2722, 2227, 4011, 3917, 1541, 1529, 3317, 335, 1453, 4019, 2444, 3684, 3450, 3747, 777, 1850, 3668, 817, 1152, 3464, 2222, 1697, 1862, 3200, 1976, 2908, 746, 822, 1998, 1269, 973, 3485, 4067, 995, 3389, 346, 2753, 2373, 3841, 2054, 829, 2084, 593, 3789, 3942, 1613, 584, 53, 2040, 3037, 725, 2355, 2439, 1960, 3147, 1360, 3728, 1255, 3986, 4109, 3730, 2401, 2001, 504, 3980, 2921, 4083, 2163, 4081, 279, 2772, 3384, 2388, 3595, 2031, 3264, 3491, 3361, 111, 1087, 738, 1093, 1996, 3846, 1548, 3787, 1171, 1050, 2698, 3521, 931, 3695, 2853, 1953, 2906, 2287, 3321, 1957, 703, 257, 1562, 3075, 2651, 3553, 1872, 1253, 3050, 41, 3208, 1680, 1499, 3744, 3435, 274, 1581, 1812, 3686, 1099, 52, 1621, 828, 2372, 2365, 2594, 967, 3262, 1212, 2363, 2208, 3913, 2171, 1119, 3624, 1951, 1175, 145, 223, 435, 2416, 876, 1761, 540, 2688, 3999, 815, 181, 1914, 209, 1009, 1162, 4106, 2949, 4033, 1406, 1316, 112, 1695, 2779, 3590, 908, 3456, 549, 2601, 73, 1652, 2624, 2629, 2058, 2043, 945, 2894, 1285, 1720, 3254, 3829, 2892, 2857, 2027, 1623, 842, 3460, 2382, 4113, 3572, 1452, 505, 2788, 3978, 1062, 830, 1990, 3680, 1192, 3632, 832, 3078, 1244, 3138, 715, 1692, 1283, 3977, 3580, 1111, 1903, 1933, 1716, 4127, 2338, 3008, 761, 4044, 1200, 374, 3641, 899, 944, 2155, 2237, 1659, 2687, 1637, 2975, 3850, 2067, 2360, 3779, 2648, 1038, 1030, 1816, 2565, 3934, 1323, 26, 3261, 2174, 671, 2996, 519, 883, 3249, 847, 459, 2201, 3062, 3606, 692, 4104, 468, 3463, 608, 147, 887, 3569, 3190, 3186, 1402, 993, 3013, 3554, 3615, 2630, 1288, 3020, 344, 226, 2706, 3519, 553, 2816, 2715, 1345, 86, 1921, 992, 1770, 1455, 1667, 3417, 2459, 3342, 1894, 3011, 3033, 2068, 9, 2861, 534, 650, 3339, 1103, 1757, 1485, 494, 3379, 1895, 4078, 3017, 2283, 3538, 902, 1096, 3975, 3057, 1743, 3723, 16, 3326, 2740, 2213, 2327, 2849, 1343, 1612, 2650, 1691, 3155, 3175, 2682, 448, 3381, 1771, 2445, 168, 3843, 742, 3324, 3222, 1477, 3274, 3927, 2935, 562, 240, 2806, 3736, 582, 661, 2183, 1936, 1293, 440, 1534, 1508, 1696, 707, 1424, 78, 856, 617, 823, 2120, 1989, 2304, 845, 3591, 406, 3018, 2865, 1971, 2265, 2516, 4000, 3865, 2874, 148, 1229, 535, 2498, 1326, 1238, 1987, 3132, 3304, 634, 2801, 1707, 3652, 1060, 1864, 1282, 2992, 938, 3487, 1026, 3511, 2423, 2691, 487, 3142, 1628, 67, 3216, 1254, 4026, 3091, 20, 3847, 3762, 1054, 1620, 3689, 2529, 444, 2500, 3108, 482, 2486, 4023, 1787, 1824, 1276, 713, 1299, 1398, 1759, 1603, 1767, 4073, 2891, 2598, 645, 2094, 3586, 1898, 2035, 749, 1382, 2623, 189, 1734, 2371, 2856, 277, 2145, 3007, 3412, 539, 1538, 2240, 3098, 1223, 3269, 843, 2555, 3565, 2966, 1188, 726, 2790, 2541, 623, 763, 2754, 1867, 701, 969, 2236, 583, 4012, 1700, 2016, 1756, 1037, 1386, 1735, 958, 1509, 1172, 1114, 1055, 3127, 981, 1762, 922, 1397, 2576, 98, 151, 1861, 997, 3931, 207, 1489, 1839, 1312, 3421, 216, 470, 3718, 3972, 1805, 2556, 3588, 2525, 3550, 383, 239, 486, 1405, 3902, 1823, 509, 1214, 3472, 2794, 3227, 1793, 674, 1160, 234, 48, 2946, 3292, 1247, 2076, 2243, 1828, 1544, 1371, 3077, 2049, 4004, 2647, 4105, 1491, 1975, 21, 1399, 3504, 2221, 3452, 3364, 1728, 4114, 65, 138, 3536, 2730, 1705, 1437, 3308, 1967, 272, 2895, 2927, 2141, 3970, 2206, 2399, 4116, 2618, 1204, 3888, 1018, 1615, 683, 3039, 906, 2704, 1095, 2368, 3788, 353, 1068, 2805, 2724, 1658, 1222, 2125, 730, 75, 60, 206, 1217, 741, 2686, 3559, 533, 2597, 3483, 1044, 2082, 2919, 3177, 1498, 1556, 3156, 2513, 2115, 1564, 3318, 3694, 3958, 4015, 3032, 1228, 2131, 2188, 1504, 1642, 2461, 1488, 379, 1888, 910, 2974, 1139, 657, 1640, 3233, 2223, 3337, 2926, 3644, 3300, 3449, 471, 271, 1822, 375, 2579, 2574, 3610, 801, 1531, 10, 2709, 321, 2759, 1739, 3832, 2701, 507, 1955, 4055, 647, 2268, 3914, 1593, 643, 259, 600, 1486, 366, 200, 3896, 835, 925, 4008, 3423, 3174, 485, 2057, 2454, 303, 2531, 1927, 446, 679, 3063, 3167, 2504, 2625, 395, 2862, 1681, 3872, 1380, 2511, 2782, 3024, 1249, 1818, 885, 3960, 2558, 2097, 3148, 734, 2151, 237, 1624, 1409, 2986, 2244, 656, 4111, 652, 2286, 1956, 2937, 1006, 951, 348, 415, 164, 4030, 1744, 1412, 2178, 2804, 3121, 1462, 604, 3702, 3582, 3921, 4061, 1090, 1132, 2335, 170, 3705, 2229, 1589, 2181, 3945, 3976, 2778, 2592, 2938, 2718, 1865, 2896, 104, 965, 1539, 2488, 3995, 2727, 4072, 3513, 678, 2179, 2676, 2507, 1356, 677, 2517, 3001, 2634, 2550, 2285, 2756, 1369, 2318, 1586, 2059, 955, 2124, 3101, 2697, 1870, 364, 40, 915, 2509, 46, 296, 3278, 3721, 2609, 1999, 959, 794, 3637, 3079, 2984, 1028, 1788, 90, 690, 155, 569, 450, 3771, 853, 2580, 1928, 3239, 3852, 882, 4001, 2002, 1893, 602, 2343, 3828, 3437, 177, 1235, 1300, 1646, 2088, 3733, 412, 301, 934, 649, 3009, 1689, 1568, 2954, 158, 1017, 3107, 4088, 2795, 3926, 3207, 3309, 377, 2868, 165, 1634, 2669, 722, 4006, 3422, 3542, 3248, 3742, 1610, 3358, 3639, 3209, 3131, 1376, 1741, 3083, 2103, 3878, 1015, 912, 2061, 89, 897, 3352, 2357, 2395, 2539, 745, 577, 3701, 2457, 1626, 864, 911, 1604, 1537, 2527, 2584, 1784, 3790, 1350, 3608, 1688, 2563, 3234, 3577, 3446, 1049, 3836, 2460, 3426]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 1000
+num of org label words: 268
+cali text features shape: torch.Size([268, 1024])
+the calibration logits is tensor([[12.5469, 19.5469, 14.6641,  ..., 10.8359, 17.5156, 14.8516],
+        [17.1875, 15.7891, 16.9688,  ..., 18.0625, 17.7969, 16.3438],
+        [13.6328, 15.2500, 15.2344,  ..., 11.9219, 17.5000, 16.9844],
+        ...,
+        [13.8203, 16.8594, 15.1406,  ..., 11.8438, 17.6875, 16.8438],
+        [14.2188, 15.0391, 14.8203,  ..., 11.4141, 20.0625, 15.4375],
+        [15.0938, 19.9375, 15.7422,  ..., 13.3984, 18.8594, 18.8750]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([1000, 268])
+Phase 1 [3, 3, 3, 3, 3, 3, 2, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 2, 1, 1, 3, 2, 3, 1, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 1, 1, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 2, 3, 3, 3, 2, 3, 3, 1, 3, 3, 3, 2, 1, 3, 3, 3, 2, 3, 3, 3, 3, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3]
+
+register_calibrate_logits starting shape: torch.Size([268])
+logits shape -1 :268
+rm_calibrate_ids: set(), shape 0
+Phase 2 [3, 3, 3, 3, 3, 3, 2, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 2, 1, 1, 3, 2, 3, 1, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 1, 1, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 2, 3, 3, 3, 2, 3, 3, 1, 3, 3, 3, 2, 1, 3, 3, 3, 2, 3, 3, 3, 3, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3]
+
+num of label words after cc: 268
+cali_logits shape: torch.Size([268])
+Prompts: ['a photo of a face.', 'a photo of a front.', 'a photo of a confront.', 'a photo of a leopard.', 'a photo of a jaguar.', 'a photo of a lion.', 'a photo of a motorbike.', 'a photo of a motorcycle.', 'a photo of a bicycle.', 'a photo of a accordion.', 'a photo of a piano.', 'a photo of a concertina.', 'a photo of a airplane.', 'a photo of a plane.', 'a photo of a airliner.', 'a photo of a anchor.', 'a photo of a anchorman.', 'a photo of a fasten.', 'a photo of a ant.', 'a photo of a wasp.', 'a photo of a barrel.', 'a photo of a gallon.', 'a photo of a hogshead.', 'a photo of a bass.', 'a photo of a freshwater bass.', 'a photo of a sea bass.', 'a photo of a beaver.', 'a photo of a capybara.', 'a photo of a binocular.', 'a photo of a eyepiece.', 'a photo of a ocular.', 'a photo of a bonsai.', 'a photo of a japan.', 'a photo of a penjing.', 'a photo of a brain.', 'a photo of a cerebrum.', 'a photo of a mind.', 'a photo of a brontosaurus.', 'a photo of a apatosaurus.', 'a photo of a sauropod.', 'a photo of a buddha.', 'a photo of a buddhism.', 'a photo of a bodhisattva.', 'a photo of a butterfly.', 'a photo of a caterpillar.', 'a photo of a moth.', 'a photo of a camera.', 'a photo of a video.', 'a photo of a photograph.', 'a photo of a cannon.', 'a photo of a gun.', 'a photo of a artillery.', 'a photo of a car side.', 'a photo of a ceiling fan.', 'a photo of a india.', 'a photo of a united states.', 'a photo of a cellphone.', 'a photo of a smartphone.', 'a photo of a telephone.', 'a photo of a chair.', 'a photo of a seat.', 'a photo of a chairwoman.', 'a photo of a chandelier.', 'a photo of a pendant.', 'a photo of a cougar body.', 'a photo of a cougar face.', 'a photo of a crab.', 'a photo of a king crab.', 'a photo of a dungeness crab.', 'a photo of a crayfish.', 'a photo of a spiny lobster.', 'a photo of a crocodile.', 'a photo of a reptile.', 'a photo of a nile crocodile.', 'a photo of a crocodile head.', 'a photo of a cup.', 'a photo of a trophy.', 'a photo of a container.', 'a photo of a dalmatian.', 'a photo of a dalmatia.', 'a photo of a carriage dog.', 'a photo of a dollar bill.', 'a photo of a george washington.', 'a photo of a currency.', 'a photo of a dolphin.', 'a photo of a killer whale.', 'a photo of a porpoise.', 'a photo of a dragonfly.', 'a photo of a electric guitar.', 'a photo of a gibson les paul.', 'a photo of a bridge.', 'a photo of a elephant.', 'a photo of a african elephant.', 'a photo of a tiger.', 'a photo of a emu.', 'a photo of a flightless bird.', 'a photo of a ratite.', 'a photo of a euphonium.', 'a photo of a trombone.', 'a photo of a tuba.', 'a photo of a ewer.', 'a photo of a handle.', 'a photo of a pitcher.', 'a photo of a ferry.', 'a photo of a boat.', 'a photo of a navigation.', 'a photo of a flamingo.', 'a photo of a flamingo head.', 'a photo of a garfield.', 'a photo of a comic strip.', 'a photo of a odie.', 'a photo of a gerenuk.', 'a photo of a antelope.', 'a photo of a gramophone.', 'a photo of a phonograph.', 'a photo of a victrola.', 'a photo of a grand piano.', 'a photo of a electric piano.', 'a photo of a rock music.', 'a photo of a hawksbill.', 'a photo of a sea turtle.', 'a photo of a turtle.', 'a photo of a headphone.', 'a photo of a earphone.', 'a photo of a amplifier.', 'a photo of a hedgehog.', 'a photo of a porcupine.', 'a photo of a helicopter.', 'a photo of a flight.', 'a photo of a aircraft.', 'a photo of a ibis.', 'a photo of a heron.', 'a photo of a latin.', 'a photo of a inline skate.', 'a photo of a aggressive inline skating.', 'a photo of a inline speed skating.', 'a photo of a joshua tree.', 'a photo of a yucca.', 'a photo of a california.', 'a photo of a kangaroo.', 'a photo of a marsupial.', 'a photo of a wallaby.', 'a photo of a ketch.', 'a photo of a sloop.', 'a photo of a lamp.', 'a photo of a lantern.', 'a photo of a light.', 'a photo of a laptop.', 'a photo of a touchpad.', 'a photo of a computer.', 'a photo of a llama.', 'a photo of a alpaca.', 'a photo of a guanaco.', 'a photo of a lobster.', 'a photo of a seafood.', 'a photo of a lotus.', 'a photo of a blossom.', 'a photo of a lily.', 'a photo of a mandolin.', 'a photo of a violin.', 'a photo of a banjo.', 'a photo of a mayfly.', 'a photo of a menorah.', 'a photo of a candelabrum.', 'a photo of a candelabra.', 'a photo of a metronome.', 'a photo of a pendulum.', 'a photo of a rubato.', 'a photo of a minaret.', 'a photo of a tower.', 'a photo of a mosque.', 'a photo of a nautilus.', 'a photo of a chambered nautilus.', 'a photo of a octopus.', 'a photo of a okapi.', 'a photo of a giraffe.', 'a photo of a mammal.', 'a photo of a pagoda.', 'a photo of a stupa.', 'a photo of a temple.', 'a photo of a panda.', 'a photo of a red panda.', 'a photo of a sichuan.', 'a photo of a pigeon.', 'a photo of a dodo.', 'a photo of a pizza.', 'a photo of a cheese.', 'a photo of a italy.', 'a photo of a platypus.', 'a photo of a echidna.', 'a photo of a monotreme.', 'a photo of a pyramid.', 'a photo of a great pyramid of giza.', 'a photo of a khufu.', 'a photo of a revolver.', 'a photo of a pistol.', 'a photo of a handgun.', 'a photo of a rhino.', 'a photo of a rhinoceros.', 'a photo of a indian rhinoceros.', 'a photo of a rooster.', 'a photo of a chicken.', 'a photo of a saxophone.', 'a photo of a clarinet.', 'a photo of a oboe.', 'a photo of a schooner.', 'a photo of a foremast.', 'a photo of a scissors.', 'a photo of a cut.', 'a photo of a switchblade.', 'a photo of a scorpion.', 'a photo of a arachnid.', 'a photo of a venom.', 'a photo of a sea horse.', 'a photo of a horse.', 'a photo of a fish.', 'a photo of a snoopy.', 'a photo of a beagle.', 'a photo of a nosy.', 'a photo of a soccer ball.', 'a photo of a fifa.', 'a photo of a ball.', 'a photo of a stapler.', 'a photo of a basic.', 'a photo of a essential.', 'a photo of a starfish.', 'a photo of a coral.', 'a photo of a echinoderm.', 'a photo of a stegosaurus.', 'a photo of a allosaurus.', 'a photo of a ceratosaurus.', 'a photo of a stop sign.', 'a photo of a vienna convention on road signs and signals.', 'a photo of a retroreflector.', 'a photo of a strawberry.', 'a photo of a fruit.', 'a photo of a berry.', 'a photo of a sunflower.', 'a photo of a asteraceae.', 'a photo of a helianthus.', 'a photo of a tick.', 'a photo of a check.', 'a photo of a ticktock.', 'a photo of a trilobite.', 'a photo of a arthropod.', 'a photo of a cambrian.', 'a photo of a umbrella.', 'a photo of a canopy.', 'a photo of a shade.', 'a photo of a watch.', 'a photo of a see.', 'a photo of a clock.', 'a photo of a water lilly.', 'a photo of a nymphaeaceae.', 'a photo of a wheelchair.', 'a photo of a disability.', 'a photo of a wild cat.', 'a photo of a felinae.', 'a photo of a machairodontinae.', 'a photo of a windsor chair.', 'a photo of a pole lathe.', 'a photo of a spindle.', 'a photo of a wrench.', 'a photo of a twist.', 'a photo of a spanner.', 'a photo of a yin yang.', 'a photo of a taiji.', 'a photo of a taoism.']
+text feature size: torch.Size([268, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([100, 100])
+process logits num of label words: 268
+label_probs shape: torch.Size([65, 100])
+=> result
+* total: 2,465
+* correct: 1,790
+* accuracy: 72.6%
+* error: 27.4%
+* macro_f1: 66.0%

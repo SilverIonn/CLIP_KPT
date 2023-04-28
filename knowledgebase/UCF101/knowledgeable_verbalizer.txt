@@ -1,0 +1,101 @@
+apply_eye_makeup
+apply_lipstick
+archery,gymnastics,biathlon,sport,badminton,arrow,bow,athletics,judo,hunting,tennis,volleyball,weightlifting,pentathlon,taekwondo,karate,parthia,lacrosse,polo,powerlifting,snowboard
+baby_crawling,limb,gait,primates,quadrupeds,hand,knee,childproof,silhouette,animal locomotion,bear,foot,early childhood,crab,exercise,triceps,body posture,endurance,gymnastic bridge,soccer,horror film
+balance_beam,fédération internationale de gymnastique,beam,female,gymnast,artistic gymnastics,tumbling,handstand,olga korbut,nadia comăneci,code of points
+band_marching
+baseball_pitch,baseball,throwing,horseshoes,pitcher,out,knickerbocker rules,ball,1884 in baseball,baserunning,catcher,manager,coach,submarine,sidearm,strike zone,pickoff,off-speed pitch
+basketball,basketball court,professional basketball,football,baseball,national basketball association,volleyball,basketball game,tennis,center,double dribble,hoops,gymnastics,softball,soccer,golf,springfield, massachusetts,hockey,small forward,rugby,wrestling
+basketball_dunk
+bench_press,weight training,deltoid muscle,barbell,powerlifting,dumbbell,squat,muscle,weight training bench,pectoralis major,deadlift,bodybuilding,triceps brachii muscle,bench,paralympic powerlifting,george hackenschmidt,anconeus,anabolic steroid,julius maddox,trapezius,pectoralis major muscle
+biking,pedal,wheel,bicycle,motorcycle,motorbike,velocipede,cycling,ride,vehicle,unicycle,mudguard,cycle,sprocket,kickstand,bicycle wheel,mountain bike,coaster brake,safety bicycle,cart,automobile
+billiards,snooker,billiards,foosball,craps,backgammon,baccarat,carrom,frisbee,racquetball,mahjong,racquet,pinball,bocce,blackjack,pingpong,tenpin,shuffleboard,pachinko,croquet,game
+blow_dry_hair
+blowing_candles
+body_weight_squats
+bowling,container,cup,ball,roll,food,dish,plate,stadium,trough,arena,liquid,bowling,pipe bowl,salad bowl,bowls,punch,play,vessel,amphitheatre,soup
+boxing_punching_bag
+boxing_speed_bag
+breast_stroke,front crawl,chest,torso,swimming,butterfly,libya,frog,streamline,fina,human swimming,bas-relief,frog kick,dolphin kick,cave of swimmers,berlin,melchisédech thévenot,melbourne,benjamin franklin,society for the recovery of persons apparently drowned,indigenous peoples of the americas
+brushing_teeth,teeth,calculus,toothbrush,toothpaste,oral hygiene,dental plaque,twig,periodontal,dental floss,periodontitis,interdental brush,teeth cleaning,fluoride,teeth-cleaning twig,william addis,world war ii,dental cavity,incisor,mouthwash,tooth loss
+clean_and_jerk,barbell,snatch,olympic weightlifting,hook grip,strongman,weight training,full squat,partial squat
+cliff_diving
+cricket_bowling,throwing,laws of cricket,cricket,wicket,batting,delivery,over,all-rounder,umpire,wide,cricket ball,no-ball,toss,flemish,bowled,fast bowling,swing bowling,yorker,seam bowling,spin bowling
+cricket_shot
+cutting_in_kitchen
+diving,swim,plunge,nosedive,jackknife,snorkel,jump,belly flop,scuba,swan dive,descent,underwater,plunk,honkytonk,diving,nose dive,diver,fall,water sport,duck,gainer
+drumming,djembe,beat,cylinder,percussion instrument,cram,sound,drum kit,snare,music,tambourine,bongo drum,timpani,snare drum,bass drum,percussion,guitar,bass,jazz,thrum,barrel
+fencing,wall,barrier,contend,palisade,surround,fence in,hedge,picket fence,stockade,gate,barricade,fencing,argue,debate,ditch,parry,block,dealer,hedgerow,perimeter
+field_hockey_penalty
+floor_gymnastics
+frisbee_catch
+front_crawl,backstroke,breaststroke,butterfly stroke,swimming,metonym,fina,human swimming,swimming stroke,freestyle swimming,london,ojibwe,freestyle,trudgen,sydney,wing,cavill family,alick wickham,solomon islands,new georgia,charles daniels
+golf_swing,golf,mathematician,golf ball,core,kinetic energy,center of gravity,shoulder,hamstring,erector spinae muscles,wrist,putter,latissimus dorsi muscle,double pendulum
+haircut,hairstyle,fashion,hair,crew cut,cut,hairdo,barber,moustache,long hair,hairdressing,pageboy,bouffant,ponytail,cosmetics,braid,scrunchie,snip,brush cut,cutting,mohawk
+hammering,mallet,sledgehammer,forge,nail,malleus,pound,ball-peen hammer,tool,striker,beat,sledge,gavel,power hammer,wood,pounding,claw hammer,hatchet,anvil,hand tool,maul
+hammer_throw,scotland,event,sport,olympiad,track and field,track and field athletics,europe,discus throw,distance,shot put,javelin throw,motion,olympic games,1900 olympics,paris, france,circle,sydney,angle,pound,eastern european
+handstand_pushups
+handstand_walking
+head_massage,massage,scalp,head,copper,australia,massage device,portmanteau,united states,hindi,urdu,the guardian,alternative medicine
+high_jump,fosbury flop,world championships in athletics,england,track and field,track and field athletics,sara simeoni,pole vault,athletics at the summer olympics,iaaf world indoor championships,athletics at the 1928 summer olympics,javier sotomayor,stefka kostadinova,world athletics,2015 world championships in athletics – men's high jump,athletics at the 2020 summer olympics – men's high jump,scissors jump,michael sweeney,eastern cut-off,john winter,athletics at the 1948 summer olympics – men's high jump
+horse_race,thoroughbred,kentucky derby,melbourne cup,epsom derby,prix de l'arc de triomphe,national hunt racing,jockey,louisville, kentucky,standardbred,ancient greece,steeplechase,roman empire,jockey club,st leger stakes,american quarter horse,japan cup,dubai world cup,endurance riding,secretariat,belmont park
+horse_riding,horse racing,ranch,reining,farm,horse show,driving,equestrian vaulting,rodeo,mule,draft horse,show jumping,endurance riding,cavalry,carriage,thoroughbred,fox hunting,tent pegging,pleasure riding,gambling,olympic games
+hula_hoop,wham-o,toy,hoop,fad,willow,grape,grass,rattan,plastic,hula,arthur "spud" melin,steinkjer,australia,native american hoop dance,charles panati,marlex,polypropylene,polyethylene,led,kevlar
+ice_dancing,figure skating,twizzle,rhythm dance,step sequence,ballroom dancing,waltzes,winter olympic games,international skating union,jackson haines,1950 world figure skating championships,1952 world figure skating championships,2010–11 figure skating season,compulsory dance,original dance,free dance,figure skating lifts,gabriella papadakis,mazurka,guillaume cizeron,world figure skating championships
+javelin_throw,spear,javelin,decathlon,heptathlon,momentum,pentathlon,uwe hohn,germany,sweden,finland,amentum,sport,track and field,ancient olympic games,sportsperson,eric lemming,athletics at the 1906 intercalated games,discus,international association of athletics federations,athletics at the 1912 summer olympics – men's two handed javelin throw
+juggling_balls,juggling club,bounce juggling,juggling ring,juggling,millet,microfiber,juggling prop,birdseed,silicone,polyvinyl chloride,cascade,sergej ignatov,fountain,bouncing ball,shower,centre of mass,flash,juggling pattern,contact juggling,toss juggling
+jumping_jack,exercise,jumping,hand,foot,arm,human leg,cairo,john j. pershing,jumping jack,jack lalanne,rotator cuff,national geographic kids,michelle obama,let's move!
+jump_rope,rope,cardiovascular,jogging,handstand,cycling,skipping-rope rhyme,international jump rope union,calorie,shanghai,oslo,metabolic equivalent,aerobic exercise,covid-19 lockdowns,stunt,aesthetics,colorado springs, colorado,united states,amateur athletic union,aau junior olympic games
+kayaking,canoe,boat,paddle,outrigger,bike,cockpit,watercraft,ainu people,flatwater,rafting,paddling,inuit,rowing,swim,paddlers,snorkeling,snowmobile,scuba,aleut,triathlon
+knitting,fabric,yarn,silk,wool,textile,cloth,sew,needlework,stitch,embroidery,intarsia,cashmere,plain,sweater,hand knitting,basic knitted fabrics,sweaters,decrease,increase,cotton
+long_jump,wind-assisted,triple jump,jump,sport,carl lewis,referee,plasticine,track and field,halteres,ancient olympic games,all-weather running track,velocity,crumb rubber,vulcanized rubber,ncaa,sportsperson,all-weather track,track and field athletics,iaaf,iaaf world championships in athletics
+lunges,thrust,lurch,move,stab,shove,hurl,hurtle,motion,deflection,lob,movement,volley,goalmouth,feint,lofting,poke,passado,dart,riposte,fencing
+military_parade,independence day,world war ii,paris,bastille day military parade,bastille day,exhibition drill,corps of drums,pipe band,full dress uniform,albanian armed forces,trooping the colour,remembrance day,armed forces day,soviet union,guard of honour,goose step,parade,mêlée,knights,normans
+mixing,combine,mixture,blend,combination,combining,concoction,compound,mingle,commingle,admixture,meld,immix,conflate,premix,amalgamate,merge,intermix,intermingle,mix in,fuse
+mopping_floor
+nunchucks,styrofoam,okinawan kobudō,karate,tabak-toyok,two section staff,product,factorial,fibreglass,fibrinogenolysis,ultraproduct,kanji,flail,threshing,factor,deliverable,factorization,japanese language,multiplier,summation,remainder
+parallel_bars,exercise,grip,artistic gymnastics,parallel,physical therapy,metal,wood,berlin,gymnastics,friedrich ludwig jahn,anna karenina
+pizza_tossing
+playing_cello
+playing_daf
+playing_dhol
+playing_flute
+playing_guitar
+playing_piano
+playing_sitar
+playing_tabla
+playing_violin
+pole_vault,fiberglass,track and field,carbon fiber,high jump,celt,2000 summer olympics,yelena isinbayeva,north sea,gymnastics,friesland,fens,cambridgeshire,aluminum,huntingdonshire,lincolnshire,mycenaean greece,norfolk,minoan civilization,canal,greece
+pommel_horse,fédération internationale de gymnastique,male,gymnast,metal,wood,leather,artistic gymnastics,max whitlock,rings,code of points,kristian berki,parallel bars,marius urzică,miroslav cerar,louis smith,boris shakhlin,zoltán magyar,zoltan magyar,xiao qin
+pull_ups
+punch,jab,puncher,biff,counterpunch,sucker punch,hit,blow,haymaker,uppercut,knock,poke,lick,perforate,plug,clout,slug,hook,pierce,pugilism,fisticuffs
+push_ups,pectoralis major muscle,deltoid muscle,martial arts,calisthenics,triceps,punishment,knees,torso,british english,clavicle,physical exercise,scapula,prone position,serratus anterior muscle,coracobrachialis muscle,physical education,military fitness,planche,body mass,karate
+rafting,float,boat,pile,rowboat,navigation,slew,pontoon,spate,batch,plenty,stack,heap,lot,wad,mess,hatful,flock,deal,mass,pot
+rock_climbing_indoor
+rope_climbing,france,world police and fire games,czech republic,ncaa,united states,amateur athletic union,europe,tambourine,olympic games,gymnastics at the 1896 summer olympics - men's rope climbing
+rowing,quarrel,squabble,fracas,dustup,dispute,feather,scull,table,wrangle,words,course,line,run-in,bicker,tiff,boat,altercation,succession,bickering,seven
+salsa_spin
+shaving_beard
+shotput,track and field,ball,hammer throw,athletics,homer,scotland,diameter,circumference,sport,foul,trojan war,velocity,stone put,scottish highlands,discus,javelin,pentathlon,backstroke,breaststroke,decathlon
+skate_boarding,skatepark,ollie,2020 summer olympics,tony alva,surfing,polyurethane,freestyle skateboarding,jim evans,stacy peralta,bertlemann slide,kickflip,skateistan,barefoot,alan gelfand,street skateboarding,rodney mullen,tokyo,skateboard,profession,transportation
+skiing,sport,slalom,water ski,schuss,snowboard,mountain,snowmobile,bobsled,luge,biathlon,skiing,skis,skate,athletics,snow,sled,skier,alpine,ski binding,skiers
+skijet
+sky_diving,parachute,terminal velocity,automatic activation device,wingsuit flying,airdrop,troposphere,hypersonic,recreation,aviators,aircrew,aircraft,vertical wind tunnel,smokejumpers,atmosphere of earth,planetary atmosphere,atmospheric entry,outer space,crosswind,aerodynamic drag,tibia
+soccer_juggling
+soccer_penalty
+still_rings,male,flying rings,gymnast,artistic gymnastics,grip,giant,fédération internationale de gymnastique,horizontal bar,code of points
+sumo_wrestling,rikishi,yokozuna,japan sumo association,osaka,dohyō,heya,heian period,samurai,nihon shoki,gyōji,mawashi,judo,edo period,judge,kimarite,japan,wrestling,shinto,maegashira,wrestler
+surfing,breakers,surfboard,swim,dive,windsurf,browse,scuba,skateboard,surfer,breaker,channel-surf,wave,surfers,beach,waves,paddling,snorkeling,ocean,seas,crawl
+swing,move,waver,lilt,sway,fluctuate,jive,dangle,oscillate,motion,movement,stroke,shot,swinging,drive,change,approach,putting,hook,vacillate,sweep
+table_tennis_shot
+tai_chi,taiji,confucianism,neijia,tuishou,sanshou,chen-style t'ai chi ch'uan,yang-style t'ai chi ch'uan,wu-style t'ai chi ch'uan,i ching,cheng man-ch'ing,pinyin,wushu,taoism,yang chengfu,qi,chinese philosophy,shaolinquan,waijia,yin and yang,taolu
+tennis_swing
+throw_discus
+trampoline_jumping
+typing,character,case,typewrite,variant,sort,kind,quad,form,typeface,font,kern,eccentric,typecast,backspace,variety,typical,taxon,variation,breed,nature
+uneven_bars,steel,fiberglass,wood,korbut flip,artistic gymnastics,kip,fédération internationale de gymnastique,somersault,parallel bars,horizontal bar,olga korbut,grip,nadia comăneci,1976 summer olympics,pak salto,gymnastics australia,beth tweddle,viktoria komova,magnesium carbonate
+volleyball_spiking,volleyball,basketball,smash,tennis,shooting,slam dunk,philippines,association football,momentum,karch kiraly,topspin,dig & spike volleyball,force,association of volleyball professionals,human leg,acute injuries,beach volleyball
+walking_with_dog
+wall_pushups
+writing_on_board
+yo_yo,axle,cylinder,gravity,sleeper,pullstring,cognate,duncan toys company,slip knot,rotational energy,syria,ilocano language,kalmartrissan,filipino language,ancient greek,pedro flores,filipino people,advertising,santa barbara, california,donald f. duncan sr.,harvey lowe

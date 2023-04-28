@@ -1,0 +1,304 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: True
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: 0.2
+dataset: caltech101
+dataset_config_file: configs/datasets/caltech101.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/caltech101
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 10
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: True
+CALIBRATION_CUT: 0.2
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: Caltech101
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/caltech101
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/caltech101
+  SIZE: 10
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: Caltech101
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/caltech-101/split_zhou_Caltech101.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ----------
+Dataset    Caltech101
+# classes  100
+# train_x  4,128
+# val      1,649
+# test     2,465
+---------  ----------
+Loading CLIP (backbone: RN50)
+Selected examples (mixed) [2750, 1958, 2312, 3971, 2967, 493, 3166, 3360, 2548, 916, 2920, 1466, 1308, 729, 87, 1112, 4047, 1980, 2847, 1718, 3029, 789, 3150, 3093, 3214, 1766, 2009, 1329, 203, 3112, 1578, 639, 2543, 456, 1764, 1290, 1582, 18, 2675, 2551, 2843, 3096, 2875, 3726, 2334, 4058, 2659, 1167, 1780, 3416, 821, 3402, 2299, 3698, 3544, 476, 2491, 2044, 315, 230, 3589, 2301, 1672, 2130, 336, 3387, 49, 1938, 1301, 204, 3322, 2234, 3026, 3858, 3823, 3382, 3306, 4014, 1785, 1625, 319, 2204, 124, 1411, 4123, 851, 1115, 281, 3659, 231, 2257, 2666, 1521, 537, 133, 85, 210, 224, 2681, 3510, 2800, 2581, 27, 2942, 2062, 1656, 1003, 1272, 3397, 872, 1726, 2429, 35, 2808, 2107, 2705, 3438, 1912, 293, 50, 2526, 188, 1774, 2720, 371, 1650, 1147, 2026, 3628, 79, 3242, 1789, 496, 2722, 2227, 4011, 3917, 1541, 1529, 3317, 335, 1453, 4019, 2444, 3684, 3450, 3747, 777, 1850, 3668, 817, 1152, 3464, 2222, 1697, 1862, 3200, 1976, 2908, 746, 822, 1998, 1269, 973, 3485, 4067, 995, 3389, 346, 2753, 2373, 3841, 2054, 829, 2084, 593, 3789, 3942, 1613, 584, 53, 2040, 3037, 725, 2355, 2439, 1960, 3147, 1360, 3728, 1255, 3986, 4109, 3730, 2401, 2001, 504, 3980, 2921, 4083]
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Load support dataloader successfully! size: 200
+num of org label words: 822
+cali text features shape: torch.Size([822, 1024])
+the calibration logits is tensor([[12.5391, 19.5469, 14.6719,  ..., 13.2734, 15.9375, 18.3750],
+        [17.1875, 15.7812, 16.9688,  ..., 11.3203, 15.9453, 17.0156],
+        [13.6328, 15.2500, 15.2344,  ..., 12.2500, 16.2344, 18.2031],
+        ...,
+        [11.9375, 12.4062, 11.2734,  ...,  8.7500, 13.3750, 16.3125],
+        [14.3594, 17.8125, 16.0000,  ..., 15.2812, 18.9531, 20.3750],
+        [11.9141, 12.4766, 11.6406,  ...,  9.6953, 12.9453, 13.9062]],
+       device='cuda:0', dtype=torch.float16, grad_fn=<MmBackward0>)
+cc_logits shape: torch.Size([200, 822])
+Phase 1 [9, 7, 10, 5, 8, 9, 8, 11, 11, 7, 11, 9, 10, 5, 9, 6, 11, 9, 1, 11, 9, 7, 8, 1, 1, 6, 5, 9, 1, 10, 11, 11, 10, 6, 8, 7, 11, 9, 10, 8, 7, 1, 11, 7, 11, 10, 8, 10, 6, 7, 8, 11, 9, 9, 6, 10, 10, 11, 2, 10, 7, 6, 9, 11, 9, 9, 6, 7, 7, 10, 9, 11, 8, 10, 8, 7, 9, 7, 4, 11, 7, 8, 11, 10, 8, 10, 4, 11, 11, 10, 8, 9, 10, 9, 4, 7, 10, 10, 11, 10]
+
+register_calibrate_logits starting shape: torch.Size([822])
+logits shape -1 :822
+rm_calibrate_ids: {514, 9, 522, 10, 530, 535, 536, 28, 29, 541, 32, 36, 550, 551, 554, 555, 556, 562, 564, 54, 567, 569, 572, 573, 574, 576, 578, 589, 79, 81, 82, 84, 606, 607, 610, 611, 98, 632, 129, 130, 647, 653, 656, 660, 153, 666, 669, 159, 688, 692, 180, 694, 695, 696, 185, 702, 703, 192, 193, 194, 195, 196, 190, 713, 204, 717, 206, 719, 718, 209, 721, 723, 212, 213, 724, 720, 728, 722, 732, 228, 229, 230, 232, 233, 749, 247, 249, 251, 764, 253, 255, 256, 257, 770, 258, 771, 263, 270, 271, 275, 276, 277, 790, 280, 281, 285, 286, 287, 809, 812, 301, 819, 315, 318, 319, 320, 321, 322, 331, 334, 340, 345, 352, 354, 361, 362, 363, 365, 366, 368, 369, 380, 381, 384, 390, 393, 396, 397, 398, 401, 402, 403, 410, 412, 413, 421, 423, 425, 426, 428, 434, 456, 457, 458, 459, 465, 469, 471, 472, 475, 476, 477, 478, 507}

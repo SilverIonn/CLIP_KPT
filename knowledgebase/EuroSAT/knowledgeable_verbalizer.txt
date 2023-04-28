@@ -1,0 +1,10 @@
+annual crop land
+forest
+herbaceous vegetation land
+highway or road
+industrial buildings
+pasture land
+permanent crop land
+residential buildings
+river
+sea or lake

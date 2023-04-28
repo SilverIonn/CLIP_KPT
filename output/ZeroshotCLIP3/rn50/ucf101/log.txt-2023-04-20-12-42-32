@@ -1,0 +1,368 @@
+***************
+** Arguments **
+***************
+backbone: 
+calibration: False
+config_file: configs/trainers/CoOp/rn50.yaml
+cutrate: None
+dataset: ucf101
+dataset_config_file: configs/datasets/ucf101.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: []
+output_dir: output/ZeroshotCLIP3/rn50/ucf101
+relevance_refine: False
+resume: 
+root: /ix/yufeihuang/jia/nlp/prompt/data
+seed: -1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP3
+transforms: None
+vb_dir: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase
+vbsize: 10
+verbalizer: True
+************
+** Config **
+************
+CALIBRATION: False
+CALIBRATION_CUT: 0
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: UCF101
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /ix/yufeihuang/jia/nlp/prompt/data
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: RN50
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 200
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ZeroshotCLIP3/rn50/ucf101
+RELEVANCE_REFINE: False
+RESUME: 
+SEED: -1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 5
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP3
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBALIZER:
+  DIR: /ihome/yufeihuang/jiy130/Prompt/CoOp/knowledgebase/ucf101
+  SIZE: 10
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 1.13.1
+Is debug build: False
+CUDA used to build PyTorch: 11.7
+ROCM used to build PyTorch: N/A
+
+OS: Red Hat Enterprise Linux (x86_64)
+GCC version: (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.16 (default, Jan 17 2023, 23:13:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA A100-PCIE-40GB
+GPU 1: NVIDIA A100-PCIE-40GB
+GPU 2: NVIDIA A100-PCIE-40GB
+GPU 3: NVIDIA A100-PCIE-40GB
+
+Nvidia driver version: 515.65.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+Versions of relevant libraries:
+[pip3] numpy==1.23.5
+[pip3] torch==1.13.1
+[pip3] torchaudio==0.13.1
+[pip3] torchvision==0.14.1
+[conda] blas                      1.0                         mkl  
+[conda] cudatoolkit               11.3.1               h2bc3f7f_2  
+[conda] ffmpeg                    4.3                  hf484d3e_0    pytorch
+[conda] mkl                       2021.4.0           h06a4308_640  
+[conda] mkl-service               2.4.0            py38h7f8727e_0  
+[conda] mkl_fft                   1.3.1            py38hd3c417c_0  
+[conda] mkl_random                1.2.2            py38h51133e4_0  
+[conda] numpy                     1.23.5           py38h14f4228_0  
+[conda] numpy-base                1.23.5           py38h31eccc5_0  
+[conda] pytorch                   1.13.1          py3.8_cuda11.7_cudnn8.5.0_0    pytorch
+[conda] pytorch-cuda              11.7                 h778d358_3    pytorch
+[conda] pytorch-mutex             1.0                        cuda    pytorch
+[conda] torchaudio                0.13.1               py38_cu117    pytorch
+[conda] torchvision               0.14.1               py38_cu117    pytorch
+        Pillow (9.4.0)
+
+Loading trainer: ZeroshotCLIP3
+Loading dataset: UCF101
+Reading split from /ix/yufeihuang/jia/nlp/prompt/data/ucf101/split_zhou_UCF101.json
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ------
+Dataset    UCF101
+# classes  101
+# train_x  7,639
+# val      1,898
+# test     3,783
+---------  ------
+Loading CLIP (backbone: RN50)
+Prompts: ['a photo of a person doing apply eye makeup.', 'a photo of a person doing apply lipstick.', 'a photo of a person doing archery.', 'a photo of a person doing badminton.', 'a photo of a person doing arrow.', 'a photo of a person doing bow.', 'a photo of a person doing judo.', 'a photo of a person doing hunting.', 'a photo of a person doing baby crawling.', 'a photo of a person doing limb.', 'a photo of a person doing gait.', 'a photo of a person doing primates.', 'a photo of a person doing quadrupeds.', 'a photo of a person doing knee.', 'a photo of a person doing childproof.', 'a photo of a person doing silhouette.', 'a photo of a person doing animal locomotion.', 'a photo of a person doing bear.', 'a photo of a person doing balance beam.', 'a photo of a person doing beam.', 'a photo of a person doing female.', 'a photo of a person doing tumbling.', 'a photo of a person doing olga korbut.', 'a photo of a person doing nadia comăneci.', 'a photo of a person doing band marching.', 'a photo of a person doing baseball pitch.', 'a photo of a person doing horseshoes.', 'a photo of a person doing pitcher.', 'a photo of a person doing out.', 'a photo of a person doing knickerbocker rules.', 'a photo of a person doing 1884 in baseball.', 'a photo of a person doing baserunning.', 'a photo of a person doing catcher.', 'a photo of a person doing basketball.', 'a photo of a person doing basketball court.', 'a photo of a person doing professional basketball.', 'a photo of a person doing football.', 'a photo of a person doing national basketball association.', 'a photo of a person doing basketball game.', 'a photo of a person doing center.', 'a photo of a person doing double dribble.', 'a photo of a person doing basketball dunk.', 'a photo of a person doing bench press.', 'a photo of a person doing powerlifting.', 'a photo of a person doing dumbbell.', 'a photo of a person doing squat.', 'a photo of a person doing muscle.', 'a photo of a person doing weight training bench.', 'a photo of a person doing pectoralis major.', 'a photo of a person doing deadlift.', 'a photo of a person doing biking.', 'a photo of a person doing pedal.', 'a photo of a person doing wheel.', 'a photo of a person doing bicycle.', 'a photo of a person doing motorcycle.', 'a photo of a person doing motorbike.', 'a photo of a person doing velocipede.', 'a photo of a person doing ride.', 'a photo of a person doing vehicle.', 'a photo of a person doing unicycle.', 'a photo of a person doing billiards.', 'a photo of a person doing snooker.', 'a photo of a person doing foosball.', 'a photo of a person doing craps.', 'a photo of a person doing backgammon.', 'a photo of a person doing baccarat.', 'a photo of a person doing carrom.', 'a photo of a person doing frisbee.', 'a photo of a person doing racquetball.', 'a photo of a person doing mahjong.', 'a photo of a person doing blow dry hair.', 'a photo of a person doing blowing candles.', 'a photo of a person doing body weight squats.', 'a photo of a person doing bowling.', 'a photo of a person doing container.', 'a photo of a person doing cup.', 'a photo of a person doing roll.', 'a photo of a person doing food.', 'a photo of a person doing dish.', 'a photo of a person doing plate.', 'a photo of a person doing stadium.', 'a photo of a person doing trough.', 'a photo of a person doing arena.', 'a photo of a person doing boxing punching bag.', 'a photo of a person doing boxing speed bag.', 'a photo of a person doing breast stroke.', 'a photo of a person doing front crawl.', 'a photo of a person doing chest.', 'a photo of a person doing butterfly.', 'a photo of a person doing libya.', 'a photo of a person doing frog.', 'a photo of a person doing streamline.', 'a photo of a person doing brushing teeth.', 'a photo of a person doing teeth.', 'a photo of a person doing calculus.', 'a photo of a person doing toothbrush.', 'a photo of a person doing toothpaste.', 'a photo of a person doing oral hygiene.', 'a photo of a person doing dental plaque.', 'a photo of a person doing twig.', 'a photo of a person doing periodontal.', 'a photo of a person doing dental floss.', 'a photo of a person doing periodontitis.', 'a photo of a person doing clean and jerk.', 'a photo of a person doing snatch.', 'a photo of a person doing olympic weightlifting.', 'a photo of a person doing hook grip.', 'a photo of a person doing strongman.', 'a photo of a person doing full squat.', 'a photo of a person doing partial squat.', 'a photo of a person doing cliff diving.', 'a photo of a person doing cricket bowling.', 'a photo of a person doing laws of cricket.', 'a photo of a person doing cricket.', 'a photo of a person doing wicket.', 'a photo of a person doing batting.', 'a photo of a person doing delivery.', 'a photo of a person doing over.', 'a photo of a person doing all-rounder.', 'a photo of a person doing umpire.', 'a photo of a person doing wide.', 'a photo of a person doing cricket shot.', 'a photo of a person doing cutting in kitchen.', 'a photo of a person doing diving.', 'a photo of a person doing plunge.', 'a photo of a person doing nosedive.', 'a photo of a person doing jackknife.', 'a photo of a person doing snorkel.', 'a photo of a person doing belly flop.', 'a photo of a person doing swan dive.', 'a photo of a person doing descent.', 'a photo of a person doing drumming.', 'a photo of a person doing djembe.', 'a photo of a person doing percussion instrument.', 'a photo of a person doing cram.', 'a photo of a person doing sound.', 'a photo of a person doing drum kit.', 'a photo of a person doing snare.', 'a photo of a person doing music.', 'a photo of a person doing fencing.', 'a photo of a person doing wall.', 'a photo of a person doing barrier.', 'a photo of a person doing contend.', 'a photo of a person doing palisade.', 'a photo of a person doing surround.', 'a photo of a person doing fence in.', 'a photo of a person doing hedge.', 'a photo of a person doing picket fence.', 'a photo of a person doing stockade.', 'a photo of a person doing gate.', 'a photo of a person doing field hockey penalty.', 'a photo of a person doing floor gymnastics.', 'a photo of a person doing frisbee catch.', 'a photo of a person doing front crawl.', 'a photo of a person doing backstroke.', 'a photo of a person doing breaststroke.', 'a photo of a person doing butterfly stroke.', 'a photo of a person doing metonym.', 'a photo of a person doing swimming stroke.', 'a photo of a person doing freestyle swimming.', 'a photo of a person doing london.', 'a photo of a person doing golf swing.', 'a photo of a person doing golf.', 'a photo of a person doing mathematician.', 'a photo of a person doing golf ball.', 'a photo of a person doing core.', 'a photo of a person doing kinetic energy.', 'a photo of a person doing center of gravity.', 'a photo of a person doing shoulder.', 'a photo of a person doing hamstring.', 'a photo of a person doing erector spinae muscles.', 'a photo of a person doing wrist.', 'a photo of a person doing haircut.', 'a photo of a person doing hairstyle.', 'a photo of a person doing fashion.', 'a photo of a person doing hair.', 'a photo of a person doing crew cut.', 'a photo of a person doing cut.', 'a photo of a person doing hairdo.', 'a photo of a person doing barber.', 'a photo of a person doing moustache.', 'a photo of a person doing long hair.', 'a photo of a person doing hairdressing.', 'a photo of a person doing hammering.', 'a photo of a person doing mallet.', 'a photo of a person doing sledgehammer.', 'a photo of a person doing forge.', 'a photo of a person doing nail.', 'a photo of a person doing malleus.', 'a photo of a person doing pound.', 'a photo of a person doing ball-peen hammer.', 'a photo of a person doing tool.', 'a photo of a person doing striker.', 'a photo of a person doing hammer throw.', 'a photo of a person doing event.', 'a photo of a person doing olympiad.', 'a photo of a person doing discus throw.', 'a photo of a person doing distance.', 'a photo of a person doing shot put.', 'a photo of a person doing handstand pushups.', 'a photo of a person doing handstand walking.', 'a photo of a person doing head massage.', 'a photo of a person doing massage.', 'a photo of a person doing scalp.', 'a photo of a person doing head.', 'a photo of a person doing copper.', 'a photo of a person doing australia.', 'a photo of a person doing massage device.', 'a photo of a person doing portmanteau.', 'a photo of a person doing hindi.', 'a photo of a person doing urdu.', 'a photo of a person doing high jump.', 'a photo of a person doing fosbury flop.', 'a photo of a person doing world championships in athletics.', 'a photo of a person doing england.', 'a photo of a person doing sara simeoni.', 'a photo of a person doing pole vault.', 'a photo of a person doing athletics at the summer olympics.', 'a photo of a person doing iaaf world indoor championships.', 'a photo of a person doing athletics at the 1928 summer olympics.', 'a photo of a person doing horse race.', 'a photo of a person doing thoroughbred.', 'a photo of a person doing kentucky derby.', 'a photo of a person doing melbourne cup.', 'a photo of a person doing epsom derby.', "a photo of a person doing prix de l'arc de triomphe.", 'a photo of a person doing national hunt racing.', 'a photo of a person doing jockey.', 'a photo of a person doing louisville.', 'a photo of a person doing  kentucky.', 'a photo of a person doing standardbred.', 'a photo of a person doing ancient greece.', 'a photo of a person doing horse riding.', 'a photo of a person doing horse racing.', 'a photo of a person doing ranch.', 'a photo of a person doing reining.', 'a photo of a person doing farm.', 'a photo of a person doing horse show.', 'a photo of a person doing driving.', 'a photo of a person doing equestrian vaulting.', 'a photo of a person doing rodeo.', 'a photo of a person doing mule.', 'a photo of a person doing draft horse.', 'a photo of a person doing hula hoop.', 'a photo of a person doing wham-o.', 'a photo of a person doing toy.', 'a photo of a person doing hoop.', 'a photo of a person doing fad.', 'a photo of a person doing willow.', 'a photo of a person doing grape.', 'a photo of a person doing grass.', 'a photo of a person doing rattan.', 'a photo of a person doing plastic.', 'a photo of a person doing hula.', 'a photo of a person doing ice dancing.', 'a photo of a person doing figure skating.', 'a photo of a person doing twizzle.', 'a photo of a person doing rhythm dance.', 'a photo of a person doing step sequence.', 'a photo of a person doing ballroom dancing.', 'a photo of a person doing waltzes.', 'a photo of a person doing winter olympic games.', 'a photo of a person doing international skating union.', 'a photo of a person doing jackson haines.', 'a photo of a person doing 1950 world figure skating championships.', 'a photo of a person doing javelin throw.', 'a photo of a person doing spear.', 'a photo of a person doing javelin.', 'a photo of a person doing decathlon.', 'a photo of a person doing heptathlon.', 'a photo of a person doing pentathlon.', 'a photo of a person doing uwe hohn.', 'a photo of a person doing germany.', 'a photo of a person doing sweden.', 'a photo of a person doing finland.', 'a photo of a person doing juggling balls.', 'a photo of a person doing juggling club.', 'a photo of a person doing bounce juggling.', 'a photo of a person doing juggling ring.', 'a photo of a person doing juggling.', 'a photo of a person doing millet.', 'a photo of a person doing microfiber.', 'a photo of a person doing juggling prop.', 'a photo of a person doing birdseed.', 'a photo of a person doing silicone.', 'a photo of a person doing polyvinyl chloride.', 'a photo of a person doing jumping jack.', 'a photo of a person doing jumping.', 'a photo of a person doing foot.', 'a photo of a person doing arm.', 'a photo of a person doing human leg.', 'a photo of a person doing cairo.', 'a photo of a person doing john j. pershing.', 'a photo of a person doing jumping jack.', 'a photo of a person doing jack lalanne.', 'a photo of a person doing jump rope.', 'a photo of a person doing rope.', 'a photo of a person doing cardiovascular.', 'a photo of a person doing jogging.', 'a photo of a person doing skipping-rope rhyme.', 'a photo of a person doing international jump rope union.', 'a photo of a person doing calorie.', 'a photo of a person doing shanghai.', 'a photo of a person doing oslo.', 'a photo of a person doing kayaking.', 'a photo of a person doing canoe.', 'a photo of a person doing paddle.', 'a photo of a person doing outrigger.', 'a photo of a person doing bike.', 'a photo of a person doing cockpit.', 'a photo of a person doing watercraft.', 'a photo of a person doing ainu people.', 'a photo of a person doing flatwater.', 'a photo of a person doing knitting.', 'a photo of a person doing fabric.', 'a photo of a person doing yarn.', 'a photo of a person doing silk.', 'a photo of a person doing wool.', 'a photo of a person doing textile.', 'a photo of a person doing cloth.', 'a photo of a person doing sew.', 'a photo of a person doing needlework.', 'a photo of a person doing stitch.', 'a photo of a person doing embroidery.', 'a photo of a person doing long jump.', 'a photo of a person doing wind-assisted.', 'a photo of a person doing triple jump.', 'a photo of a person doing carl lewis.', 'a photo of a person doing referee.', 'a photo of a person doing plasticine.', 'a photo of a person doing halteres.', 'a photo of a person doing ancient olympic games.', 'a photo of a person doing lunges.', 'a photo of a person doing thrust.', 'a photo of a person doing lurch.', 'a photo of a person doing stab.', 'a photo of a person doing shove.', 'a photo of a person doing hurl.', 'a photo of a person doing hurtle.', 'a photo of a person doing deflection.', 'a photo of a person doing lob.', 'a photo of a person doing military parade.', 'a photo of a person doing independence day.', 'a photo of a person doing world war ii.', 'a photo of a person doing paris.', 'a photo of a person doing bastille day military parade.', 'a photo of a person doing bastille day.', 'a photo of a person doing exhibition drill.', 'a photo of a person doing corps of drums.', 'a photo of a person doing pipe band.', 'a photo of a person doing full dress uniform.', 'a photo of a person doing albanian armed forces.', 'a photo of a person doing mixing.', 'a photo of a person doing combine.', 'a photo of a person doing mixture.', 'a photo of a person doing blend.', 'a photo of a person doing combination.', 'a photo of a person doing combining.', 'a photo of a person doing concoction.', 'a photo of a person doing compound.', 'a photo of a person doing mingle.', 'a photo of a person doing commingle.', 'a photo of a person doing admixture.', 'a photo of a person doing mopping floor.', 'a photo of a person doing nunchucks.', 'a photo of a person doing styrofoam.', 'a photo of a person doing okinawan kobudō.', 'a photo of a person doing karate.', 'a photo of a person doing tabak-toyok.', 'a photo of a person doing two section staff.', 'a photo of a person doing product.', 'a photo of a person doing factorial.', 'a photo of a person doing fibreglass.', 'a photo of a person doing fibrinogenolysis.', 'a photo of a person doing ultraproduct.', 'a photo of a person doing parallel bars.', 'a photo of a person doing parallel.', 'a photo of a person doing physical therapy.', 'a photo of a person doing berlin.', 'a photo of a person doing friedrich ludwig jahn.', 'a photo of a person doing pizza tossing.', 'a photo of a person doing playing cello.', 'a photo of a person doing playing daf.', 'a photo of a person doing playing dhol.', 'a photo of a person doing playing flute.', 'a photo of a person doing playing guitar.', 'a photo of a person doing playing piano.', 'a photo of a person doing playing sitar.', 'a photo of a person doing playing tabla.', 'a photo of a person doing playing violin.', 'a photo of a person doing pole vault.', 'a photo of a person doing carbon fiber.', 'a photo of a person doing high jump.', 'a photo of a person doing celt.', 'a photo of a person doing 2000 summer olympics.', 'a photo of a person doing yelena isinbayeva.', 'a photo of a person doing north sea.', 'a photo of a person doing friesland.', 'a photo of a person doing pommel horse.', 'a photo of a person doing leather.', 'a photo of a person doing max whitlock.', 'a photo of a person doing rings.', 'a photo of a person doing pull ups.', 'a photo of a person doing punch.', 'a photo of a person doing jab.', 'a photo of a person doing puncher.', 'a photo of a person doing biff.', 'a photo of a person doing counterpunch.', 'a photo of a person doing sucker punch.', 'a photo of a person doing hit.', 'a photo of a person doing blow.', 'a photo of a person doing haymaker.', 'a photo of a person doing uppercut.', 'a photo of a person doing knock.', 'a photo of a person doing push ups.', 'a photo of a person doing pectoralis major muscle.', 'a photo of a person doing martial arts.', 'a photo of a person doing calisthenics.', 'a photo of a person doing triceps.', 'a photo of a person doing punishment.', 'a photo of a person doing knees.', 'a photo of a person doing british english.', 'a photo of a person doing clavicle.', 'a photo of a person doing rafting.', 'a photo of a person doing float.', 'a photo of a person doing pile.', 'a photo of a person doing rowboat.', 'a photo of a person doing navigation.', 'a photo of a person doing slew.', 'a photo of a person doing pontoon.', 'a photo of a person doing spate.', 'a photo of a person doing batch.', 'a photo of a person doing plenty.', 'a photo of a person doing rock climbing indoor.', 'a photo of a person doing rope climbing.', 'a photo of a person doing france.', 'a photo of a person doing world police and fire games.', 'a photo of a person doing czech republic.', 'a photo of a person doing ncaa.', 'a photo of a person doing amateur athletic union.', 'a photo of a person doing olympic games.', "a photo of a person doing gymnastics at the 1896 summer olympics - men's rope climbing.", 'a photo of a person doing rowing.', 'a photo of a person doing quarrel.', 'a photo of a person doing squabble.', 'a photo of a person doing fracas.', 'a photo of a person doing dustup.', 'a photo of a person doing dispute.', 'a photo of a person doing feather.', 'a photo of a person doing scull.', 'a photo of a person doing table.', 'a photo of a person doing wrangle.', 'a photo of a person doing words.', 'a photo of a person doing salsa spin.', 'a photo of a person doing shaving beard.', 'a photo of a person doing shotput.', 'a photo of a person doing hammer throw.', 'a photo of a person doing homer.', 'a photo of a person doing diameter.', 'a photo of a person doing circumference.', 'a photo of a person doing foul.', 'a photo of a person doing skate boarding.', 'a photo of a person doing skatepark.', 'a photo of a person doing ollie.', 'a photo of a person doing 2020 summer olympics.', 'a photo of a person doing tony alva.', 'a photo of a person doing polyurethane.', 'a photo of a person doing freestyle skateboarding.', 'a photo of a person doing jim evans.', 'a photo of a person doing stacy peralta.', 'a photo of a person doing bertlemann slide.', 'a photo of a person doing skiing.', 'a photo of a person doing slalom.', 'a photo of a person doing water ski.', 'a photo of a person doing schuss.', 'a photo of a person doing snowboard.', 'a photo of a person doing mountain.', 'a photo of a person doing snowmobile.', 'a photo of a person doing bobsled.', 'a photo of a person doing luge.', 'a photo of a person doing skijet.', 'a photo of a person doing sky diving.', 'a photo of a person doing parachute.', 'a photo of a person doing terminal velocity.', 'a photo of a person doing automatic activation device.', 'a photo of a person doing wingsuit flying.', 'a photo of a person doing airdrop.', 'a photo of a person doing troposphere.', 'a photo of a person doing hypersonic.', 'a photo of a person doing recreation.', 'a photo of a person doing aviators.', 'a photo of a person doing aircrew.', 'a photo of a person doing soccer juggling.', 'a photo of a person doing soccer penalty.', 'a photo of a person doing still rings.', 'a photo of a person doing flying rings.', 'a photo of a person doing giant.', 'a photo of a person doing sumo wrestling.', 'a photo of a person doing rikishi.', 'a photo of a person doing yokozuna.', 'a photo of a person doing japan sumo association.', 'a photo of a person doing osaka.', 'a photo of a person doing dohyō.', 'a photo of a person doing heya.', 'a photo of a person doing heian period.', 'a photo of a person doing samurai.', 'a photo of a person doing nihon shoki.', 'a photo of a person doing gyōji.', 'a photo of a person doing surfing.', 'a photo of a person doing breakers.', 'a photo of a person doing surfboard.', 'a photo of a person doing dive.', 'a photo of a person doing windsurf.', 'a photo of a person doing browse.', 'a photo of a person doing skateboard.', 'a photo of a person doing surfer.', 'a photo of a person doing breaker.', 'a photo of a person doing swing.', 'a photo of a person doing waver.', 'a photo of a person doing lilt.', 'a photo of a person doing sway.', 'a photo of a person doing fluctuate.', 'a photo of a person doing jive.', 'a photo of a person doing dangle.', 'a photo of a person doing oscillate.', 'a photo of a person doing movement.', 'a photo of a person doing table tennis shot.', 'a photo of a person doing tai chi.', 'a photo of a person doing taiji.', 'a photo of a person doing confucianism.', 'a photo of a person doing neijia.', 'a photo of a person doing tuishou.', 'a photo of a person doing sanshou.', "a photo of a person doing chen-style t'ai chi ch'uan.", "a photo of a person doing yang-style t'ai chi ch'uan.", "a photo of a person doing wu-style t'ai chi ch'uan.", 'a photo of a person doing i ching.', "a photo of a person doing cheng man-ch'ing.", 'a photo of a person doing tennis swing.', 'a photo of a person doing throw discus.', 'a photo of a person doing trampoline jumping.', 'a photo of a person doing typing.', 'a photo of a person doing character.', 'a photo of a person doing case.', 'a photo of a person doing typewrite.', 'a photo of a person doing variant.', 'a photo of a person doing sort.', 'a photo of a person doing kind.', 'a photo of a person doing quad.', 'a photo of a person doing form.', 'a photo of a person doing typeface.', 'a photo of a person doing font.', 'a photo of a person doing uneven bars.', 'a photo of a person doing steel.', 'a photo of a person doing korbut flip.', 'a photo of a person doing kip.', 'a photo of a person doing somersault.', 'a photo of a person doing parallel bars.', 'a photo of a person doing volleyball spiking.', 'a photo of a person doing smash.', 'a photo of a person doing shooting.', 'a photo of a person doing slam dunk.', 'a photo of a person doing philippines.', 'a photo of a person doing association football.', 'a photo of a person doing karch kiraly.', 'a photo of a person doing walking with dog.', 'a photo of a person doing wall pushups.', 'a photo of a person doing writing on board.', 'a photo of a person doing yo yo.', 'a photo of a person doing axle.', 'a photo of a person doing gravity.', 'a photo of a person doing sleeper.', 'a photo of a person doing pullstring.', 'a photo of a person doing cognate.', 'a photo of a person doing duncan toys company.', 'a photo of a person doing slip knot.', 'a photo of a person doing rotational energy.', 'a photo of a person doing syria.']
+text feature size: torch.Size([578, 1024])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([100, 101])
+process logits num of label words: 578
+label_probs shape: torch.Size([83, 101])
+=> result
+* total: 3,783
+* correct: 2,093
+* accuracy: 55.3%
+* error: 44.7%
+* macro_f1: 51.4%

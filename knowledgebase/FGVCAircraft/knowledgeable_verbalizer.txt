@@ -1,0 +1,100 @@
+707-320,pan american world airways,boeing 727,boeing 757,pratt & whitney jt3c,rolls-royce conway,boeing e-3 sentry,prototype,boeing 367-80,boeing 720,boeing 737,pratt & whitney jt3d,aerial refueling,turbofan,de havilland comet,jt3d,dutch roll,airline,jetliner,turbojet,narrow-body aircraft
+727-200,pratt & whitney jt8d,boeing 757,trijet,s-duct,boeing 707,united airlines,eastern air lines,northeast airlines,hush kit,boeing 737,fedex,t-tail,etops,narrow-body aircraft,boeing commercial airplanes,flight length,domestic flight,international flight,noise regulation,rotation
+737-200,airbus a320 family,boeing 737 max,southwest airlines,lufthansa,united airlines,boeing 707,turbofan,boeing 727,boeing 757,federal aviation administration,boeing 737 next generation,boeing 787 dreamliner,pratt & whitney jt8d,airliner,boeing,boeing 737 classic,renton, washington,alaska airlines,chicago,cfm international cfm56
+737-300,southwest airlines,boeing 737 next generation,boeing 757,boeing 737,737-200,turbofan,usair,air new zealand,range,airbus a320 family,aerodynamics,flight length,narrow-body aircraft,prototype,flap,jet airliner,boeing commercial airplanes,alaska airlines,farnborough airshow,us airways
+737-400,boeing 737,southwest airlines,boeing 737 next generation,boeing 757,737-200,turbofan,airbus a320,air new zealand,re-engine,cfm56,range,md-80,narrow-body aircraft,aerodynamics,boeing commercial airplanes,flap,prototype,airbus a320 family,fuel economy in aircraft,maximum takeoff weight
+737-500,boeing 737,boeing 737 next generation,boeing 757,737-200,turbofan,southwest airlines,mcdonnell douglas md-80,airbus a320,air new zealand,re-engine,piedmont airlines,cfm56,range,narrow-body aircraft,aerodynamics,boeing commercial airplanes,flap,prototype,fuel economy in aircraft,maximum takeoff weight
+737-600,boeing 737 classic,airbus a320 family,boeing 737 max,boeing 737,southwest airlines,maximum takeoff weight,boeing commercial airplanes,united airlines,airbus a320,boeing 757,delta air lines,boeing 787 dreamliner,gol transportes aéreos,ryanair,fuselage,boeing 777,federal aviation administration,winglet,low-cost airline,airliner
+737-700,boeing 737 classic,airbus a320 family,boeing 737 max,boeing 737,boeing commercial airplanes,southwest airlines,maximum takeoff weight,united airlines,airbus a320,delta air lines,boeing 757,boeing 787 dreamliner,ryanair,fuselage,boeing 777,winglet,low-cost airline,airliner,engine,twinjet
+737-800,airbus a320 family,boeing 737 classic,airbus a320,boeing 737 max,boeing 737,boeing 757,southwest airlines,delta air lines,boeing commercial airplanes,american airlines,boeing 777,boeing 787 dreamliner,ryanair,sky news,low-cost airline,737-300,airbus a320neo family,airbus a318,airbus a319,united states navy
+737-900,boeing 737 classic,airbus a320 family,boeing 737 max,boeing 737,southwest airlines,maximum takeoff weight,boeing commercial airplanes,united airlines,airbus a320,boeing 757,delta air lines,boeing 787 dreamliner,gol transportes aéreos,ryanair,fuselage,boeing 777,federal aviation administration,winglet,low-cost airline,airliner
+747-100,british airways,pratt & whitney jt9d,trijet,cargo aircraft,air force one,boeing 707,pan am,airbus a380,joe sutter,boeing 737,pratt & whitney,rolls-royce rb211,supersonic transport,maximum takeoff weight,glass cockpit,general electric genx,lockheed l-1011,nacelle,japan airlines,iran air
+747-200,british airways,pratt & whitney jt9d,trijet,cargo aircraft,air force one,boeing 707,pan am,airbus a380,joe sutter,boeing 737,pratt & whitney,rolls-royce rb211,supersonic transport,maximum takeoff weight,glass cockpit,general electric genx,lockheed l-1011,nacelle,japan airlines,iran air
+747-300,pratt & whitney jt9d,trijet,air force one,mcdonnell douglas dc-10,jt9d,boeing 707,pan am,joe sutter,boeing 737,pratt & whitney,supersonic transport,maximum takeoff weight,airbus a380,glass cockpit,general electric genx,stratospheric observatory for infrared astronomy,lockheed l-1011,nacelle,el al flight 1862,turbofan
+747-400,singapore airlines,nautical mile,klm,narita international airport,glass cockpit,northwest airlines,winglet,air france,japan airlines,pratt & whitney pw4000,general electric cf6,rolls-royce rb211,qantas,cargolux,airframe,lufthansa,commonality,autopilot,china airlines,boeing 777
+757-200,twinjet,etops,supercritical airfoil,boeing 727,transcontinental flight across the united states,hull loss,shanghai airlines,delta air lines,united airlines,flap,american airlines,icelandair,turbofan,tailplane,fuselage,ups airlines,nepal airlines,mainline,aerodynamics,takeoff
+757-300,etops,trijet,boeing 727,federal aviation administration,eastern air lines,pratt & whitney pw2000,supercritical airfoil,boeing 707,charter airline,transcontinental flight across the united states,delta air lines,hull loss,united airlines,flap,icelandair,ups airlines,turbofan,nepal airlines,fuselage,mainline
+767-200,united airlines,etops,unit load device,general electric cf6,rolls-royce rb211,supercritical airfoil,boeing 777,delta air lines,el al,japan airlines,cargo aircraft,pratt & whitney jt9d,pratt & whitney pw4000,type rating,airborne early warning and control,fedex express,transatlantic flight,airbus a300,fastener,hydraulics
+767-300,united airlines,etops,boeing 777,unit load device,general electric cf6,rolls-royce rb211,supercritical airfoil,delta air lines,el al,japan airlines,cargo aircraft,pratt & whitney jt9d,pratt & whitney pw4000,type rating,airborne early warning and control,fedex express,transatlantic flight,airbus a300,fastener,hydraulics
+767-400
+777-200,boeing 767,united airlines,composite material,british airways,emirates,boeing 747,airbus a340,mcdonnell douglas md-11,pratt & whitney pw4000,rolls-royce trent 800,general electric ge9x,boeing 747-400,air france,range,fly-by-wire,folding wing,wide-body aircraft,landing gear,airbus a330,general electric ge90
+777-300,united airlines,pratt & whitney pw4000,range,trijet,emirates,wide-body aircraft,boeing 767,boeing 747,airbus a340,mcdonnell douglas md-11,airbus a350 xwb,general electric ge90,rolls-royce trent 800,cargo aircraft,767-300er,composite material,general electric ge9x,aviation accidents and incidents,hull loss,aircraft hijacking
+a300b4
+a310,airbus a330,wide-body aircraft,swissair,lufthansa,twinjet,airbus a300,maiden flight,etops,glass cockpit,general electric cf6,pratt & whitney jt9d,boeing 767,transatlantic flight,composite material,landing gear,british aerospace,airbus,consortium,pw4000,inflation
+a318
+a319,easyjet,airbus,germany,swissair,winglet,american airlines,hamburg,tianjin,china,twinjet,fly-by-wire,airbus a320 family,narrow-body aircraft,jet airliner,newton,ilfc,winnipeg,boeing,type rating,airbus a320neo family
+a320,boeing 737,boeing 757,hamburg,tianjin,winglet,boeing,iae v2500,lufthansa,airbus,cfm56,air france,toulouse,airbus a318,maiden flight,airbus corporate jets,british aerospace,landing gear,kilometre,airbus a320neo family,pw6000
+a321,maximum takeoff weight,hamburg,american airlines,iae v2500,twinjet,germany,prototype,alitalia,landing gear,airbus a320 family,narrow-body aircraft,jet airliner,type rating,airbus a320neo family,wingtip device,mobile, alabama,cantilever,maiden flight,monoplane,empennage
+a330-200,boeing 777,air inter,boeing 767,airbus a350 xwb,airbus a300,farnborough airshow,mile,fly-by-wire,kc-x,nautical mile,airbus a320 family,airbus a330 mrtt,eads/northrop grumman kc-45,northrop grumman,boeing 747,boeing 787 dreamliner,turkish airlines,airbus a310,airbus a380,mcdonnell douglas md-11
+a330-300,boeing 777,pratt & whitney pw4000,rolls-royce trent 700,airbus a300,air inter,airbus a330neo,boeing 767,farnborough airshow,aer lingus,airbus,rolls-royce trent 7000,fly-by-wire,kc-x,airbus a320 family,general electric cf6,side-stick,delta air lines,cargo aircraft,airbus a330 mrtt,eads/northrop grumman kc-45
+a340-200,lufthansa,rolls-royce trent 500,fly-by-wire,airbus a350,boeing 777,boeing 747,cfm56,non-stop flight,turbofan,etops,landing gear,glass cockpit,paris air show,pratt & whitney,singapore airlines,airframe,mtow,wing,twinjet,range
+a340-300,lufthansa,boeing 777,cfm international cfm56,rolls-royce trent,airbus a350,non-stop flight,newton,fly-by-wire,landing gear,singapore airlines,wing,boeing 747,etops,twinjet,range,rolls-royce trent 500,air france,airbus a310,turbofan engine,paris air show
+a340-500,lufthansa,rolls-royce trent 500,boeing 777,fly-by-wire,boeing 747,cfm56,non-stop flight,airbus a350,turbofan,etops,landing gear,glass cockpit,paris air show,pratt & whitney,singapore airlines,airframe,mtow,wing,twinjet,range
+a340-600,lufthansa,rolls-royce trent 500,boeing 777,fly-by-wire,boeing 747,cfm56,non-stop flight,airbus a350,turbofan,etops,landing gear,glass cockpit,paris air show,pratt & whitney,singapore airlines,airframe,mtow,wing,twinjet,range
+a380,emirates,singapore airlines,boeing 747,airbus,qantas,toulouse,rolls-royce trent 900,air france,malaysia airlines,british airways,european aviation safety agency,boeing 747-400,fabrice brégier,general electric,lufthansa,hamburg,type certificate,federal aviation administration,airbus a350 xwb,airbus a330neo
+atr-42
+atr-72
+an-12,soviet union,turboprop,russian language,nato reporting name,cargo aircraft,antonov an-10,tu-16,lockheed c-130 hercules,sino-soviet split,xi'an aircraft industrial corporation,xian h-6,shaanxi aircraft company,antonov aeronautical scientific technical complex,pratt & whitney canada,pratt & whitney canada pw100,glass cockpit,commonwealth of independent states,indian subcontinent,united arab emirates,runway incursion
+bae 146-200
+bae 146-300
+bae-125
+beechcraft 1900,turboprop,cabin pressurization,runway,beechcraft,british aerospace jetstream,airport,ameriflight,fixed-wing aircraft,regional airliner,freight aircraft,beechcraft model 18,beechcraft model 99,kilowatt,beechcraft twin bonanza,reciprocating engine,beechcraft queen air,airstrip,grass,beechcraft king air,beechcraft super king air
+boeing 717,turbofan,airtran airways,mcdonnell douglas dc-9,pratt & whitney jt8d,mcdonnell douglas,hawaiian airlines,douglas dc-8,twinjet,mcdonnell douglas md-90,range,narrow-body aircraft,scandinavian airlines system,valujet airlines,qantas,mcdonnell douglas md-80,glass cockpit,iae v2500,airline,t-tail,jet aircraft
+c-130,blu-82,lockheed corporation,united states air force,vietnam war,turboprop,aerial refueling,aerial firefighting,aileron,allison t56,a400m,united states marine corps,night vision device,runway,airframe,gunship,lockheed mc-130,boeing,ac-130,turbojet,turboshaft
+c-47,military glider,airlift,astrodome,d-day,royal air force,royal australian air force,royal canadian air force,royal new zealand air force,south african air force,douglas dc-3,allies of world war ii,paratrooper,world war ii,long beach, california,santa monica, california,oklahoma city, oklahoma,battle of guadalcanal,new guinea,albatross,burma campaign
+crj-200
+crj-700
+crj-900
+cessna 172,airplane,continental o-300,cessna 175,lycoming o-360,pilot,aeroplane,biplane,monoplane,glider,hangar,helicopter,seaplane,plane,aviation,garmin g1000,supplemental type certificate,wing tip,mccarran international airport,engine,aircraft
+cessna 208,fedex,floatplane,federal aviation administration,pratt & whitney canada pt6,tricycle landing gear,flight training,air cargo,cessna,bracing,humanitarian,utility aircraft,high wing,cabin pressurization,commuter airline,vip transport,shijiazhuang,dwane wallace,russell w. meyer jr.,airframe,piper aircraft
+cessna 525,t-tail,federal aviation administration,williams fj44,cessna citation ii,citation i,cessna,laminar flow,spar,business jet,monoplane,citation family,nasa,boeing,pratt & whitney jt15d,straight wing,reciprocating engine,citation v,rivet,national business aviation association,fastener
+cessna 560,cessna citation ii,pratt & whitney canada pw500,cessna,reconnaissance,fuselage,aisle,business jet,thrust,supercritical airfoil,aircraft cabin,flying,pratt & whitney canada jt15d,service ceiling,horizontal stabilizer,electronic flight instrument system,pilot in command,national business aviation association,fadec,federal aviation administration,straight wing
+challenger 600,lycoming alf 502,general electric cf34,netjets,business jet,canadair,bankruptcy,t-tail,bill lear,conventional tail,flight test,type certification,bombardier crj100/200,supercritical wing,winglets,canada,subcontractor,boeing,bombardier aerospace,canadian federal government,department of transport
+dc-10
+dc-3
+dc-6
+dc-8
+dc-9-30
+dh-82
+dhc-1
+dhc-6
+dhc-8-100
+dhc-8-300
+dr-400
+dornier 328,turboprop,germany,oberpfaffenhofen,fairchild aircraft,pratt & whitney canada pw100,composite material,hartzell propeller,glass cockpit,dornier 328jet,fairchild,honeywell,memorandum of understanding,fokker,electromechanics,dornier flugzeugwerke,san antonio, texas,united states,bankruptcy,fairchild dornier 328jet,daimlerchrysler aerospace
+e-170,jetblue,paris air show,embraer erj 145 family,type certificate,air canada,republic airline,scope clause,embraer,twinjet,aerospatiale,alitalia,airbus a220,swissair,crossair,dependability,narrow-body aircraft,aerospace manufacturer,regional airline,alenia aeronautica,johannesburg
+e-190,narrow-body aircraft,paris air show,embraer erj 145 family,brazil,conglomerate,embraer,option,twinjet,wing,jetblue,fuselage,avionics,bizjet,winglets,jet airliner,us airways,aluminum,jet engine,crossair,horizontal stabilizer
+e-195,jetblue,general electric cf34,embraer,aerospace manufacturer,embraer erj family,jet propulsion,paris air show,maiden flight,lot polish airlines,embraer erj 145 family,type certificate,republic airways,scope clause,airbus a220,prototype,hydraulics,twinjet,régional,honeywell,london city airport
+emb-120
+erj 135
+erj 145
+embraer legacy 600,heritage,legacy,aircraft,airliner,airplane,aeroplane,biplane,monoplane,aircrew,airlift,glider,hangar,triplane,airbus,airstrip,aviator,fuselage,pilot,aerodrome,aero
+eurofighter typhoon,cyclone,hurricane,tornado,storm,snowstorm,hailstorm,thunderstorm,typhoon,windstorm,monsoon,tempest,stormtossed,stormwind,tropical cyclone,whirlwind,stormy,cyclonic,aweather,meteorological event,weathertight
+f-16a/b
+f/a-18
+falcon 2000,business jet,dassault aviation,dassault falcon,dassault falcon 900,fractional ownership
+falcon 900,france,trijet,jet aircraft,dassault aviation,s-duct,dassault falcon 50,dassault falcon 20,composite material,qatar,glass cockpit,wingtip device,saudia,aviation partners inc.,escadron de transport, d'entrainement et de calibration
+fokker 100,fokker,fokker f28,dasa,turbofan,turbojet,chord,re-engine,fokker 70,autoland,autothrust,swissair,arinc,jet airliner,regional jet,t-tail,rolls-royce rb.183 tay,fuselage stretch,atr,horizontal stabilizer,usair
+fokker 50,airliner,engine,aircraft,aeroplane,biplane,monoplane,fuselage,seaplane,aileron,royal netherlands air force,peruvian naval aviation,gunner,turboprop,airplane,fokker,aircrew,airbus,airlift,airstrip,aero
+fokker 70,fokker,fokker 100,turbofan,turbojet,twinjet,airline,netherlands,narrow-body aircraft,granada,spain,mesa airlines,regional airliner,woensdrecht,fokker f28 fellowship,first flight,fokker f28,fuel efficient,product certification,md-80,ford motor company
+global express
+gulfstream iv,iv,aircraft,airliner,airplane,aeroplane,biplane,monoplane,aircrew,airlift,glider,hangar,triplane,airbus,airstrip,aviator,fuselage,pilot,aerodrome,aero,helicopter
+gulfstream v,gulfstream iv,business jet,gulfstream aerospace,gulfstream 550,bombardier global express,rolls-royce rb.183 tay,rolls-royce br700,algeria,full authority digital engine control,supercritical airfoil,fuel economy in aircraft,mark cuban,steve jobs,macdill air force base,hickam air force base,ramstein air base,high-performance, instrumented airborne platform for environmental research,boulder, colorado,high-performance instrumented airborne platform for environmental research
+hawk t1
+il-76,ilyushin,soviet union,antonov an-12,aerial refueling,turbofan,tashkent,uzbekistan,russian language,nato reporting name,strategic airlift,rosoboronexport,nautical mile,antarctic,statute mile,il-78,waterbomber,cosmonauts,tashkent aviation production association,beriev,soloviev d-30
+l-1011,mcdonnell douglas dc-10,rolls-royce rb211,british airways,s-duct,autoland,boeing 747,airliner,kilometre,trijet,fuselage,galley,airstair,california,turbofan,lockheed corporation,wide-body airliner,nautical mile,autopilot,eastern air lines,faa
+md-11
+md-80
+md-87
+md-90
+metroliner,turboprop,passengers,plane,aircraft,flights,airbus,turbojet,airplane,commuter,monoplane,fokker,locomotives,jet,trains,turbofan,aires,ferry,cessna,turboshaft,airliner
+model b200
+pa-28,piper aircraft,piper pa-32r,fred weick,john thorp,light aircraft,turbocharging,piston engine,tricycle landing gear,federal aviation administration,cessna 172,grumman american aa-5,beechcraft musketeer,constant-speed propeller,embraer,piper pa-32,piper pa-24 comanche,lycoming o-360,chord,enaer,cessna 182 skylane
+sr-20
+saab 2000,turboprop,linköping,sweden,saab group,airliner,cruise,option,crossair,wingspan,valmet,fuselage,saab 340,regional airliner,propeller,jet aircraft,rpm,takeoff,construcciones aeronáuticas sa,short brothers,swissair
+saab 340,saab 2000,turboprop,saab ab,fairchild aircraft,regional express airlines,maiden flight,linköping,active noise control,wing,empennage,nacelle,turbofan,rivet,vertical stabilizer,decibel,australia,1973 oil crisis,japan,general electric t700,type certificate
+spitfire,fighter aircraft,hawker hurricane,supermarine,royal air force,allies of world war ii,rolls-royce griffon,luftwaffe,emotional person,horsepower,vickers-armstrong,beverley shenstone,supermarine spitfire variants: specifications, performance and armament,battle of britain,rolls-royce merlin,prowler,southampton airport,mustang,airframe,southampton,salisbury
+tornado,cyclone,twister,thunderstorm,supercell,wind,weather radar,storm,waterspout,tropical cyclone,hurricane,typhoon,snowstorm,hailstorm,hook echo,blizzard,rainstorm,wildfire,air,lightning,mesocyclone
+tu-134,aeroflot,tupolev tu-124,comecon,twinjet,okb,nato reporting name,narrow-body aircraft,jet airliner,turbofan,tupolev tu-154,pitch-up,noise control,sud aviation caravelle,nikita khrushchev,ilyushin il-14,bac one-eleven,1963 bac one-eleven test crash,baku,interflug,soloviev design bureau
+tu-154,boeing 727,noise regulation,ilyushin il-18,hawker siddeley trident,airliner,tupolev,aeroflot,trijet,kilometre,mile,airfields,arctic,yekaterinburg,moscow,turbojet,turboprop,russian language,range,nato reporting name,flight length
+yak-42,turbofan,yakovlev,okb,helsinki,trijet,nato reporting name,monoplane,soviet union,flap,tupolev tu-134,airstair,ilyushin il-18,aeroflot,antonov an-24,krasnodar,antonov an-26,leningrad,yakovlev yak-40,t-tail,soloviev d-30
